@@ -1,0 +1,10 @@
+{
+  "android_device":"Emulator-5554",
+  "android_platform_version":"9",
+  "flutter_demo_app":"apps_app-debug.apk",
+  "android_demo_app":"ApiDemos-debug.apk",
+  "android_package_name":"io.appium.android.apis",
+  "ios_device":"iPhone 11",
+  "ios_platform_version":"13.3",
+  "ios_demo_app":"TestApp.app.zip"
+}

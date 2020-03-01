@@ -1,0 +1,8 @@
+{
+"hub": "http://localhost:4444/wd/hub/",
+
+"hub_ie": "http//030-testhub.intra.diconium.com:4444/wd/hub/",
+
+"mobileHub" : "http://localhost:4723/wd/hub"
+
+}
