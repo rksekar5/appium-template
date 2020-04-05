@@ -1,0 +1,57 @@
+package mobile.iosapp.test_app.page_objects;
+
+import static common.Logger.logInfo;
+import static mobile.utils.mobileUtils.clickMobileElement;
+import static mobile.utils.mobileUtils.getMobileAttributeValue;
+import static mobile.utils.mobileUtils.getTextFromMobileElement;
+import static mobile.utils.mobileUtils.sendKeysToMobileElement;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class HomePage {
+
+  public HomePage(IOSDriver<MobileElement> driver) {
+    PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+  }
+
+  @iOSXCUITFindBy(accessibility = "TextField1")
+  public MobileElement INPUT_FIELD;
+
+  @iOSXCUITFindBy(accessibility = "show alert")
+  public MobileElement SHOW_ALERT_BUTTON;
+
+  @iOSXCUITFindBy(accessibility = "Cool title")
+  public MobileElement ALERT_BOX_TITLE;
+
+  @iOSXCUITFindBy(accessibility = "OK")
+  public MobileElement OK_BUTTON_ALERT;
+
+
+  public String getTextFieldValue(){
+    return getMobileAttributeValue(INPUT_FIELD);
+  }
+
+  public void enterValueInTextField(String input) {
+    sendKeysToMobileElement(INPUT_FIELD,input);
+  }
+
+  public void clickOnShowAlertButton(){
+    clickMobileElement(SHOW_ALERT_BUTTON);
+  }
+
+  public String getTitleFromAlertBox(){
+    final String title = getTextFromMobileElement(ALERT_BOX_TITLE);
+    logInfo(String.format("Alert box title is %s", title));
+    return title;
+  }
+
+  public void clickOnOkButtonOnAlert(){
+    clickMobileElement(OK_BUTTON_ALERT);
+    logInfo("Ok button has been clicked on successfully on th alert box");
+  }
+
+}

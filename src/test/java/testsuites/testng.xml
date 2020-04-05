@@ -3,7 +3,7 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-  <class name="mobile.androidapp.apidemo.ApiDemoTest"/>
+  <class name="mobile.androidapp.apidemo.ApiDemoTestAndroid"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

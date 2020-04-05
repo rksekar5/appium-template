@@ -9,4 +9,5 @@ public class IosUtilities {
   public IosUtilities(IOSDriver<IOSElement> driver) {
     this.driver = driver;
   }
+
 }
