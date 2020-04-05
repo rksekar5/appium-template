@@ -10,7 +10,7 @@ import org.testng.annotations.Listeners;
 
 @Slf4j
 @Listeners({RetryListener.class})
-public class AndroidBaseTest extends AndroidFactory {
+public class FlutterBaseTest extends AndroidFactory {
 
   @BeforeMethod(alwaysRun = true)
   protected void setUpAndroidApp(ITestContext result) {
@@ -25,8 +25,8 @@ public class AndroidBaseTest extends AndroidFactory {
   }
 
   private void removeAppFromDevice() {
-    if (driver.isAppInstalled(readValueFromMobileConfigFile("android_package_name")))
+    if (driver.isAppInstalled(readValueFromMobileConfigFile("flutter_package_name")))
       log.debug("Uninstalling the app as part of cleanup");
-    driver.removeApp(readValueFromMobileConfigFile("android_package_name"));
+    driver.removeApp(readValueFromMobileConfigFile("flutter_package_name"));
   }
 }

@@ -10,7 +10,7 @@ import org.testng.annotations.Listeners;
 
 @Slf4j
 @Listeners({RetryListener.class})
-public class BaseTest extends AndroidFactory {
+public class AndroidBaseTest extends AndroidFactory {
 
   @BeforeMethod(alwaysRun = true)
   protected void setUpAndroidApp(ITestContext result) {
