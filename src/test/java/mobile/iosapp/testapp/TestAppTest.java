@@ -1,13 +1,11 @@
 package mobile.iosapp.testapp;
 
-import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import mobile.iosapp.common.BaseTest;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import mobile.iosapp.test_app.page_objects.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,49 +13,47 @@ public class TestAppTest extends BaseTest {
 
   @Test
   public void testSendKeysToInput () throws IOException {
-    IOSDriver<IOSElement> driver = capabilities("ios_demo_app");
+    IOSDriver<MobileElement> driver = capabilities("ios_demo_app");
+    HomePage homePage = new HomePage(driver);
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-    // Find TextField input element
-    String textInputId = "TextField1";
-    IOSElement textViewsEl = (IOSElement) new WebDriverWait(driver, 30)
-        .until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(textInputId)));
-
     // Check that it doesn"t have a value
-    String value = textViewsEl.getAttribute("value");
+    String value = homePage.getTextFieldValue();
     Assert.assertNull(value);
 
     // Send keys to that input
-    textViewsEl.sendKeys("Hello World!");
+    homePage.enterValueInTextField("Hello World!");
 
     // Check that the input has new value
-    value = textViewsEl.getAttribute("value");
+    value = homePage.getTextFieldValue();
     Assert.assertEquals(value, "Hello World!");
   }
 
   @Test
   public void testOpenAlert () throws IOException {
-    IOSDriver<IOSElement> driver = capabilities("ios_demo_app");
+    IOSDriver<MobileElement> driver = capabilities("ios_demo_app");
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-    // Find Button element and click on it
-    String buttonElementId = "show alert";
-    IOSElement buttonElement = (IOSElement) new WebDriverWait(driver, 30)
-        .until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(buttonElementId)));
-    buttonElement.click();
+    HomePage homePage = new HomePage(driver);
 
-    // Wait for the alert to show up
-    String alertTitleId = "Cool title";
-    IOSElement alertTitleElement = (IOSElement) new WebDriverWait(driver, 30)
-        .until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(alertTitleId)));
+    // Find Button element and click on it
+    homePage.clickOnShowAlertButton();
 
     // Check the text
-    String alertTitle = alertTitleElement.getText();
+    String alertTitle = homePage.getTitleFromAlertBox();
     Assert.assertEquals(alertTitle, "Cool title");
 
     // Dismiss the alert
-    IOSElement okButtonElement = (IOSElement) new WebDriverWait(driver, 30)
-        .until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("OK")));
-    okButtonElement.click();
+    homePage.clickOnOkButtonOnAlert();
   }
+
+  // add test to press and drag slider
+
+  // Tap on and off the switch button
+
+  // Add sample ios to perform below actions:
+    // add test for date picker
+    // select from picker list
+    // add test to read toast message
+
 }
