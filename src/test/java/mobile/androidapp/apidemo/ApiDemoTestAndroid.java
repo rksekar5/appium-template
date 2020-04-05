@@ -1,31 +1,50 @@
 package mobile.androidapp.apidemo;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import mobile.androidapp.common.BaseTest;
+import mobile.androidapp.api_demos_app.page_objects.DependenciesPage;
+import mobile.androidapp.api_demos_app.page_objects.HomePage;
+import mobile.androidapp.api_demos_app.page_objects.PreferencesPage;
+import mobile.androidapp.common.AndroidBaseTest;
 import mobile.androidapp.common.TestData;
-import mobile.androidapp.pageObjects.HomePage;
-import mobile.androidapp.pageObjects.Preferences;
 import org.testng.annotations.Test;
 
-public class ApiDemoTest extends BaseTest {
+public class ApiDemoTestAndroid extends AndroidBaseTest {
 
   @Test(dataProvider = "InputData", dataProviderClass = TestData.class)
   public void apiDemoTest(String input) throws IOException {
-    AndroidDriver<AndroidElement> driver = capabilities("android_demo_app");
+    AndroidDriver<MobileElement> driver = capabilities("android_demo_app");
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     HomePage homePage = new HomePage(driver);
-    Preferences preferences = new Preferences(driver);
+    PreferencesPage preferencesPage = new PreferencesPage(driver);
+    DependenciesPage dependenciesPage = new DependenciesPage(driver);
 
-    homePage.Preferences.click();
+    homePage.clickOnPreference();
 
-    preferences.dependencies.click();
-    driver.findElementById("android:id/checkbox").click();
-    driver.findElementByXPath("(//android.widget.RelativeLayout)[2]").click();
-    driver.findElementByClassName("android.widget.EditText").sendKeys(input);
-    preferences.buttons.get(1).click();
+    preferencesPage.clickOnDependencies();
+
+    dependenciesPage.clickWifiCheckbox();
+    dependenciesPage.clickWifiSettingsOption();
+    dependenciesPage.enterInputInWifiSettings(input);
+
+    dependenciesPage.clickOnOkButtonOnWifiSettings();
   }
+
+  // Create tests for the following
+  // Views -> Drag and Drop
+  // Views -> Date widget -> Dialog (Date picker)
+  // Views -> Date widget -> Inline (long press and move)
+  // Views -> controls -> Light theme (Checkbox, radio button and dropdown)
+  // Content -> Storage -> External Storage (tap and check enable or disable)
+  // app -> Alert dialogs (Alert handling)
+  // app -> Menu -> Inflate (Inflate and deflate context menu)
+  // app -> Alarm -> Alarm controller (Capture Toast message)
+  // SMS testing scenario
+  // Push notification scenario
+
+
+
 }
