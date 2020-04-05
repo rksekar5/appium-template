@@ -1,12 +1,12 @@
 package mobile.androidapp.common;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 
 public class AndroidUtilities {
-  AndroidDriver<AndroidElement> driver;
+  AndroidDriver<MobileElement> driver;
 
-  public AndroidUtilities(AndroidDriver<AndroidElement> driver) {
+  public AndroidUtilities(AndroidDriver<MobileElement> driver) {
     this.driver = driver;
   }
 

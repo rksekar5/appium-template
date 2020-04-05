@@ -1,9 +1,9 @@
 package mobile.androidapp.common;
 
-import static com.diconium.qa.test_automation_framework.common.ConfigReader.getValueFromJsonConfigFile;
+import static common.ConfigReader.getValueFromJsonConfigFile;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +20,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 @Slf4j
 public class AndroidFactory extends AppFactory {
 
-  public static AndroidDriver<AndroidElement> driver;
+  public static AndroidDriver<MobileElement> driver;
 
-  public static AndroidDriver<AndroidElement> capabilities(String appName) throws IOException {
+  public static AndroidDriver<MobileElement> capabilities(String appName) throws IOException {
 
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
