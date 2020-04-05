@@ -1,7 +1,7 @@
 package mobile.iosapp.common;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.io.File;
 import java.io.IOException;
@@ -12,9 +12,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class IosFactory extends AppFactory {
 
-  public static IOSDriver<IOSElement> driver;
+  public static IOSDriver<MobileElement> driver;
 
-  public static IOSDriver<IOSElement> capabilities(String appName) throws IOException {
+  public static IOSDriver<MobileElement> capabilities(String appName) throws IOException {
 
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
