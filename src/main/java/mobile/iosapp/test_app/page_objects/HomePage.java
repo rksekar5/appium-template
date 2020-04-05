@@ -1,57 +1,57 @@
 package mobile.iosapp.test_app.page_objects;
 
 import static common.Logger.logInfo;
-import static mobile.androidapp.common.AndroidUtilities.clickMobileElement;
-import static mobile.androidapp.common.AndroidUtilities.sendKeysToMobileElement;
+import static mobile.utils.mobileUtils.clickMobileElement;
+import static mobile.utils.mobileUtils.getMobileAttributeValue;
+import static mobile.utils.mobileUtils.getTextFromMobileElement;
+import static mobile.utils.mobileUtils.sendKeysToMobileElement;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import java.util.List;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DependenciesPage {
+public class HomePage {
 
-  public DependenciesPage(AndroidDriver<MobileElement> driver) {
+  public HomePage(IOSDriver<MobileElement> driver) {
     PageFactory.initElements(new AppiumFieldDecorator(driver), this);
   }
 
-  @AndroidFindBy(id = "android:id/checkbox")
-  public MobileElement wifiCheckBox;
+  @iOSXCUITFindBy(accessibility = "TextField1")
+  public MobileElement INPUT_FIELD;
 
-  @AndroidFindBy(xpath = "(//android.widget.RelativeLayout)[2]")
-  public MobileElement wifiSettingsOption;
+  @iOSXCUITFindBy(accessibility = "show alert")
+  public MobileElement SHOW_ALERT_BUTTON;
 
-  @AndroidFindBy(className = "android.widget.EditText")
-  public MobileElement wifiSettingsInputField;
+  @iOSXCUITFindBy(accessibility = "Cool title")
+  public MobileElement ALERT_BOX_TITLE;
 
-  @AndroidFindBy(className = "android.widget.Button")
-  public List<MobileElement> buttons;
-
-
+  @iOSXCUITFindBy(accessibility = "OK")
+  public MobileElement OK_BUTTON_ALERT;
 
 
-  public void clickWifiCheckbox(){
-    clickMobileElement(wifiCheckBox);
+  public String getTextFieldValue(){
+    return getMobileAttributeValue(INPUT_FIELD);
   }
 
-  public void clickWifiSettingsOption(){
-    clickMobileElement(wifiSettingsOption);
+  public void enterValueInTextField(String input) {
+    sendKeysToMobileElement(INPUT_FIELD,input);
   }
 
-  public void enterInputInWifiSettings(String input){
-    sendKeysToMobileElement(wifiSettingsInputField,input);
+  public void clickOnShowAlertButton(){
+    clickMobileElement(SHOW_ALERT_BUTTON);
   }
 
-  public void clickOnOkButtonOnWifiSettings(){
-    buttons.get(1).click();
-    logInfo("Ok button has been clicked on successfully");
+  public String getTitleFromAlertBox(){
+    final String title = getTextFromMobileElement(ALERT_BOX_TITLE);
+    logInfo(String.format("Alert box title is %s", title));
+    return title;
   }
 
-  public void clickOnCancelButtonOnWifiSettings(){
-    buttons.get(0).click();
-    logInfo("Cancel button has been clicked on successfully");
+  public void clickOnOkButtonOnAlert(){
+    clickMobileElement(OK_BUTTON_ALERT);
+    logInfo("Ok button has been clicked on successfully on th alert box");
   }
 
 }
