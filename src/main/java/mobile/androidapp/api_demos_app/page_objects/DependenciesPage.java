@@ -1,7 +1,8 @@
 package mobile.androidapp.api_demos_app.page_objects;
 
-import static mobile.androidapp.common.AndroidUtilities.clickMobileElement;
-import static mobile.androidapp.common.AndroidUtilities.sendKeysToMobileElement;
+import static common.Logger.logInfo;
+import static mobile.utils.mobileUtils.clickMobileElement;
+import static mobile.utils.mobileUtils.sendKeysToMobileElement;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -10,32 +11,47 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import java.util.List;
 import org.openqa.selenium.support.PageFactory;
 
-public class DependencyPage {
+public class DependenciesPage {
 
-  public DependencyPage(AndroidDriver<MobileElement> driver) {
+  public DependenciesPage(AndroidDriver<MobileElement> driver) {
     PageFactory.initElements(new AppiumFieldDecorator(driver), this);
   }
 
   @AndroidFindBy(id = "android:id/checkbox")
-  public MobileElement wifiCheckBox;
+  public MobileElement WIFI_CHECK_BOX;
 
   @AndroidFindBy(xpath = "(//android.widget.RelativeLayout)[2]")
-  public MobileElement wifiSettingsOption;
+  public MobileElement WIFI_SETTINGS_OPTIONS;
 
   @AndroidFindBy(className = "android.widget.EditText")
-  public MobileElement wifiSettingsInputField;
+  public MobileElement WIFI_SETTINS_INPUT_FIELD;
+
+  @AndroidFindBy(className = "android.widget.Button")
+  public List<MobileElement> BUTTONS;
+
+
 
 
   public void clickWifiCheckbox(){
-    clickMobileElement(wifiCheckBox);
+    clickMobileElement(WIFI_CHECK_BOX);
   }
 
   public void clickWifiSettingsOption(){
-    clickMobileElement(wifiSettingsOption);
+    clickMobileElement(WIFI_SETTINGS_OPTIONS);
   }
 
   public void enterInputInWifiSettings(String input){
-    sendKeysToMobileElement(wifiSettingsInputField,input);
+    sendKeysToMobileElement(WIFI_SETTINS_INPUT_FIELD,input);
+  }
+
+  public void clickOnOkButtonOnWifiSettings(){
+    BUTTONS.get(1).click();
+    logInfo("Ok button has been clicked on successfully");
+  }
+
+  public void clickOnCancelButtonOnWifiSettings(){
+    BUTTONS.get(0).click();
+    logInfo("Cancel button has been clicked on successfully");
   }
 
 }
