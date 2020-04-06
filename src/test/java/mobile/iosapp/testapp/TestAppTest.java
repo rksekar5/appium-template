@@ -56,4 +56,7 @@ public class TestAppTest extends BaseTest {
     // select from picker list
     // add test to read toast message
 
+  // Change screen orientation
+
+
 }
