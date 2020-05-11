@@ -1,10 +1,10 @@
 package mobile.iosapp.test_app.page_objects;
 
-import static common.Logger.logInfo;
-import static mobile.utils.mobileUtils.clickMobileElement;
-import static mobile.utils.mobileUtils.getMobileAttributeValue;
-import static mobile.utils.mobileUtils.getTextFromMobileElement;
-import static mobile.utils.mobileUtils.sendKeysToMobileElement;
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static mobile.utils.MobileUtils.clickMobileElement;
+import static mobile.utils.MobileUtils.getMobileAttributeValue;
+import static mobile.utils.MobileUtils.getTextFromMobileElement;
+import static mobile.utils.MobileUtils.sendKeysToMobileElement;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;

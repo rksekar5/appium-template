@@ -1,6 +1,6 @@
 package mobile.browser.common;
 
-import static common.Logger.logInfo;
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static mobile.browser.common.BrowserFactory.getBrowser;
 
 import java.net.MalformedURLException;

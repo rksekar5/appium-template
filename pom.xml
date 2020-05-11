@@ -10,6 +10,7 @@
   <name>appium-template</name>
   <url>http://maven.apache.org</url>
 
+
   <properties>
     <aspectj.version>1.8.10</aspectj.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,6 +18,19 @@
     <suiteFile/>
     <envConfig/>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>diconium-test-automation-framework-utils-release</id>
+      <name>diconium test automation framework utils</name>
+      <url>https://nexus.diconium.com/content/repositories/diconium-test-automation-framework-utils-release/</url>
+    </repository>
+    <repository>
+      <id>diconium-test-automation-framework-utils-snapshot</id>
+      <name>diconium test automation framework utils - Snapshots</name>
+      <url>https://nexus.diconium.com/content/repositories/diconium-test-automation-framework-utils-snapshot/</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>
@@ -55,39 +69,16 @@
           </dependency>
         </dependencies>
       </plugin>
-
-
-      <plugin>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-maven</artifactId>
-        <version>2.10.0</version>
-      </plugin>
-
-      <plugin>
-        <groupId>com.theoryinpractise</groupId>
-        <artifactId>googleformatter-maven-plugin</artifactId>
-        <version>1.6.4</version>
-        <executions>
-          <execution>
-            <id>reformat-sources</id>
-            <configuration>
-              <includeStale>false</includeStale>
-              <style>GOOGLE</style>
-              <skip>false</skip>
-            </configuration>
-            <goals>
-              <goal>format</goal>
-            </goals>
-            <phase>process-sources</phase>
-          </execution>
-        </executions>
-      </plugin>
-
     </plugins>
   </build>
-  
  
   <dependencies>
+
+    <dependency>
+      <groupId>com.diconium.qautils</groupId>
+      <artifactId>diconium-test-automation-framework-utils</artifactId>
+      <version>1.2.0</version>
+    </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -103,35 +94,6 @@
       <scope>test</scope>
     </dependency>
 
-   <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-<dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>6.14.3</version>
-</dependency>
-   
-    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-lang3</artifactId>
-    <version>3.9</version>
-</dependency>
-    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-<dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-    <version>2.6</version>
-</dependency>
-
-    <dependency>
-      <!--  Used to provide NotNull annotations -->
-      <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>2.0.1.Final</version>
-    </dependency>
-
-
     <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
     <dependency>
       <groupId>io.appium</groupId>
@@ -143,51 +105,6 @@
       <groupId>pro.truongsinh</groupId>
       <artifactId>appium-flutter-finder</artifactId>
       <version>0.0.4</version>
-    </dependency>
-
-    <dependency>
-    <groupId>com.aventstack</groupId>
-    <artifactId>extentreports</artifactId>
-    <version>4.0.0</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
-    <dependency>
-        <groupId>commons-validator</groupId>
-        <artifactId>commons-validator</artifactId>
-        <version>1.6</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <version>1.7.26</version>
-        <scope>test</scope>
-    </dependency>
-
-<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>3.141.59</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>3.8.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.30</version>
-    </dependency>
-    <dependency>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-testng</artifactId>
-      <version>2.13.1</version>
     </dependency>
 
   </dependencies>

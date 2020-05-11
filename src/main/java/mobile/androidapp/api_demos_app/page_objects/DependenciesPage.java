@@ -1,11 +1,11 @@
 package mobile.androidapp.api_demos_app.page_objects;
 
-import static common.Logger.logInfo;
-import static mobile.utils.mobileUtils.clickMobileElement;
-import static mobile.utils.mobileUtils.sendKeysToMobileElement;
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.utils.MobileUtils.clickMobileElement;
+import static mobile.utils.MobileUtils.sendKeysToMobileElement;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import java.util.List;
@@ -13,8 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class DependenciesPage {
 
-  public DependenciesPage(AndroidDriver<MobileElement> driver) {
-    PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+  public DependenciesPage() {
+    PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
   }
 
   @AndroidFindBy(id = "android:id/checkbox")
