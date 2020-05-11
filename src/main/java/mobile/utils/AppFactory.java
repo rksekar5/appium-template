@@ -1,6 +1,6 @@
 package mobile.utils;
 
-import static common.ConfigReader.getValueFromJsonConfigFile;
+import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
 
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;

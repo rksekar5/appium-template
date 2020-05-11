@@ -1,6 +1,6 @@
 package mobile.browser.common;
 
-import static common.ConfigReader.getValueFromJsonConfigFile;
+import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
 import static mobile.browser.common.WebDriverHolder.getDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;

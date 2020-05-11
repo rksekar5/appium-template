@@ -1,6 +1,6 @@
 package mobile.iosapp.common;
 
-import common.RetryListener;
+import com.diconium.qa.testautomationframework.common.RetryListener;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;

@@ -1,6 +1,6 @@
 package mobile.androidapp.common;
 
-import common.RetryListener;
+import com.diconium.qa.testautomationframework.common.RetryListener;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -19,14 +19,14 @@ public class FlutterBaseTest extends AndroidFactory {
 
   @AfterMethod(alwaysRun = true)
   protected void tearDown(ITestResult testResult) {
-    driver.closeApp();
+    androidDriver.closeApp();
     removeAppFromDevice();
     service.stop();
   }
 
   private void removeAppFromDevice() {
-    if (driver.isAppInstalled(readValueFromMobileConfigFile("flutter_package_name")))
+    if (androidDriver.isAppInstalled(readValueFromMobileConfigFile("flutter_package_name")))
       log.debug("Uninstalling the app as part of cleanup");
-    driver.removeApp(readValueFromMobileConfigFile("flutter_package_name"));
+    androidDriver.removeApp(readValueFromMobileConfigFile("flutter_package_name"));
   }
 }

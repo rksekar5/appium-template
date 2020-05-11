@@ -1,6 +1,8 @@
 package mobile.androidapp.common;
 
-import common.RetryListener;
+import com.diconium.qa.testautomationframework.common.RetryListener;
+import java.util.concurrent.TimeUnit;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -12,21 +14,25 @@ import org.testng.annotations.Listeners;
 @Listeners({RetryListener.class})
 public class AndroidBaseTest extends AndroidFactory {
 
+  @SneakyThrows
   @BeforeMethod(alwaysRun = true)
   protected void setUpAndroidApp(ITestContext result) {
     service = startServer();
+
+    androidDriver = capabilities("android_demo_app");
+    androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
   @AfterMethod(alwaysRun = true)
   protected void tearDown(ITestResult testResult) {
-    driver.closeApp();
+    androidDriver.closeApp();
     removeAppFromDevice();
     service.stop();
   }
 
   private void removeAppFromDevice() {
-    if (driver.isAppInstalled(readValueFromMobileConfigFile("android_package_name")))
+    if (androidDriver.isAppInstalled(readValueFromMobileConfigFile("android_package_name")))
       log.debug("Uninstalling the app as part of cleanup");
-    driver.removeApp(readValueFromMobileConfigFile("android_package_name"));
+    androidDriver.removeApp(readValueFromMobileConfigFile("android_package_name"));
   }
 }
