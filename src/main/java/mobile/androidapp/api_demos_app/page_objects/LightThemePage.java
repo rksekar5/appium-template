@@ -7,7 +7,7 @@ import static mobile.utils.MobileUtils.clickMobileElement;
 import static mobile.utils.MobileUtils.getTextFromMobileElement;
 import static mobile.utils.MobileUtils.isCheckboxChecked;
 import static mobile.utils.MobileUtils.sendKeysToMobileElement;
-import static mobile.utils.MobileUtils.waitUntilElementVisible;
+import static mobile.utils.MobileUtils.waitUntilMobileElementVisible;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
@@ -109,7 +109,7 @@ public class LightThemePage {
 
   public void selectSpinnerDropdown(){
     clickMobileElement(SPINNER_DROPDOWN);
-    waitUntilElementVisible(DROPDOWN_LIST_BOX);
+    waitUntilMobileElementVisible(DROPDOWN_LIST_BOX);
   }
 
   @SneakyThrows

@@ -1,6 +1,9 @@
 package mobile.androidapp.apidemo;
 
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import lombok.SneakyThrows;
 import mobile.androidapp.api_demos_app.page_objects.ControlsPage;
@@ -144,8 +147,26 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     viewsPage.clickOnDateWidgets();
 
     dateWidgetPage.clickOnDialog();
+
     dialogPage.clickOnPickDate();
     sleep(2000);
+    dialogPage.clickCancelOnDatePicker();
+
+    dialogPage.clickOnPickDate();
+    sleep(2000);
+    logInfo(String
+        .format("Current date from the header is %s %s", dialogPage.getDateFromDatePicker(),
+            dialogPage.getYearFromDatePicker()));
+
+    dialogPage.selectPreviousMonth();
+    dialogPage.selectNextMonth();
+
+    dialogPage.selectDateOntheDatePicker(15);
+    dialogPage.clickOkOnDatePicker();
+
+    assertEquals(dialogPage.extractDateFromString(), 15);
+
+
   }
 
   @SneakyThrows

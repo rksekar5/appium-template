@@ -9,15 +9,14 @@ import static org.testng.Assert.assertTrue;
 import com.diconium.qa.testautomationframework.web.Waiters;
 import com.diconium.qa.testautomationframework.web.WebConstants;
 import io.appium.java_client.AppiumFluentWait;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import java.time.Duration;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,15 +40,16 @@ public class MobileUtils {
   }
 
   @Step
-  public static void waitUntilElementVisible(MobileElement mobileElement) {
+  public static void waitUntilMobileElementVisible(MobileElement mobileElement) {
     log.trace("Waiting for {} to be visible", mobileElement);
     getFluentWait().until(ExpectedConditions.visibilityOf(mobileElement));
   }
 
   @Step
-  public static void waitUntilElementInvisible(MobileElement mobileElement) {
-    log.trace("Waiting for {} to be invisible", mobileElement);
-    getFluentWait().until(ExpectedConditions.invisibilityOf(mobileElement));
+  public static void waitUntilMobileElementInvisible(String mobileElementXpath) {
+    log.trace("Waiting for {} to be invisible", mobileElementXpath);
+    getFluentWait().until(ExpectedConditions
+        .invisibilityOfElementLocated(MobileBy.xpath(mobileElementXpath)));
   }
 
   @Step
@@ -124,7 +124,6 @@ public class MobileUtils {
     ScreenOrientation orientation = androidDriver.getOrientation();
     assertSame(orientation, ScreenOrientation.PORTRAIT);
   }
-
 
 
 }
