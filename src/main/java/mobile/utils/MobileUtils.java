@@ -125,5 +125,9 @@ public class MobileUtils {
     assertSame(orientation, ScreenOrientation.PORTRAIT);
   }
 
+  public static MobileElement getMobileElementWithXpath(String locator){
+    return androidDriver.findElementByXPath(locator);
+  }
+
 
 }

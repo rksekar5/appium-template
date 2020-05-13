@@ -3,7 +3,6 @@ package mobile.androidapp.apidemo;
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 import lombok.SneakyThrows;
 import mobile.androidapp.api_demos_app.page_objects.ControlsPage;
@@ -161,7 +160,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     dialogPage.selectPreviousMonth();
     dialogPage.selectNextMonth();
 
-    dialogPage.selectDateOntheDatePicker(15);
+    dialogPage.selectDateOnTheDatePicker(15);
     dialogPage.clickOkOnDatePicker();
 
     assertEquals(dialogPage.extractDateFromString(), 15);
@@ -179,6 +178,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     dateWidgetPage.clickOnDialog();
     dialogPage.clickOnPickTime();
     sleep(2000);
+
+
   }
 
   public void pressAndMoveTest(){

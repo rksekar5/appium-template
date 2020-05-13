@@ -101,11 +101,11 @@
       <version>7.3.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>pro.truongsinh</groupId>
-      <artifactId>appium-flutter-finder</artifactId>
-      <version>0.0.4</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>pro.truongsinh</groupId>-->
+<!--      <artifactId>appium-flutter-finder</artifactId>-->
+<!--      <version>0.0.4</version>-->
+<!--    </dependency>-->
 
   </dependencies>
   <!-- https://mvnrepository.com/artifact/io.appium/java-client -->

@@ -5,19 +5,22 @@ import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
+import static mobile.utils.MobileUtils.getMobileElementWithXpath;
 import static mobile.utils.MobileUtils.getTextFromMobileElement;
 import static mobile.utils.MobileUtils.isCheckboxChecked;
+import static mobile.utils.MobileUtils.sendKeysToMobileElement;
 import static mobile.utils.MobileUtils.waitUntilMobileElementInvisible;
 import static mobile.utils.MobileUtils.waitUntilMobileElementVisible;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
-import com.diconium.qa.testautomationframework.web.Waiters;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import java.util.Objects;
 import lombok.SneakyThrows;
 import mobile.androidapp.common.AndroidUtilities;
 import org.apache.commons.lang3.StringUtils;
@@ -57,10 +60,40 @@ public class DialogPage {
   public MobileElement TIME_PICKER;
 
   @AndroidFindBy(id = "android:id/button1")
-  public MobileElement DATE_PICKER_OK;
+  public MobileElement PICKER_OK;
 
   @AndroidFindBy(id = "android:id/button2")
-  public MobileElement DATE_PICKER_CANCEL;
+  public MobileElement PICKER_CANCEL;
+
+  @AndroidFindBy(id = "android:id/hours")
+  public MobileElement TIME_HOUR;
+
+  @AndroidFindBy(id = "android:id/minutes")
+  public MobileElement TIME_MINUTES;
+
+  @AndroidFindBy(id = "android:id/pm_label")
+  public MobileElement PM_LABEL;
+
+  @AndroidFindBy(id = "android:id/am_label")
+  public MobileElement AM_LABEL;
+
+  @AndroidFindBy(id = "android:id/toggle_mode")
+  public MobileElement TOGGLE_BUTTON;
+
+  @AndroidFindBy(id = "android:id/input_hour")
+  public MobileElement HOUR_INPUT;
+
+  @AndroidFindBy(id = "android:id/input_minute")
+  public MobileElement MINUTE_INPUT;
+
+  @AndroidFindBy(id = "android:id/am_pm_spinner")
+  public MobileElement AM_PM_SPINNER;
+
+  @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='AM']")
+  public MobileElement AM_DROPDOWN;
+
+  @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='PM']")
+  public MobileElement PM_DROPDOWN;
 
 
   private final AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
@@ -76,7 +109,7 @@ public class DialogPage {
   public void clickOnPickTime() {
     logInfo("Click on Pick time");
     clickMobileElement(CHANGE_TIME);
-    waitUntilMobileElementVisible(DATE_PICKER);
+    waitUntilMobileElementVisible(TIME_PICKER);
     logInfo("Time picker displayed as expected");
   }
 
@@ -98,7 +131,7 @@ public class DialogPage {
     logInfo("Next month button clicked");
   }
 
-  public void selectDateOntheDatePicker(int date){
+  public void selectDateOnTheDatePicker(int date){
     try{
       MobileElement mobileElement = androidDriver.findElementByXPath("//android.view.View[@text='"+date+"']");
       clickMobileElement(mobileElement);
@@ -121,7 +154,7 @@ public class DialogPage {
 
   @SneakyThrows
   public void clickOkOnDatePicker(){
-    clickMobileElement(DATE_PICKER_OK);
+    clickMobileElement(PICKER_OK);
     sleep(2000);
     waitUntilMobileElementInvisible("//*[@id='android:id/datePicker']");
     logInfo("Ok button on the date picker clicked successfully");
@@ -129,12 +162,109 @@ public class DialogPage {
 
   @SneakyThrows
   public void clickCancelOnDatePicker(){
-    clickMobileElement(DATE_PICKER_CANCEL);
+    clickMobileElement(PICKER_CANCEL);
     sleep(2000);
     waitUntilMobileElementInvisible("//*[@id='android:id/datePicker']");
     logInfo("Cancel button on the date picker clicked successfully");
   }
 
+  public int getHours(){
+    return Integer.parseInt(getTextFromMobileElement(TIME_HOUR));
+  }
 
+  public int getMinutes(){
+    return Integer.parseInt(getTextFromMobileElement(TIME_MINUTES));
+  }
+
+  public String getAmOrPm(){
+    if(isCheckboxChecked(AM_LABEL)) {
+      return getTextFromMobileElement(AM_LABEL);
+    } else{
+      return getTextFromMobileElement(PM_LABEL);
+    }
+  }
+
+  public String getCurrentTimeFromTimePicker(){
+    final String currentTime = getHours()+getMinutes()+getAmOrPm();
+    logInfo("The current time is "+currentTime);
+    return currentTime;
+  }
+
+  public void setHoursOnTimePicker(int hours){
+    clickMobileElement(TIME_HOUR);
+    final MobileElement hourElement = getMobileElementWithXpath("//dragAndDrop[@accessibility="+hours+"]");
+    clickMobileElement(hourElement);
+    assertEquals(hours, getHours());
+    logInfo("Hours set on the clock successfully");
+  }
+
+  public void setMinutesOnTimePicker(int minutes){
+    clickMobileElement(TIME_MINUTES);
+    final MobileElement minutesElement = getMobileElementWithXpath("//dragAndDrop[@accessibility="+minutes+"]");
+    clickMobileElement(minutesElement);
+    assertEquals(minutes, getMinutes());
+    logInfo("Minutes set on the clock successfully");
+  }
+
+  private void selectAmOrPmFromClock(String AmOrPm){
+    if(Objects.equals(AmOrPm.toLowerCase(), "am")){
+      clickMobileElement(AM_LABEL);
+      logInfo("AM is selected");
+    }else{
+      clickMobileElement(PM_LABEL);
+      logInfo("PM is selected");
+    }
+  }
+
+  @SneakyThrows
+  public void clickOkOnTimePicker(){
+    clickMobileElement(PICKER_OK);
+    sleep(2000);
+    waitUntilMobileElementInvisible("//*[@id='android:id/timePicker']");
+    logInfo("Ok button on the time picker clicked successfully");
+  }
+
+  @SneakyThrows
+  public void clickCancelOnTimePicker(){
+    clickMobileElement(PICKER_CANCEL);
+    sleep(2000);
+    waitUntilMobileElementInvisible("//*[@id='android:id/timePicker']");
+    logInfo("Cancel button on the time picker clicked successfully");
+  }
+
+  public void clickToggleMode(){
+    clickMobileElement(TOGGLE_BUTTON);
+  }
+
+  private void setHourInInputField(int hours){
+    sendKeysToMobileElement(HOUR_INPUT, String.valueOf(hours));
+  }
+
+  private void setMinutesInInputField(int minutes){
+    sendKeysToMobileElement(MINUTE_INPUT, String.valueOf(minutes));
+  }
+
+  private void selectAmOrPmFromDropdown(String AmOrPm){
+    clickMobileElement(AM_PM_SPINNER);
+    if(Objects.equals(AmOrPm.toLowerCase(), "am")){
+      clickMobileElement(AM_DROPDOWN);
+      logInfo("AM is selected");
+    }else{
+      clickMobileElement(PM_DROPDOWN);
+      logInfo("PM is selected");
+    }
+  }
+
+  public void setTimeViaInputField(int hours,int minutes, String AmOrPm){
+    setHourInInputField(hours);
+    setMinutesInInputField(minutes);
+    selectAmOrPmFromDropdown(AmOrPm);
+  }
+
+  public void setTimeViaClock(int hours,int minutes, String AmOrPm){
+    setHoursOnTimePicker(hours);
+    setMinutesOnTimePicker(minutes);
+    selectAmOrPmFromClock(AmOrPm);
+  }
 
 }
