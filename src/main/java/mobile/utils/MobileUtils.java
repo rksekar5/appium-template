@@ -1,31 +1,28 @@
 package mobile.utils;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static org.awaitility.Awaitility.await;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertSame;
 import static org.testng.Assert.assertTrue;
 
-import com.diconium.qa.testautomationframework.web.Waiters;
 import com.diconium.qa.testautomationframework.web.WebConstants;
 import io.appium.java_client.AppiumFluentWait;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import java.time.Duration;
-import java.util.Set;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
+@Slf4j
 public class MobileUtils {
-
-  private static final Logger log = LoggerFactory.getLogger(Waiters.class);
 
   static Wait<AndroidDriver> getFluentWait() {
     return getFluentWait(WebConstants.FLUENT_WAIT_TIMEOUT_SECONDS);
@@ -43,14 +40,16 @@ public class MobileUtils {
   @Step
   public static void waitUntilMobileElementVisible(MobileElement mobileElement) {
     log.trace("Waiting for {} to be visible", mobileElement);
+//    await().atMost(10, SECONDS).atLeast(1,SECONDS).until(mobileElement::isDisplayed);
     getFluentWait().until(ExpectedConditions.visibilityOf(mobileElement));
   }
 
   @Step
-  public static void waitUntilMobileElementInvisible(String mobileElementXpath) {
-    log.trace("Waiting for {} to be invisible", mobileElementXpath);
-    getFluentWait().until(ExpectedConditions
-        .invisibilityOfElementLocated(MobileBy.xpath(mobileElementXpath)));
+  public static void waitUntilMobileElementInvisible(MobileElement mobileElement) {
+    log.trace("Waiting for {} to be invisible", mobileElement);
+//    getFluentWait().until(ExpectedConditions.visibilityOf(mobileElement));
+    await().atMost(10, SECONDS).atLeast(1,SECONDS)
+        .until(() -> !mobileElement.isDisplayed());
   }
 
   @Step
@@ -128,6 +127,14 @@ public class MobileUtils {
 
   public static MobileElement getMobileElementWithXpath(String locator){
     return androidDriver.findElementByXPath(locator);
+  }
+
+  public static MobileElement getMobileElementWithAccessibilityId(String locator){
+    return androidDriver.findElementByAccessibilityId(locator);
+  }
+
+  public static MobileElement getMobileElementWithId(String locator){
+    return androidDriver.findElementById(locator);
   }
 
   public static String getContext(){

@@ -23,7 +23,7 @@ public class DateWidgetPage {
   public MobileElement INLINE;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
+  private final AndroidUtilities androidUtilities = new AndroidUtilities();
 
 
   public void clickOnDialog() {

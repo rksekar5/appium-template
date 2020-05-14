@@ -62,7 +62,7 @@ public class LightThemePage {
   public MobileElement SCROLL_VIEW;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
+  private final AndroidUtilities androidUtilities = new AndroidUtilities();
 
 
   public void sendTextToInputField(String text) {

@@ -5,16 +5,12 @@ import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
-import static mobile.utils.MobileUtils.getMobileElementWithXpath;
+import static mobile.utils.MobileUtils.getMobileElementWithAccessibilityId;
 import static mobile.utils.MobileUtils.getTextFromMobileElement;
 import static mobile.utils.MobileUtils.isCheckboxChecked;
 import static mobile.utils.MobileUtils.sendKeysToMobileElement;
-import static mobile.utils.MobileUtils.waitUntilMobileElementInvisible;
 import static mobile.utils.MobileUtils.waitUntilMobileElementVisible;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotEquals;
-import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import io.appium.java_client.MobileElement;
@@ -96,7 +92,7 @@ public class DialogPage {
   public MobileElement PM_DROPDOWN;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
+  private final AndroidUtilities androidUtilities = new AndroidUtilities();
 
 
   public void clickOnPickDate() {
@@ -106,7 +102,7 @@ public class DialogPage {
     logInfo("Date picker displayed as expected");
   }
 
-  public void clickOnPickTime() {
+  public void clickOnChangeTime() {
     logInfo("Click on Pick time");
     clickMobileElement(CHANGE_TIME);
     waitUntilMobileElementVisible(TIME_PICKER);
@@ -156,7 +152,7 @@ public class DialogPage {
   public void clickOkOnDatePicker(){
     clickMobileElement(PICKER_OK);
     sleep(2000);
-    waitUntilMobileElementInvisible("//*[@id='android:id/datePicker']");
+    waitUntilMobileElementVisible(CHANGE_DATE);
     logInfo("Ok button on the date picker clicked successfully");
   }
 
@@ -164,7 +160,7 @@ public class DialogPage {
   public void clickCancelOnDatePicker(){
     clickMobileElement(PICKER_CANCEL);
     sleep(2000);
-    waitUntilMobileElementInvisible("//*[@id='android:id/datePicker']");
+    waitUntilMobileElementVisible(CHANGE_DATE);
     logInfo("Cancel button on the date picker clicked successfully");
   }
 
@@ -192,7 +188,7 @@ public class DialogPage {
 
   public void setHoursOnTimePicker(int hours){
     clickMobileElement(TIME_HOUR);
-    final MobileElement hourElement = getMobileElementWithXpath("//dragAndDrop[@accessibility="+hours+"]");
+    final MobileElement hourElement = getMobileElementWithAccessibilityId(String.valueOf(hours));
     clickMobileElement(hourElement);
     assertEquals(hours, getHours());
     logInfo("Hours set on the clock successfully");
@@ -200,7 +196,7 @@ public class DialogPage {
 
   public void setMinutesOnTimePicker(int minutes){
     clickMobileElement(TIME_MINUTES);
-    final MobileElement minutesElement = getMobileElementWithXpath("//dragAndDrop[@accessibility="+minutes+"]");
+    final MobileElement minutesElement = getMobileElementWithAccessibilityId(String.valueOf(minutes));
     clickMobileElement(minutesElement);
     assertEquals(minutes, getMinutes());
     logInfo("Minutes set on the clock successfully");
@@ -220,7 +216,7 @@ public class DialogPage {
   public void clickOkOnTimePicker(){
     clickMobileElement(PICKER_OK);
     sleep(2000);
-    waitUntilMobileElementInvisible("//*[@id='android:id/timePicker']");
+    waitUntilMobileElementVisible(CHANGE_TIME);
     logInfo("Ok button on the time picker clicked successfully");
   }
 
@@ -228,7 +224,7 @@ public class DialogPage {
   public void clickCancelOnTimePicker(){
     clickMobileElement(PICKER_CANCEL);
     sleep(2000);
-    waitUntilMobileElementInvisible("//*[@id='android:id/timePicker']");
+    waitUntilMobileElementVisible(CHANGE_TIME);
     logInfo("Cancel button on the time picker clicked successfully");
   }
 

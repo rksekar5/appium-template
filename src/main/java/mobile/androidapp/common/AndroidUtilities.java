@@ -7,10 +7,7 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofSeconds;
-import static javax.swing.JSplitPane.LEFT;
-import static javax.swing.JSplitPane.RIGHT;
-import static javax.swing.JSplitPane.TOP;
-import static javax.swing.JSplitPane.BOTTOM;
+import static mobile.androidapp.common.AndroidFactory.androidDriver;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -18,7 +15,6 @@ import com.diconium.qa.testautomationframework.web.Waiters;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import java.time.Duration;
 import java.util.HashMap;
@@ -31,13 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AndroidUtilities {
-  AndroidDriver<MobileElement> androidDriver;
 
   private static final Logger log = LoggerFactory.getLogger(Waiters.class);
-
-  public AndroidUtilities(AndroidDriver<MobileElement> androidDriver) {
-    this.androidDriver = androidDriver;
-  }
 
   public void scrollToText(String text) {
     androidDriver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +

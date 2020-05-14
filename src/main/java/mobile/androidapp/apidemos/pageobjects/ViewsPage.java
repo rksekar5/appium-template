@@ -15,7 +15,7 @@ public class ViewsPage {
     PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
   }
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
+  private final AndroidUtilities androidUtilities = new AndroidUtilities();
 
   @AndroidFindBy(xpath = "//android.widget.TextView[@text='Drag and Drop']")
   public MobileElement DRAG_AND_DROP;

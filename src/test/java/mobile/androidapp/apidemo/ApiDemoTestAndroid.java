@@ -20,6 +20,9 @@ import mobile.androidapp.common.TestData;
 import mobile.utils.MobileUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 public class ApiDemoTestAndroid extends AndroidBaseTest {
 
@@ -30,9 +33,10 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   private DragAndDropPage dragAndDropPage;
   private ControlsPage controlsPage;
   private LightThemePage lightThemePage;
-  private AndroidUtilities androidUtilities;
   private DateWidgetPage dateWidgetPage;
   private DialogPage dialogPage;
+
+  private AndroidUtilities androidUtilities;
 
   @BeforeMethod
   public void setup() {
@@ -46,10 +50,12 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     dateWidgetPage = new DateWidgetPage();
     dialogPage = new DialogPage();
 
-    androidUtilities = new AndroidUtilities(androidDriver);
+    androidUtilities = new AndroidUtilities();
   }
 
   @Test(dataProvider = "InputData", dataProviderClass = TestData.class)
+  @Severity(SeverityLevel.NORMAL)
+  @Description("This is a sample test to perform click and send text actions")
   public void clickAndSendTextTest(String input){
     homePage.clickOnPreference();
 
@@ -63,6 +69,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
   @SneakyThrows
   @Test
+  @Severity(SeverityLevel.NORMAL)
+  @Description("This is a sample test to perform drag and drop actions")
   public void dragAndDropTest() {
     homePage.clickOnView();
 
@@ -74,6 +82,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
   @SneakyThrows
   @Test
+  @Severity(SeverityLevel.CRITICAL)
+  @Description("This is a sample test to perform various user interactions")
   public void inputSelectionTest() {
     homePage.clickOnView();
 
@@ -106,6 +116,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
   @SneakyThrows
   @Test
+  @Severity(SeverityLevel.MINOR)
+  @Description("This is a sample test to switch screen orientation")
   public void changeScreenOrientationTest() {
     MobileUtils.switchScreenToLandscape();
     sleep(2000);
@@ -114,6 +126,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   }
 
   @Test
+  @Severity(SeverityLevel.NORMAL)
+  @Description("This is a sample test to get and set geo location for the device")
   public void deviceLocationTest(){
     androidUtilities.getDeviceLocation();
     androidUtilities.setDeviceLocation(49, 123, 10);
@@ -121,6 +135,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
   @SneakyThrows
   @Test
+  @Severity(SeverityLevel.CRITICAL)
+  @Description("This is a sample test to perform swipe up and down actions on the device")
   public void swipeUpAndDownTest(){
     homePage.clickOnView();
 
@@ -135,11 +151,12 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
     androidUtilities.swipeUp();
     sleep(2000);
-
   }
 
   @SneakyThrows
   @Test
+  @Severity(SeverityLevel.BLOCKER)
+  @Description("This is a sample test to set date for the device via date picker")
   public void datePickerTest(){
     homePage.clickOnView();
 
@@ -164,36 +181,37 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     dialogPage.clickOkOnDatePicker();
 
     assertEquals(dialogPage.extractDateFromString(), 15);
-
-
   }
 
   @SneakyThrows
   @Test
+  @Severity(SeverityLevel.BLOCKER)
+  @Description("This is a sample test to set time for the device via time picker")
   public void timePickerTest(){
     homePage.clickOnView();
 
     viewsPage.clickOnDateWidgets();
 
     dateWidgetPage.clickOnDialog();
-    dialogPage.clickOnPickTime();
-    sleep(2000);
 
+    dialogPage.clickOnChangeTime();
+    dialogPage.clickCancelOnTimePicker();
 
+    dialogPage.clickOnChangeTime();
+    logInfo("Current time is" +dialogPage.getCurrentTimeFromTimePicker());
+    dialogPage.setTimeViaClock(5,45,"am");
+    dialogPage.clickOkOnTimePicker();
+
+    dialogPage.clickOnChangeTime();
+    logInfo("Now the new time set is" +dialogPage.getCurrentTimeFromTimePicker());
+    dialogPage.clickToggleMode();
+    dialogPage.setTimeViaInputField(9,19,"pm");
+    dialogPage.clickOkOnTimePicker();
+    dialogPage.clickOnChangeTime();
+    dialogPage.clickToggleMode();
+    logInfo("Now the new time set is" +dialogPage.getCurrentTimeFromTimePicker());
+    dialogPage.clickCancelOnTimePicker();
   }
-
-  public void pressAndMoveTest(){
-    homePage.clickOnView();
-
-    viewsPage.clickOnDateWidgets();
-
-    dateWidgetPage.clickOnInline();
-
-  }
-
-
-
-
 
 
   // Create tests for the following

@@ -1,8 +1,6 @@
 package mobile.androidapp.apidemos.pageobjects;
 
-import static io.appium.java_client.touch.offset.ElementOption.element;
 import static java.lang.Thread.sleep;
-import static java.time.Duration.ofSeconds;
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
 
 import io.appium.java_client.MobileElement;
@@ -30,7 +28,7 @@ public class DragAndDropPage {
   @AndroidFindBy(xpath = "//android.view.View[@index=5]")
   public MobileElement DOT_4;
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
+  private final AndroidUtilities androidUtilities = new AndroidUtilities();
 
   @SneakyThrows
   public void dragAndDropCircles() {

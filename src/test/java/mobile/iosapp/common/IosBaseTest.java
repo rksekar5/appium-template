@@ -17,7 +17,7 @@ public class BaseTest extends IosFactory {
 
   @AfterMethod(alwaysRun = true)
   protected void tearDown(ITestResult testResult) {
-    driver.closeApp();
+    iosDriver.closeApp();
     //    driver.removeApp(readMobileConfigFromConfigFile("apiDemo"));
     service.stop();
   }

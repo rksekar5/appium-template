@@ -23,7 +23,7 @@ public class ControlsPage {
   public MobileElement DARK_THEME;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
+  private final AndroidUtilities androidUtilities = new AndroidUtilities();
 
 
   public void clickLightTheme() {

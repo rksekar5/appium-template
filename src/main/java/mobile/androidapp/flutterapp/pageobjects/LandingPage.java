@@ -27,7 +27,7 @@ public class LandingPage {
   @AndroidFindBy(xpath = "//android.widget.Button[@text='StimulateHostCardKey']")
   public MobileElement STIMULATE_HOST_CARD_BUTTON;
 
-  private AndroidUtilities androidUtilities = new AndroidUtilities(androidDriver);
+  private AndroidUtilities androidUtilities = new AndroidUtilities();
 
 
   public void clickOnStumilateHostCard(){

@@ -1,8 +1,6 @@
 package mobile.androidapp.common;
 
 import com.diconium.qa.testautomationframework.common.RetryListener;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import java.util.concurrent.TimeUnit;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +19,8 @@ public class FlutterBaseTest extends AndroidFactory {
   protected void setUpAndroidApp(ITestContext result) {
     service = startServer();
 
-    AndroidDriver<MobileElement> driver = capabilities("flutter_demo_app");
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    androidDriver = capabilities("flutter_demo_app");
+    androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
   @AfterMethod(alwaysRun = true)
