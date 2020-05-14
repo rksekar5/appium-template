@@ -1,4 +1,4 @@
-package mobile.androidapp.api_demos_app.page_objects;
+package mobile.androidapp.apidemos.pageobjects;
 
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;

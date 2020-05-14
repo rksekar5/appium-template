@@ -1,22 +1,15 @@
-package mobile.androidapp.api_demos_app.page_objects;
+package mobile.androidapp.apidemos.pageobjects;
 
-import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofSeconds;
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import java.time.Duration;
 import lombok.SneakyThrows;
 import mobile.androidapp.common.AndroidUtilities;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class DragAndDropPage {

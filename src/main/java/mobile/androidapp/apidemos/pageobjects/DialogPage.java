@@ -1,4 +1,4 @@
-package mobile.androidapp.api_demos_app.page_objects;
+package mobile.androidapp.apidemos.pageobjects;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logError;
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
