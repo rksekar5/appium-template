@@ -23,6 +23,7 @@ public class FlutterDemoTest extends FlutterBaseTest {
 
     landingPage.clickOnStumilateHostCard();
     sleep(5000);
+    System.out.println();
 
   }
 }

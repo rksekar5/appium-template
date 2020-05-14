@@ -13,6 +13,7 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import java.time.Duration;
+import java.util.Set;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
@@ -128,6 +129,20 @@ public class MobileUtils {
   public static MobileElement getMobileElementWithXpath(String locator){
     return androidDriver.findElementByXPath(locator);
   }
+
+  public static String getContext(){
+    return androidDriver.getContext();
+  }
+
+  public static void setContextToWebView(String packageName){
+    androidDriver.context("WEBVIEW_"+packageName);
+  }
+
+  public static void setContextToNativeApp(){
+    androidDriver.context("NATIVE_APP");
+  }
+
+
 
 
 }
