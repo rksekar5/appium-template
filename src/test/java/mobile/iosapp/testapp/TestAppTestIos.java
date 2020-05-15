@@ -1,21 +1,22 @@
 package mobile.iosapp.testapp;
 
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.ios.IOSDriver;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import mobile.iosapp.common.BaseTest;
+import mobile.iosapp.common.IosBaseTest;
 import mobile.iosapp.test_app.page_objects.HomePage;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestAppTest extends BaseTest {
+public class TestAppTestIos extends IosBaseTest {
+
+  private HomePage homePage;
+
+  @BeforeMethod
+  public void setup(){
+    homePage = new HomePage();
+  }
 
   @Test
-  public void testSendKeysToInput () throws IOException {
-    IOSDriver<MobileElement> driver = capabilities("ios_demo_app");
-    HomePage homePage = new HomePage(driver);
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  public void testSendKeysToInput () {
 
     // Check that it doesn"t have a value
     String value = homePage.getTextFieldValue();
@@ -30,11 +31,7 @@ public class TestAppTest extends BaseTest {
   }
 
   @Test
-  public void testOpenAlert () throws IOException {
-    IOSDriver<MobileElement> driver = capabilities("ios_demo_app");
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-    HomePage homePage = new HomePage(driver);
+  public void testOpenAlert () {
 
     // Find Button element and click on it
     homePage.clickOnShowAlertButton();

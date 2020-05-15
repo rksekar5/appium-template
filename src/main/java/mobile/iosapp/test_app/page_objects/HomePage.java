@@ -1,21 +1,21 @@
 package mobile.iosapp.test_app.page_objects;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static mobile.iosapp.common.IosFactory.iosDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 import static mobile.utils.MobileUtils.getMobileAttributeValue;
 import static mobile.utils.MobileUtils.getTextFromMobileElement;
 import static mobile.utils.MobileUtils.sendKeysToMobileElement;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 
-  public HomePage(IOSDriver<MobileElement> driver) {
-    PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+  public HomePage() {
+    PageFactory.initElements(new AppiumFieldDecorator(iosDriver), this);
   }
 
   @iOSXCUITFindBy(accessibility = "TextField1")
