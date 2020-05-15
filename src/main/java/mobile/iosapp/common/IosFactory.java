@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class IosFactory extends AppFactory {
 
-  public static IOSDriver<MobileElement> driver;
+  public static IOSDriver<MobileElement> iosDriver;
 
   public static IOSDriver<MobileElement> capabilities(String appName) throws IOException {
 
@@ -33,9 +33,9 @@ public class IosFactory extends AppFactory {
     capabilities.setCapability("useNewWDA", false);
     capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 
-    driver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    iosDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    iosDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-    return driver;
+    return iosDriver;
   }
 }

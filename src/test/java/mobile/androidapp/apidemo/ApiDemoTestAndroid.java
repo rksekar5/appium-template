@@ -215,15 +215,14 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
 
   // Create tests for the following
-  // Views -> Drag and Drop
-  // Views -> Date widget -> Dialog (Date picker)
-  // Views -> Date widget -> Inline (long press and move)
-  // Views -> controls -> Light theme (Checkbox, radio button and dropdown)
+  // Views -> Date widget -> Inline (long press and move) --> drag and drop test
   // Content -> Storage -> External Storage (tap and check enable or disable)
+
+
   // app -> Alert dialogs (Alert handling)
   // app -> Menu -> Inflate (Inflate and deflate context menu)
   // app -> Alarm -> Alarm controller (Capture Toast message)
-  // SMS testing scenario
+
   // Push notification scenario
 
 
