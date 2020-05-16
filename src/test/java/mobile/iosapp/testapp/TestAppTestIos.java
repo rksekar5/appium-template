@@ -1,5 +1,7 @@
 package mobile.iosapp.testapp;
 
+import java.util.concurrent.TimeUnit;
+import lombok.SneakyThrows;
 import mobile.iosapp.common.IosBaseTest;
 import mobile.iosapp.test_app.page_objects.HomePage;
 import org.testng.Assert;
@@ -10,8 +12,13 @@ public class TestAppTestIos extends IosBaseTest {
 
   private HomePage homePage;
 
+  @SneakyThrows
   @BeforeMethod
   public void setup(){
+
+    iosDriver = capabilities("ios_demo_app");
+    iosDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
     homePage = new HomePage();
   }
 

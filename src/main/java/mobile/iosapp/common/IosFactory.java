@@ -1,5 +1,6 @@
 package mobile.iosapp.common;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -30,7 +31,7 @@ public class IosFactory extends AppFactory {
     capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
     capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
     capabilities.setCapability("xcodeSigningId", "iPhone Developer");
-    capabilities.setCapability("useNewWDA", false);
+    capabilities.setCapability("useNewWDA", true);
     capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 
     iosDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
