@@ -11,24 +11,21 @@ import static mobile.androidapp.common.AndroidFactory.androidDriver;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import com.diconium.qa.testautomationframework.web.Waiters;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import java.time.Duration;
 import java.util.HashMap;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.touch.TouchActions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class AndroidUtilities {
-
-  private static final Logger log = LoggerFactory.getLogger(Waiters.class);
 
   public void scrollToText(String text) {
     androidDriver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
