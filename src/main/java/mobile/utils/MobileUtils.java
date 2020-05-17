@@ -109,47 +109,48 @@ public class MobileUtils {
     logInfo(String.format("%s is entered in %s", input, mobileElement));
   }
 
+  /**
+   * Get text from the specified mobile element
+   *
+   * @param mobileElement
+   * @return string
+   */
   public static String getTextFromMobileElement(MobileElement mobileElement){
     return mobileElement.getText();
   }
 
-  public static void switchScreenToLandscape(){
-    androidDriver.rotate(ScreenOrientation.LANDSCAPE);
-    ScreenOrientation orientation = androidDriver.getOrientation();
-    assertSame(orientation, ScreenOrientation.LANDSCAPE);
+  /**
+   * Check if the mobile element is displayed
+   *
+   * @param mobileElement
+   * @return true or false
+   */
+  public boolean isMobileElementPresent(MobileElement mobileElement){
+    boolean isDisplayed = mobileElement.isDisplayed();
+    if(isDisplayed){
+      logInfo("Element is displayed");
+    } else{
+      logInfo("Element is NOT displayed");
+    }
+    return isDisplayed;
   }
 
-  public static void switchScreenToPortrait(){
-    androidDriver.rotate(ScreenOrientation.PORTRAIT);
-    ScreenOrientation orientation = androidDriver.getOrientation();
-    assertSame(orientation, ScreenOrientation.PORTRAIT);
+  /**
+   * Assert if mobile element is NOT displayed
+   *
+   * @param mobileElement
+   */
+  public void assertMobileElementPresent(MobileElement mobileElement){
+    assertTrue(isMobileElementPresent(mobileElement));
   }
 
-  public static MobileElement getMobileElementWithXpath(String locator){
-    return androidDriver.findElementByXPath(locator);
+  /**
+   * Assert if mobile element is displayed
+   *
+   * @param mobileElement
+   */
+  public void assertMobileElementNotPresent(MobileElement mobileElement){
+    assertFalse(isMobileElementPresent(mobileElement));
   }
-
-  public static MobileElement getMobileElementWithAccessibilityId(String locator){
-    return androidDriver.findElementByAccessibilityId(locator);
-  }
-
-  public static MobileElement getMobileElementWithId(String locator){
-    return androidDriver.findElementById(locator);
-  }
-
-  public static String getContext(){
-    return androidDriver.getContext();
-  }
-
-  public static void setContextToWebView(String packageName){
-    androidDriver.context("WEBVIEW_"+packageName);
-  }
-
-  public static void setContextToNativeApp(){
-    androidDriver.context("NATIVE_APP");
-  }
-
-
-
 
 }

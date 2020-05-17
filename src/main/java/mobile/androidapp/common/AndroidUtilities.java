@@ -9,6 +9,7 @@ import static java.lang.Thread.sleep;
 import static java.time.Duration.ofSeconds;
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertSame;
 import static org.testng.Assert.assertTrue;
 
 import io.appium.java_client.MobileBy;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.touch.TouchActions;
@@ -219,40 +221,6 @@ public class AndroidUtilities {
   }
 
   /**
-   * Check if the mobile element is displayed
-   *
-   * @param mobileElement
-   * @return true or false
-   */
-  public boolean isMobileElementPresent(MobileElement mobileElement){
-    boolean isDisplayed = mobileElement.isDisplayed();
-    if(isDisplayed){
-      logInfo("Element is displayed");
-    } else{
-      logInfo("Element is NOT displayed");
-    }
-    return isDisplayed;
-  }
-
-  /**
-   * Assert if mobile element is NOT displayed
-   *
-   * @param mobileElement
-   */
-  public void assertMobileElementPresent(MobileElement mobileElement){
-    assertTrue(isMobileElementPresent(mobileElement));
-  }
-
-  /**
-   * Assert if mobile element is displayed
-   *
-   * @param mobileElement
-   */
-  public void assertMobileElementNotPresent(MobileElement mobileElement){
-    assertFalse(isMobileElementPresent(mobileElement));
-  }
-
-  /**
    * Retrieves the device location
    */
   public void getDeviceLocation(){
@@ -282,5 +250,40 @@ public class AndroidUtilities {
     new TouchActions(androidDriver).scroll(mobileElement, 10, 100).perform();
   }
 
+  public static void switchScreenToLandscape(){
+    androidDriver.rotate(ScreenOrientation.LANDSCAPE);
+    ScreenOrientation orientation = androidDriver.getOrientation();
+    assertSame(orientation, ScreenOrientation.LANDSCAPE);
+  }
+
+  public static void switchScreenToPortrait(){
+    androidDriver.rotate(ScreenOrientation.PORTRAIT);
+    ScreenOrientation orientation = androidDriver.getOrientation();
+    assertSame(orientation, ScreenOrientation.PORTRAIT);
+  }
+
+  public static MobileElement getMobileElementWithXpath(String locator){
+    return androidDriver.findElementByXPath(locator);
+  }
+
+  public static MobileElement getMobileElementWithAccessibilityId(String locator){
+    return androidDriver.findElementByAccessibilityId(locator);
+  }
+
+  public static MobileElement getMobileElementWithId(String locator){
+    return androidDriver.findElementById(locator);
+  }
+
+  public static String getContext(){
+    return androidDriver.getContext();
+  }
+
+  public static void setContextToWebView(String packageName){
+    androidDriver.context("WEBVIEW_"+packageName);
+  }
+
+  public static void setContextToNativeApp(){
+    androidDriver.context("NATIVE_APP");
+  }
 
 }

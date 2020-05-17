@@ -38,7 +38,7 @@ public class TestAppTestIos extends IosBaseTest {
   }
 
   @Test
-  public void testOpenAlert () {
+  public void testOpenAndCloseAlert () {
 
     // Find Button element and click on it
     homePage.clickOnShowAlertButton();
@@ -49,6 +49,9 @@ public class TestAppTestIos extends IosBaseTest {
 
     // Dismiss the alert
     homePage.clickOnOkButtonOnAlert();
+
+    homePage.clickOnShowAlertButton();
+    homePage.clickOnCancelButtonOnAlert();
   }
 
   // add test to press and drag slider

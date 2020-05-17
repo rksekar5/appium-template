@@ -27,6 +27,9 @@ public class HomePage {
   @iOSXCUITFindBy(accessibility = "Cool title")
   public MobileElement ALERT_BOX_TITLE;
 
+  @iOSXCUITFindBy(accessibility = "Cancel")
+  public MobileElement CANCEL_BUTTON_ALERT;
+
   @iOSXCUITFindBy(accessibility = "OK")
   public MobileElement OK_BUTTON_ALERT;
 
@@ -52,6 +55,11 @@ public class HomePage {
   public void clickOnOkButtonOnAlert(){
     clickMobileElement(OK_BUTTON_ALERT);
     logInfo("Ok button has been clicked on successfully on th alert box");
+  }
+
+  public void clickOnCancelButtonOnAlert(){
+    clickMobileElement(CANCEL_BUTTON_ALERT);
+    logInfo("Cancel button has been clicked on successfully on th alert box");
   }
 
 }

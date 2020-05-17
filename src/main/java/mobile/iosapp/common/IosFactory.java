@@ -25,7 +25,7 @@ public class IosFactory extends AppFactory {
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName == null ? "iPhone 11" : deviceName);
-    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion == null ? "13.3" : platformVersion);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion == null ? "13.3" : platformVersion);
     capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
     capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
     capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
