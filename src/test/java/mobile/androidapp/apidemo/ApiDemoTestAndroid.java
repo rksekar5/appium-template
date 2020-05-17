@@ -119,9 +119,9 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Severity(SeverityLevel.MINOR)
   @Description("This is a sample test to switch screen orientation")
   public void changeScreenOrientationTest() {
-    MobileUtils.switchScreenToLandscape();
+    androidUtilities.switchScreenToLandscape();
     sleep(2000);
-    MobileUtils.switchScreenToPortrait();
+    androidUtilities.switchScreenToPortrait();
     sleep(2000);
   }
 
