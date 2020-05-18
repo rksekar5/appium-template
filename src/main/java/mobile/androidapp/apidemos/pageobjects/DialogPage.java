@@ -5,7 +5,6 @@ import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
 import static mobile.androidapp.common.AndroidFactory.androidDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
-import static mobile.utils.MobileUtils.getMobileElementWithAccessibilityId;
 import static mobile.utils.MobileUtils.getTextFromMobileElement;
 import static mobile.utils.MobileUtils.isCheckboxChecked;
 import static mobile.utils.MobileUtils.sendKeysToMobileElement;
@@ -188,7 +187,7 @@ public class DialogPage {
 
   public void setHoursOnTimePicker(int hours){
     clickMobileElement(TIME_HOUR);
-    final MobileElement hourElement = getMobileElementWithAccessibilityId(String.valueOf(hours));
+    final MobileElement hourElement = androidUtilities.getMobileElementWithAccessibilityId(String.valueOf(hours));
     clickMobileElement(hourElement);
     assertEquals(hours, getHours());
     logInfo("Hours set on the clock successfully");
@@ -196,7 +195,7 @@ public class DialogPage {
 
   public void setMinutesOnTimePicker(int minutes){
     clickMobileElement(TIME_MINUTES);
-    final MobileElement minutesElement = getMobileElementWithAccessibilityId(String.valueOf(minutes));
+    final MobileElement minutesElement = androidUtilities.getMobileElementWithAccessibilityId(String.valueOf(minutes));
     clickMobileElement(minutesElement);
     assertEquals(minutes, getMinutes());
     logInfo("Minutes set on the clock successfully");

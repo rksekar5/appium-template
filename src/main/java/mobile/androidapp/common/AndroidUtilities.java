@@ -250,13 +250,13 @@ public class AndroidUtilities {
     new TouchActions(androidDriver).scroll(mobileElement, 10, 100).perform();
   }
 
-  public static void switchScreenToLandscape(){
+  public void switchScreenToLandscape(){
     androidDriver.rotate(ScreenOrientation.LANDSCAPE);
     ScreenOrientation orientation = androidDriver.getOrientation();
     assertSame(orientation, ScreenOrientation.LANDSCAPE);
   }
 
-  public static void switchScreenToPortrait(){
+  public void switchScreenToPortrait(){
     androidDriver.rotate(ScreenOrientation.PORTRAIT);
     ScreenOrientation orientation = androidDriver.getOrientation();
     assertSame(orientation, ScreenOrientation.PORTRAIT);
@@ -266,23 +266,23 @@ public class AndroidUtilities {
     return androidDriver.findElementByXPath(locator);
   }
 
-  public static MobileElement getMobileElementWithAccessibilityId(String locator){
+  public MobileElement getMobileElementWithAccessibilityId(String locator){
     return androidDriver.findElementByAccessibilityId(locator);
   }
 
-  public static MobileElement getMobileElementWithId(String locator){
+  public MobileElement getMobileElementWithId(String locator){
     return androidDriver.findElementById(locator);
   }
 
-  public static String getContext(){
+  public String getContext(){
     return androidDriver.getContext();
   }
 
-  public static void setContextToWebView(String packageName){
+  public void setContextToWebView(String packageName){
     androidDriver.context("WEBVIEW_"+packageName);
   }
 
-  public static void setContextToNativeApp(){
+  public void setContextToNativeApp(){
     androidDriver.context("NATIVE_APP");
   }
 
