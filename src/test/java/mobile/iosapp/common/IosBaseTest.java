@@ -16,9 +16,6 @@ public class IosBaseTest extends IosFactory {
   @BeforeMethod(alwaysRun = true)
   protected void setUpIosApp(ITestContext result) {
     service = startServer();
-
-    iosDriver = capabilities("ios_demo_app");
-    iosDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
   @AfterMethod(alwaysRun = true)
