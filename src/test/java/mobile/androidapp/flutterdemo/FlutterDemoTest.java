@@ -3,12 +3,15 @@ package mobile.androidapp.flutterdemo;
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
 
+import com.diconium.qa.testautomationframework.common.RetryListener;
 import lombok.SneakyThrows;
 import mobile.androidapp.common.FlutterBaseTest;
 import mobile.androidapp.flutterapp.pageobjects.LandingPage;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners({RetryListener.class})
 public class FlutterDemoTest extends FlutterBaseTest {
 
   private LandingPage landingPage;
@@ -25,7 +28,7 @@ public class FlutterDemoTest extends FlutterBaseTest {
     landingPage.clickOnStumilateHostCard();
     sleep(5000);
 
-    logInfo("Current context of the app is "+androidDriver.getContext());
+    logInfo("Current context of the app is "+ appiumDriver.getContext());
 
   }
 }

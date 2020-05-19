@@ -7,7 +7,7 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofSeconds;
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertSame;
 import static org.testng.Assert.assertTrue;
@@ -15,6 +15,7 @@ import static org.testng.Assert.assertTrue;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import java.time.Duration;
 import java.util.HashMap;
@@ -30,52 +31,53 @@ import org.openqa.selenium.interactions.touch.TouchActions;
 public class AndroidUtilities {
 
   public void scrollToText(String text) {
-    androidDriver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
+    appiumDriver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
         ".scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
   }
 
   public void dragAndDrop(MobileElement fromElement, MobileElement toElement) {
     logInfo(String.format("Drag element from %s to %s", fromElement, toElement));
-    new TouchAction<>(androidDriver)
+    new TouchAction<>(appiumDriver)
         .longPress(longPressOptions()
             .withElement(element(fromElement))
-            .withDuration(ofSeconds(2)))
+            .withDuration(ofSeconds(1)))
         .moveTo(element(toElement))
         .release().perform();
   }
 
   public void longPressAndRelease(MobileElement mobileElement) {
     logInfo("Long press and release the element");
-    new TouchAction<>(androidDriver)
+    new TouchAction<>(appiumDriver)
         .longPress(longPressOptions()
             .withElement(element(mobileElement))
-            .withDuration(ofSeconds(2)))
+            .withDuration(ofSeconds(1)))
         .release().perform();
   }
 
   public void clickAndHold(MobileElement mobileElement){
     logInfo("Click and hold on the element");
-    new Actions(androidDriver).clickAndHold(mobileElement).release().perform();
+    new Actions(appiumDriver).clickAndHold(mobileElement).release().perform();
   }
 
   public void tapOnMobileElement(MobileElement mobileElement){
     logInfo("Tap on the element");
-    new TouchActions(androidDriver).singleTap(mobileElement).perform();
+    new TouchActions(appiumDriver).singleTap(mobileElement).perform();
   }
 
   public void doubleTapOnMobileElement(MobileElement mobileElement){
     logInfo("Double tap on the element");
-    new TouchActions(androidDriver).doubleTap(mobileElement).perform();
+    new TouchActions(appiumDriver).doubleTap(mobileElement).perform();
   }
 
   public boolean isKeyboardDisplayed(){
-    return androidDriver.isKeyboardShown();
+    System.out.println(((AndroidDriver<MobileElement>)appiumDriver).isKeyboardShown());
+    return ((AndroidDriver<MobileElement>)appiumDriver).isKeyboardShown();
   }
 
   public void hideAndroidKeyboard(){
     if(isKeyboardDisplayed()) {
       try {
-        androidDriver.hideKeyboard();
+        appiumDriver.hideKeyboard();
         sleep(1000);
         logInfo("Keyboard minimized on the screen");
       } catch (Exception e) {
@@ -88,7 +90,7 @@ public class AndroidUtilities {
   public void swipeFromUpToBottomWithJavascriptExecutor()
   {
     try {
-      JavascriptExecutor js = androidDriver;
+      JavascriptExecutor js = appiumDriver;
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "up");
       js.executeScript("mobile: swipe", scrollObject);
@@ -103,7 +105,7 @@ public class AndroidUtilities {
   public void swipeFromBottomToUpWithJavascriptExecutor()
   {
     try  {
-      JavascriptExecutor js = androidDriver;
+      JavascriptExecutor js = appiumDriver;
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "down");
       js.executeScript("mobile: swipe", scrollObject);
@@ -118,7 +120,7 @@ public class AndroidUtilities {
   public void scrollFromUpToBottomWithJavascriptExecutor()
   {
     try {
-      JavascriptExecutor js = androidDriver;
+      JavascriptExecutor js = appiumDriver;
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "up");
       js.executeScript("mobile: scroll", scrollObject);
@@ -133,7 +135,7 @@ public class AndroidUtilities {
   public void scrollFromBottomToUpWithJavascriptExecutor()
   {
     try  {
-      JavascriptExecutor js = androidDriver;
+      JavascriptExecutor js = appiumDriver;
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "down");
       js.executeScript("mobile: scroll", scrollObject);
@@ -162,7 +164,7 @@ public class AndroidUtilities {
   }
 
   private void swipe(String direction) {
-    Dimension size = androidDriver.manage().window().getSize();
+    Dimension size = appiumDriver.manage().window().getSize();
 
     int startX;
     int endX;
@@ -174,7 +176,7 @@ public class AndroidUtilities {
         startY = size.height / 2;
         startX = (int) (size.width * 0.90);
         endX = (int) (size.width * 0.05);
-        new TouchAction<>(androidDriver)
+        new TouchAction<>(appiumDriver)
             .press(point(startX, startY))
             .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
             .moveTo(point(endX, startY))
@@ -186,7 +188,7 @@ public class AndroidUtilities {
         startY = size.height / 2;
         startX = (int) (size.width * 0.05);
         endX = (int) (size.width * 0.90);
-        new TouchAction<>(androidDriver)
+        new TouchAction<>(appiumDriver)
             .press(point(startX, startY))
             .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
             .moveTo(point(endX, startY))
@@ -198,7 +200,7 @@ public class AndroidUtilities {
         endY = (int) (size.height * 0.70);
         startY = (int) (size.height * 0.30);
         startX = (size.width / 2);
-        new TouchAction<>(androidDriver)
+        new TouchAction<>(appiumDriver)
             .press(point(startX, startY))
             .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
             .moveTo(point(startX, endY))
@@ -210,7 +212,7 @@ public class AndroidUtilities {
         startY = (int) (size.height * 0.70);
         endY = (int) (size.height * 0.30);
         startX = (size.width / 2);
-        new TouchAction<>(androidDriver)
+        new TouchAction<>(appiumDriver)
             .press(point(startX, startY))
             .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
             .moveTo(point(startX, endY))
@@ -224,7 +226,7 @@ public class AndroidUtilities {
    * Retrieves the device location
    */
   public void getDeviceLocation(){
-    final Location location = androidDriver.location();
+    final Location location = appiumDriver.location();
     logInfo(String.format("Device location is: %s", location.toString()));
   }
 
@@ -236,7 +238,7 @@ public class AndroidUtilities {
    * @param altitude
    */
   public void setDeviceLocation(long latitude, long longitude, long altitude){
-    androidDriver.setLocation(new Location(latitude,longitude,altitude));
+    appiumDriver.setLocation(new Location(latitude,longitude,altitude));
     logInfo(String
         .format("Location set for devices successfully to %s %s %s", latitude, longitude, altitude));
   }
@@ -247,43 +249,43 @@ public class AndroidUtilities {
    * @param mobileElement
    */
   public void scrollToElement(MobileElement mobileElement){
-    new TouchActions(androidDriver).scroll(mobileElement, 10, 100).perform();
+    new TouchActions(appiumDriver).scroll(mobileElement, 10, 100).perform();
   }
 
   public void switchScreenToLandscape(){
-    androidDriver.rotate(ScreenOrientation.LANDSCAPE);
-    ScreenOrientation orientation = androidDriver.getOrientation();
+    appiumDriver.rotate(ScreenOrientation.LANDSCAPE);
+    ScreenOrientation orientation = appiumDriver.getOrientation();
     assertSame(orientation, ScreenOrientation.LANDSCAPE);
   }
 
   public void switchScreenToPortrait(){
-    androidDriver.rotate(ScreenOrientation.PORTRAIT);
-    ScreenOrientation orientation = androidDriver.getOrientation();
+    appiumDriver.rotate(ScreenOrientation.PORTRAIT);
+    ScreenOrientation orientation = appiumDriver.getOrientation();
     assertSame(orientation, ScreenOrientation.PORTRAIT);
   }
 
   public static MobileElement getMobileElementWithXpath(String locator){
-    return androidDriver.findElementByXPath(locator);
+    return appiumDriver.findElementByXPath(locator);
   }
 
   public MobileElement getMobileElementWithAccessibilityId(String locator){
-    return androidDriver.findElementByAccessibilityId(locator);
+    return appiumDriver.findElementByAccessibilityId(locator);
   }
 
   public MobileElement getMobileElementWithId(String locator){
-    return androidDriver.findElementById(locator);
+    return appiumDriver.findElementById(locator);
   }
 
   public String getContext(){
-    return androidDriver.getContext();
+    return appiumDriver.getContext();
   }
 
   public void setContextToWebView(String packageName){
-    androidDriver.context("WEBVIEW_"+packageName);
+    appiumDriver.context("WEBVIEW_"+packageName);
   }
 
   public void setContextToNativeApp(){
-    androidDriver.context("NATIVE_APP");
+    appiumDriver.context("NATIVE_APP");
   }
 
 }

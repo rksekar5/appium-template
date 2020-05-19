@@ -17,7 +17,6 @@ import mobile.androidapp.apidemos.pageobjects.ViewsPage;
 import mobile.androidapp.common.AndroidBaseTest;
 import mobile.androidapp.common.AndroidUtilities;
 import mobile.androidapp.common.TestData;
-import mobile.utils.MobileUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;

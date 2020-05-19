@@ -2,7 +2,7 @@ package mobile.androidapp.apidemos.pageobjects;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 import static mobile.utils.MobileUtils.getTextFromMobileElement;
 import static mobile.utils.MobileUtils.isCheckboxChecked;
@@ -22,7 +22,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LightThemePage {
 
   public LightThemePage() {
-    PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @AndroidFindBy(id = "io.appium.android.apis:id/edit")
@@ -109,12 +109,13 @@ public class LightThemePage {
 
   public void selectSpinnerDropdown(){
     clickMobileElement(SPINNER_DROPDOWN);
-    waitUntilMobileElementVisible(DROPDOWN_LIST_BOX);
+//    waitUntilMobileElementVisible(DROPDOWN_LIST_BOX);
   }
 
   @SneakyThrows
   public void selectPlanetFromList(String planetName){
-    MobileElement planetToBeSelected = androidDriver.findElementByXPath("//android.widget.CheckedTextView[@text='"+planetName+"']");
+    MobileElement planetToBeSelected = appiumDriver
+        .findElementByXPath("//android.widget.CheckedTextView[@text='"+planetName+"']");
     clickMobileElement(planetToBeSelected);
     logInfo("Clicked on the "+planetName+" successfully");
     sleep(3000);

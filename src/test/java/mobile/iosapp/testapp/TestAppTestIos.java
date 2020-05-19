@@ -16,8 +16,8 @@ public class TestAppTestIos extends IosBaseTest {
   @BeforeMethod
   public void setup(){
 
-    iosDriver = capabilities("ios_demo_app");
-    iosDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    appiumDriver = iosCapabilities("ios_demo_app");
+    appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     homePage = new HomePage();
   }

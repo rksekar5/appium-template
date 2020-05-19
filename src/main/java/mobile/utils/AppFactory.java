@@ -2,6 +2,8 @@ package mobile.utils;
 
 import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import java.io.IOException;
@@ -13,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 public class AppFactory {
 
   public static AppiumDriverLocalService service;
+
+  public static AppiumDriver<MobileElement> appiumDriver;
 
   public AppiumDriverLocalService startServer() {
     boolean flag = checkIfServerIsRunnningAfterClosingSocker(4723);

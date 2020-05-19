@@ -2,6 +2,7 @@ package mobile.androidapp.common;
 
 import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -20,9 +21,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 @Slf4j
 public class AndroidFactory extends AppFactory {
 
-  public static AndroidDriver<MobileElement> androidDriver;
-
-  public static AndroidDriver<MobileElement> capabilities(String appName) throws IOException {
+  public static AppiumDriver<MobileElement> androidCapabilities(String appName) throws IOException {
 
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
@@ -39,13 +38,13 @@ public class AndroidFactory extends AppFactory {
     capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
     capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
     capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-    androidDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-    androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    return androidDriver;
+    appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    return appiumDriver;
   }
 
   public static void getScreenshot(String s) throws IOException {
-    File scrfile = ((TakesScreenshot) androidDriver).getScreenshotAs(OutputType.FILE);
+    File scrfile = ((TakesScreenshot) appiumDriver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrfile, new File(System.getProperty("user.dir") + "\\" + s + ".png"));
   }
 

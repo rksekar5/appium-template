@@ -1,7 +1,7 @@
 package mobile.androidapp.apidemos.pageobjects;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 
 import io.appium.java_client.MobileElement;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 public class DateWidgetPage {
 
   public DateWidgetPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @AndroidFindBy(accessibility = "1. Dialog")

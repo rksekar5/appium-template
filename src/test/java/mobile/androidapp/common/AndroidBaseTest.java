@@ -19,20 +19,20 @@ public class AndroidBaseTest extends AndroidFactory {
   protected void setUpAndroidApp(ITestContext result) {
     service = startServer();
 
-    androidDriver = capabilities("android_demo_app");
-    androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    appiumDriver = androidCapabilities("android_demo_app");
+    appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
   @AfterMethod(alwaysRun = true)
   protected void tearDown(ITestResult testResult) {
-    androidDriver.closeApp();
+    appiumDriver.closeApp();
     removeAppFromDevice();
     service.stop();
   }
 
   private void removeAppFromDevice() {
-    if (androidDriver.isAppInstalled(readValueFromMobileConfigFile("android_package_name")))
+    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("android_package_name")))
       log.debug("Uninstalling the app as part of cleanup");
-    androidDriver.removeApp(readValueFromMobileConfigFile("android_package_name"));
+    appiumDriver.removeApp(readValueFromMobileConfigFile("android_package_name"));
   }
 }

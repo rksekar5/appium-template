@@ -1,7 +1,6 @@
 package mobile.iosapp.common;
 
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
-import static mobile.iosapp.common.IosFactory.iosDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static org.testng.Assert.assertSame;
 
 import io.appium.java_client.MobileElement;
@@ -10,39 +9,39 @@ import org.openqa.selenium.ScreenOrientation;
 public class IosUtilities {
 
   public static void switchScreenToLandscape(){
-    iosDriver.rotate(ScreenOrientation.LANDSCAPE);
-    ScreenOrientation orientation = iosDriver.getOrientation();
+    appiumDriver.rotate(ScreenOrientation.LANDSCAPE);
+    ScreenOrientation orientation = appiumDriver.getOrientation();
     assertSame(orientation, ScreenOrientation.LANDSCAPE);
   }
 
   public static void switchScreenToPortrait(){
-    iosDriver.rotate(ScreenOrientation.PORTRAIT);
-    ScreenOrientation orientation = iosDriver.getOrientation();
+    appiumDriver.rotate(ScreenOrientation.PORTRAIT);
+    ScreenOrientation orientation = appiumDriver.getOrientation();
     assertSame(orientation, ScreenOrientation.PORTRAIT);
   }
 
   public static MobileElement getMobileElementWithXpath(String locator){
-    return iosDriver.findElementByXPath(locator);
+    return appiumDriver.findElementByXPath(locator);
   }
 
   public static MobileElement getMobileElementWithAccessibilityId(String locator){
-    return iosDriver.findElementByAccessibilityId(locator);
+    return appiumDriver.findElementByAccessibilityId(locator);
   }
 
   public static MobileElement getMobileElementWithId(String locator){
-    return iosDriver.findElementById(locator);
+    return appiumDriver.findElementById(locator);
   }
 
   public static String getContext(){
-    return androidDriver.getContext();
+    return appiumDriver.getContext();
   }
 
   public static void setContextToWebView(String packageName){
-    iosDriver.context("WEBVIEW_"+packageName);
+    appiumDriver.context("WEBVIEW_"+packageName);
   }
 
   public static void setContextToNativeApp(){
-    iosDriver.context("NATIVE_APP");
+    appiumDriver.context("NATIVE_APP");
   }
 
 

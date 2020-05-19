@@ -3,7 +3,7 @@ package mobile.androidapp.apidemos.pageobjects;
 import static com.diconium.qa.testautomationframework.common.Logger.logError;
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 import static mobile.utils.MobileUtils.getTextFromMobileElement;
 import static mobile.utils.MobileUtils.isCheckboxChecked;
@@ -24,7 +24,7 @@ import org.openqa.selenium.support.PageFactory;
 public class DialogPage {
 
   public DialogPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @AndroidFindBy(id = "io.appium.android.apis:id/pickDate")
@@ -97,14 +97,14 @@ public class DialogPage {
   public void clickOnPickDate() {
     logInfo("Click on Pick date");
     clickMobileElement(CHANGE_DATE);
-    waitUntilMobileElementVisible(DATE_PICKER);
+//    waitUntilMobileElementVisible(DATE_PICKER);
     logInfo("Date picker displayed as expected");
   }
 
   public void clickOnChangeTime() {
     logInfo("Click on Pick time");
     clickMobileElement(CHANGE_TIME);
-    waitUntilMobileElementVisible(TIME_PICKER);
+//    waitUntilMobileElementVisible(TIME_PICKER);
     logInfo("Time picker displayed as expected");
   }
 
@@ -128,7 +128,8 @@ public class DialogPage {
 
   public void selectDateOnTheDatePicker(int date){
     try{
-      MobileElement mobileElement = androidDriver.findElementByXPath("//android.view.View[@text='"+date+"']");
+      MobileElement mobileElement = appiumDriver
+          .findElementByXPath("//android.view.View[@text='"+date+"']");
       clickMobileElement(mobileElement);
       assertTrue(isCheckboxChecked(mobileElement));
       logInfo(date+" is selected as date");
@@ -151,7 +152,7 @@ public class DialogPage {
   public void clickOkOnDatePicker(){
     clickMobileElement(PICKER_OK);
     sleep(2000);
-    waitUntilMobileElementVisible(CHANGE_DATE);
+//    waitUntilMobileElementVisible(CHANGE_DATE);
     logInfo("Ok button on the date picker clicked successfully");
   }
 
@@ -159,7 +160,7 @@ public class DialogPage {
   public void clickCancelOnDatePicker(){
     clickMobileElement(PICKER_CANCEL);
     sleep(2000);
-    waitUntilMobileElementVisible(CHANGE_DATE);
+//    waitUntilMobileElementVisible(CHANGE_DATE);
     logInfo("Cancel button on the date picker clicked successfully");
   }
 
@@ -215,7 +216,7 @@ public class DialogPage {
   public void clickOkOnTimePicker(){
     clickMobileElement(PICKER_OK);
     sleep(2000);
-    waitUntilMobileElementVisible(CHANGE_TIME);
+//    waitUntilMobileElementVisible(CHANGE_TIME);
     logInfo("Ok button on the time picker clicked successfully");
   }
 
@@ -223,7 +224,7 @@ public class DialogPage {
   public void clickCancelOnTimePicker(){
     clickMobileElement(PICKER_CANCEL);
     sleep(2000);
-    waitUntilMobileElementVisible(CHANGE_TIME);
+//    waitUntilMobileElementVisible(CHANGE_TIME);
     logInfo("Cancel button on the time picker clicked successfully");
   }
 

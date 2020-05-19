@@ -13,9 +13,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class IosFactory extends AppFactory {
 
-  public static IOSDriver<MobileElement> iosDriver;
-
-  public static IOSDriver<MobileElement> capabilities(String appName) throws IOException {
+  public static AppiumDriver<MobileElement> iosCapabilities(String appName) throws IOException {
 
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
@@ -31,12 +29,12 @@ public class IosFactory extends AppFactory {
     capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
     capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
     capabilities.setCapability("xcodeSigningId", "iPhone Developer");
-    capabilities.setCapability("useNewWDA", true);
+    capabilities.setCapability("useNewWDA", false);
     capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 
-    iosDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-    iosDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    appiumDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-    return iosDriver;
+    return appiumDriver;
   }
 }

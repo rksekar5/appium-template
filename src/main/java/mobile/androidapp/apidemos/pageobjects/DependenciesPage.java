@@ -1,7 +1,7 @@
 package mobile.androidapp.apidemos.pageobjects;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 import static mobile.utils.MobileUtils.sendKeysToMobileElement;
 
@@ -14,7 +14,7 @@ import org.openqa.selenium.support.PageFactory;
 public class DependenciesPage {
 
   public DependenciesPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @AndroidFindBy(id = "android:id/checkbox")

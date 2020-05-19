@@ -1,6 +1,6 @@
 package mobile.androidapp.apidemos.pageobjects;
 
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 
 import io.appium.java_client.MobileElement;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 public class PreferencesPage {
 
   public PreferencesPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @AndroidFindBy(xpath = "//android.widget.TextView[@text='3. Preference dependencies']")

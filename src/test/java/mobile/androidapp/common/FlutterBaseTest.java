@@ -19,20 +19,20 @@ public class FlutterBaseTest extends AndroidFactory {
   protected void setUpAndroidApp(ITestContext result) {
     service = startServer();
 
-    androidDriver = capabilities("flutter_demo_app");
-    androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    appiumDriver = androidCapabilities("flutter_demo_app");
+    appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
   @AfterMethod(alwaysRun = true)
   protected void tearDown(ITestResult testResult) {
-    androidDriver.closeApp();
+    appiumDriver.closeApp();
     removeAppFromDevice();
     service.stop();
   }
 
   private void removeAppFromDevice() {
-    if (androidDriver.isAppInstalled(readValueFromMobileConfigFile("flutter_package_name")))
+    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("flutter_package_name")))
       log.debug("Uninstalling the app as part of cleanup");
-    androidDriver.removeApp(readValueFromMobileConfigFile("flutter_package_name"));
+    appiumDriver.removeApp(readValueFromMobileConfigFile("flutter_package_name"));
   }
 }

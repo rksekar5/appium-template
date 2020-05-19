@@ -1,6 +1,6 @@
 package mobile.androidapp.flutterapp.pageobjects;
 
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LandingPage {
 
   public LandingPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @AndroidFindBy(xpath = "//android.view.View[@text='Counter App Home Page']")

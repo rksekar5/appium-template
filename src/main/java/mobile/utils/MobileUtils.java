@@ -2,7 +2,7 @@ package mobile.utils;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static mobile.androidapp.common.AndroidFactory.androidDriver;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 import static org.awaitility.Awaitility.await;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertSame;
@@ -15,7 +15,6 @@ import io.appium.java_client.android.AndroidDriver;
 import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
@@ -30,7 +29,7 @@ public class MobileUtils {
 
 
   private static Wait<AndroidDriver> getFluentWait(long timeoutSeconds) {
-    return new AppiumFluentWait(androidDriver)
+    return new AppiumFluentWait(appiumDriver)
         .withTimeout(Duration.ofSeconds(timeoutSeconds))
         .pollingEvery(Duration.ofSeconds(2))
         .ignoring(NoSuchElementException.class)

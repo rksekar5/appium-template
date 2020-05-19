@@ -20,7 +20,7 @@ public class IosBaseTest extends IosFactory {
 
   @AfterMethod(alwaysRun = true)
   protected void tearDown(ITestResult testResult) {
-    iosDriver.closeApp();
+    appiumDriver.closeApp();
     //    driver.removeApp(readMobileConfigFromConfigFile("apiDemo"));
     service.stop();
   }
