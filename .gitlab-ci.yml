@@ -1,0 +1,43 @@
+image: maven:3-jdk-8
+ 
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2"
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml -f diconium-test-automation-framework/pom.xml"
+  SHARED_PATH: /builds/shared/$CI_PROJECT_PATH
+  ANDROID_COMPILE_SDK: "28"
+  ANDROID_BUILD_TOOLS: "28.0.2"
+  ANDROID_SDK_TOOLS:   "4333796"
+  
+default:
+  before_script:
+    - mkdir -p .m2
+    - cat ${SETTINGS_XML} | base64 -d > .m2/settings.xml
+
+cache:
+  # one cache per branch
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - $CI_PROJECT_DIR/.m2/repository
+ 
+stages:
+  - test
+  
+  
+buildProject:
+  stage: test
+
+  before_script:
+    - apt-get --quiet update --yes
+    - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+    - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
+    - unzip -d android-sdk-linux android-sdk.zip
+    - echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null
+    - echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null
+    - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
+    - export ANDROID_HOME=$PWD/android-sdk-linux
+    - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
+    - tail -n1 .m2/settings.xml
+    
+  script
+    - mvn $MAVEN_CLI_OPTS clean compile
+    - mvn $MAVEN_CLI_OPTS clean install site -DsuiteFile=mobile_regression.xml
