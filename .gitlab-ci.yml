@@ -23,7 +23,7 @@ stages:
   - test
   
   
-buildProject:
+testProject:
   stage: test
 
   before_script:
