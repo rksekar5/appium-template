@@ -21,6 +21,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 @Slf4j
 public class AndroidFactory extends AppFactory {
 
+  private static String HUB;
+
+  static {
+    HUB = readHubDetailsFromConfigFile("hub");
+  }
+
   public static AppiumDriver<MobileElement> androidCapabilities(String appName) throws IOException {
 
     File appDirectory = new File("src/app");
@@ -28,20 +34,33 @@ public class AndroidFactory extends AppFactory {
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
     String device = readValueFromMobileConfigFile("android_device");
-
-    if (!device.contains("emulator")) {
-      String platformVersion = readValueFromMobileConfigFile("android_platform_version");
+    if(isRemote()) {
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+      capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+//      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"chrome");
+      capabilities.setCapability(MobileCapabilityType.APP,"/tmp/app/"+readValueFromMobileConfigFile(appName));
+          appiumDriver = new AndroidDriver<>(new URL(HUB), capabilities);
+    } else {
+      if (!device.contains("emulator")) {
+        final String platformVersion = readValueFromMobileConfigFile("android_platform_version");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+      }
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
+      capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
+      capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+      appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
-    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
-    capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
-    capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-    appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     return appiumDriver;
   }
+
+  private static boolean isRemote() {
+    return Boolean.TRUE.equals(Boolean.valueOf(System.getProperty("remoteExecution")));
+  }
+
 
   public static void getScreenshot(String s) throws IOException {
     File scrfile = ((TakesScreenshot) appiumDriver).getScreenshotAs(OutputType.FILE);
