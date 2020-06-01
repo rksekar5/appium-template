@@ -38,6 +38,6 @@ buildProject:
     - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
     - tail -n1 .m2/settings.xml
     
-  script
+  script:
     - mvn $MAVEN_CLI_OPTS clean compile
     - mvn $MAVEN_CLI_OPTS clean install site -DsuiteFile=mobile_regression.xml
