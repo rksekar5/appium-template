@@ -68,7 +68,7 @@ public class MobileUtils {
   }
 
   public static boolean getMobileElementCheckboxStatus(MobileElement mobileElement){
-    return Boolean.parseBoolean(mobileElement.getAttribute("checked"));
+      return Boolean.parseBoolean(mobileElement.getAttribute("checked"));
   }
 
   public static boolean isCheckboxChecked(MobileElement mobileElement){

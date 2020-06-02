@@ -33,11 +33,9 @@ public class DragAndDropPage {
   @SneakyThrows
   public void dragAndDropCircles() {
     androidUtilities.dragAndDrop(DOT_1,DOT_3);
-    sleep(1000);
+    sleep(2000);
     androidUtilities.dragAndDrop(DOT_3,DOT_4);
-    sleep(1000);
-    androidUtilities.dragAndDrop(DOT_4,DOT_1);
-    sleep(1000);
+    sleep(2000);
   }
 
 }
