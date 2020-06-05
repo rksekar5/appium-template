@@ -36,9 +36,11 @@ public class AndroidFactory extends AppFactory {
     String device = readValueFromMobileConfigFile("android_device");
     if(isRemote()) {
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "samsung_galaxy_s6_7.1.1");
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.1");
+      capabilities.setCapability("avd", "samsung_galaxy_s6_7.1.1");
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-//      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"chrome");
+      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"chrome");
       capabilities.setCapability(MobileCapabilityType.APP,"/tmp/app/"+readValueFromMobileConfigFile(appName));
           appiumDriver = new AndroidDriver<>(new URL(HUB), capabilities);
     } else {

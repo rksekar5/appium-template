@@ -47,12 +47,13 @@ services:
       - ./src/main/resources:/tmp/resources
     privileged: true
   samsung_galaxy_web_7.1.1:
-    image: budtmo/docker-android-x86-10.0
-    privileged: true
+    image: butomo1989/docker-android-x86-7.1.1
+    container_name: Samsung_Galaxy_S6_Chrome
+    hostname: Samsung_Galaxy_S6_Chrome
     depends_on:
       - selenium-hub
     ports:
-      - 6080:6080
+      - 6080:5900
     volumes:
       - ./src/main/resources:/tmp/resources
       - ./src/app:/tmp/app
@@ -62,3 +63,5 @@ services:
       - APPIUM=true
       - SELENIUM_HOST=selenium-hub
       - MOBILE_WEB_TEST=true
+      - RELAXED_SECURITY=true
+    privileged: true
