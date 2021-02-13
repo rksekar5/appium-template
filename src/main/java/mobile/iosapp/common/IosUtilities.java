@@ -1,10 +1,10 @@
 package mobile.iosapp.common;
 
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
-import static org.testng.Assert.assertSame;
-
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.ScreenOrientation;
+
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
+import static org.testng.Assert.assertSame;
 
 public class IosUtilities {
 

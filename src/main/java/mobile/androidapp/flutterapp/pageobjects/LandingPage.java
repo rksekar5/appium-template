@@ -1,13 +1,13 @@
 package mobile.androidapp.flutterapp.pageobjects;
 
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
-
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import mobile.androidapp.common.AndroidUtilities;
 import mobile.utils.MobileUtils;
 import org.openqa.selenium.support.PageFactory;
+
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
 
 public class LandingPage {
 

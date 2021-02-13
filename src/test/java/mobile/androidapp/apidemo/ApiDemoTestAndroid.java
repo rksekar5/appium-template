@@ -1,19 +1,7 @@
 package mobile.androidapp.apidemo;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static java.lang.Thread.sleep;
-import static org.testng.Assert.assertEquals;
-
 import lombok.SneakyThrows;
-import mobile.androidapp.apidemos.pageobjects.ControlsPage;
-import mobile.androidapp.apidemos.pageobjects.DateWidgetPage;
-import mobile.androidapp.apidemos.pageobjects.DependenciesPage;
-import mobile.androidapp.apidemos.pageobjects.DialogPage;
-import mobile.androidapp.apidemos.pageobjects.DragAndDropPage;
-import mobile.androidapp.apidemos.pageobjects.HomePage;
-import mobile.androidapp.apidemos.pageobjects.LightThemePage;
-import mobile.androidapp.apidemos.pageobjects.PreferencesPage;
-import mobile.androidapp.apidemos.pageobjects.ViewsPage;
+import mobile.androidapp.apidemos.pageobjects.*;
 import mobile.androidapp.common.AndroidBaseTest;
 import mobile.androidapp.common.AndroidUtilities;
 import mobile.androidapp.common.TestData;
@@ -22,6 +10,10 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.model.SeverityLevel;
+
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static java.lang.Thread.sleep;
+import static org.testng.Assert.assertEquals;
 
 public class ApiDemoTestAndroid extends AndroidBaseTest {
 

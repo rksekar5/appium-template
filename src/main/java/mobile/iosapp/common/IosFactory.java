@@ -4,16 +4,29 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 import mobile.utils.AppFactory;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
 public class IosFactory extends AppFactory {
 
+
   public static AppiumDriver<MobileElement> iosCapabilities(String appName) throws IOException {
+
+    /**
+     * @param deviceName
+     * @param platformName
+     * @param platformVersion
+     * @param automationName
+     * @param app
+     * @return
+     * @throws MalformedURLException
+     */
 
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));

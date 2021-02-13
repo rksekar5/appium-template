@@ -1,5 +1,21 @@
 package mobile.androidapp.common;
 
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.html5.Location;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.touch.TouchActions;
+
+import java.time.Duration;
+import java.util.HashMap;
+
 import static com.diconium.qa.testautomationframework.common.Logger.logError;
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
@@ -8,24 +24,7 @@ import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofSeconds;
 import static mobile.androidapp.common.AndroidFactory.appiumDriver;
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertSame;
-import static org.testng.Assert.assertTrue;
-
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.WaitOptions;
-import java.time.Duration;
-import java.util.HashMap;
-import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.html5.Location;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.touch.TouchActions;
 
 @Slf4j
 public class AndroidUtilities {

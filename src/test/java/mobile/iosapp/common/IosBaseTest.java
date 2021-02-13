@@ -1,7 +1,6 @@
 package mobile.iosapp.common;
 
 import com.diconium.qa.testautomationframework.common.RetryListener;
-import java.util.concurrent.TimeUnit;
 import lombok.SneakyThrows;
 import org.testng.ITestContext;
 import org.testng.ITestResult;

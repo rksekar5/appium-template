@@ -1,12 +1,13 @@
 package mobile.iosapp.testapp;
 
-import java.util.concurrent.TimeUnit;
 import lombok.SneakyThrows;
 import mobile.iosapp.common.IosBaseTest;
 import mobile.iosapp.test_app.page_objects.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class TestAppTestIos extends IosBaseTest {
 

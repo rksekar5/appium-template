@@ -1,22 +1,24 @@
 package mobile.androidapp.common;
 
-import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import mobile.utils.AppFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import javax.validation.constraints.NotNull;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
 
 @Slf4j
 public class AndroidFactory extends AppFactory {
@@ -26,6 +28,15 @@ public class AndroidFactory extends AppFactory {
   static {
     HUB = readHubDetailsFromConfigFile("hub");
   }
+
+  /**
+   * @param deviceName
+   * @param platformName
+   * @param platformVersion
+   * @param automationName
+   * @return
+   * @throws MalformedURLException
+   */
 
   public static AppiumDriver<MobileElement> androidCapabilities(String appName) throws IOException {
 

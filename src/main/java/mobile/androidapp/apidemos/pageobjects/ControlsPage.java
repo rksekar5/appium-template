@@ -1,14 +1,14 @@
 package mobile.androidapp.apidemos.pageobjects;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
-import static mobile.utils.MobileUtils.clickMobileElement;
-
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import mobile.androidapp.common.AndroidUtilities;
 import org.openqa.selenium.support.PageFactory;
+
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static mobile.androidapp.common.AndroidFactory.appiumDriver;
+import static mobile.utils.MobileUtils.clickMobileElement;
 
 public class ControlsPage {
 

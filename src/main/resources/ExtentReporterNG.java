@@ -4,17 +4,13 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import org.testng.*;
+import org.testng.xml.XmlSuite;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.testng.IReporter;
-import org.testng.IResultMap;
-import org.testng.ISuite;
-import org.testng.ISuiteResult;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.xml.XmlSuite;
 
 public class ExtentReporterNG implements IReporter {
   private ExtentReports extent;
