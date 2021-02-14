@@ -5,6 +5,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.SneakyThrows;
 import mobile.utils.AndroidUtils;
+import mobile.utils.MobileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
 
@@ -185,7 +186,7 @@ public class DialogPage {
 
   public void setHoursOnTimePicker(int hours){
     clickMobileElement(TIME_HOUR);
-    final MobileElement hourElement = androidUtils.getMobileElementWithAccessibilityId(String.valueOf(hours));
+    final MobileElement hourElement = MobileUtils.getMobileElementWithAccessibilityId(String.valueOf(hours));
     clickMobileElement(hourElement);
     assertEquals(hours, getHours());
     logInfo("Hours set on the clock successfully");
@@ -193,7 +194,7 @@ public class DialogPage {
 
   public void setMinutesOnTimePicker(int minutes){
     clickMobileElement(TIME_MINUTES);
-    final MobileElement minutesElement = androidUtils.getMobileElementWithAccessibilityId(String.valueOf(minutes));
+    final MobileElement minutesElement = MobileUtils.getMobileElementWithAccessibilityId(String.valueOf(minutes));
     clickMobileElement(minutesElement);
     assertEquals(minutes, getMinutes());
     logInfo("Minutes set on the clock successfully");

@@ -45,7 +45,6 @@ public class MobileUtils {
    * Get attribute value from mobile element
    *
    * @param mobileElement
-   * @return string
    */
   public static String getMobileAttributeValue(MobileElement mobileElement) {
     return mobileElement.getAttribute("value");
@@ -1301,6 +1300,18 @@ public class MobileUtils {
    */
   public void scrollToElement(MobileElement mobileElement){
     new TouchActions(appiumDriver).scroll(mobileElement, 10, 100).perform();
+  }
+
+  public static MobileElement getMobileElementWithXpath(String locator){
+    return appiumDriver.findElementByXPath(locator);
+  }
+
+  public static MobileElement getMobileElementWithAccessibilityId(String locator){
+    return appiumDriver.findElementByAccessibilityId(locator);
+  }
+
+  public MobileElement getMobileElementWithId(String locator){
+    return appiumDriver.findElementById(locator);
   }
 
 }
