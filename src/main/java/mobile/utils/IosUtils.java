@@ -6,7 +6,7 @@ import org.openqa.selenium.ScreenOrientation;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static org.testng.Assert.assertSame;
 
-public class IosUtilities {
+public class IosUtils {
 
   public static void switchScreenToLandscape(){
     appiumDriver.rotate(ScreenOrientation.LANDSCAPE);

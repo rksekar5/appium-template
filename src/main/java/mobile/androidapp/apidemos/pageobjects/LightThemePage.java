@@ -4,7 +4,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.SneakyThrows;
-import mobile.utils.AndroidUtilities;
+import mobile.utils.AndroidUtils;
 import mobile.utils.MobileUtils;
 import org.openqa.selenium.support.PageFactory;
 
@@ -58,7 +58,7 @@ public class LightThemePage {
   public MobileElement SCROLL_VIEW;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities();
+  private final AndroidUtils androidUtils = new AndroidUtils();
 
 
   public void sendTextToInputField(String text) {

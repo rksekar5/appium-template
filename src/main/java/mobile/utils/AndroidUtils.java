@@ -27,7 +27,7 @@ import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static org.testng.Assert.assertSame;
 
 @Slf4j
-public class AndroidUtilities {
+public class AndroidUtils {
 
   public void scrollToText(String text) {
     appiumDriver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +

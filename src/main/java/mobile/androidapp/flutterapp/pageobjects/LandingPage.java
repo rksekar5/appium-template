@@ -3,7 +3,7 @@ package mobile.androidapp.flutterapp.pageobjects;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import mobile.utils.AndroidUtilities;
+import mobile.utils.AndroidUtils;
 import mobile.utils.MobileUtils;
 import org.openqa.selenium.support.PageFactory;
 
@@ -27,7 +27,7 @@ public class LandingPage {
   @AndroidFindBy(xpath = "//android.widget.Button[@text='StimulateHostCardKey']")
   public MobileElement STIMULATE_HOST_CARD_BUTTON;
 
-  private AndroidUtilities androidUtilities = new AndroidUtilities();
+  private AndroidUtils androidUtils = new AndroidUtils();
 
 
   public void clickOnStumilateHostCard(){

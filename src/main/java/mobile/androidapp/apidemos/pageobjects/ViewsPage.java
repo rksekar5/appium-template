@@ -3,7 +3,7 @@ package mobile.androidapp.apidemos.pageobjects;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import mobile.utils.AndroidUtilities;
+import mobile.utils.AndroidUtils;
 import org.openqa.selenium.support.PageFactory;
 
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
@@ -15,7 +15,7 @@ public class ViewsPage {
     PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities();
+  private final AndroidUtils androidUtils = new AndroidUtils();
 
   @AndroidFindBy(xpath = "//android.widget.TextView[@text='Drag and Drop']")
   public MobileElement DRAG_AND_DROP;

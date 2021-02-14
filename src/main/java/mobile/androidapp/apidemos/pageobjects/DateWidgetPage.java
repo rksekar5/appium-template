@@ -3,7 +3,7 @@ package mobile.androidapp.apidemos.pageobjects;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import mobile.utils.AndroidUtilities;
+import mobile.utils.AndroidUtils;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
@@ -23,7 +23,7 @@ public class DateWidgetPage {
   public MobileElement INLINE;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities();
+  private final AndroidUtils androidUtils = new AndroidUtils();
 
 
   public void clickOnDialog() {

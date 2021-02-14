@@ -4,7 +4,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.SneakyThrows;
-import mobile.utils.AndroidUtilities;
+import mobile.utils.AndroidUtils;
 import org.openqa.selenium.support.PageFactory;
 
 import static java.lang.Thread.sleep;
@@ -28,13 +28,13 @@ public class DragAndDropPage {
   @AndroidFindBy(xpath = "//android.view.View[@index=5]")
   public MobileElement DOT_4;
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities();
+  private final AndroidUtils androidUtils = new AndroidUtils();
 
   @SneakyThrows
   public void dragAndDropCircles() {
-    androidUtilities.dragAndDrop(DOT_1,DOT_3);
+    androidUtils.dragAndDrop(DOT_1,DOT_3);
     sleep(2000);
-    androidUtilities.dragAndDrop(DOT_3,DOT_4);
+    androidUtils.dragAndDrop(DOT_3,DOT_4);
     sleep(2000);
   }
 
