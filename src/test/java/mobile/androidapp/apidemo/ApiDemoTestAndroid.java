@@ -5,6 +5,7 @@ import mobile.androidapp.apidemos.pageobjects.*;
 import mobile.androidapp.common.AndroidBaseTest;
 import mobile.utils.AndroidUtils;
 import mobile.androidapp.common.TestData;
+import mobile.utils.MobileUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -110,9 +111,9 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Severity(SeverityLevel.MINOR)
   @Description("This is a sample test to switch screen orientation")
   public void changeScreenOrientationTest() {
-    androidUtils.switchScreenToLandscape();
+    MobileUtils.switchScreenToLandscape();
     sleep(2000);
-    androidUtils.switchScreenToPortrait();
+    MobileUtils.switchScreenToPortrait();
     sleep(2000);
   }
 
@@ -120,8 +121,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Description("This is a sample test to get and set geo location for the device")
   public void deviceLocationTest(){
-    androidUtils.getDeviceLocation();
-    androidUtils.setDeviceLocation(49, 123, 10);
+    MobileUtils.getDeviceLocation();
+    MobileUtils.setDeviceLocation(49, 123, 10);
   }
 
   @SneakyThrows
@@ -137,10 +138,10 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
     androidUtils.hideAndroidKeyboard();
 
-    androidUtils.swipeDown();
+    MobileUtils.swipeDown();
     sleep(2000);
 
-    androidUtils.swipeUp();
+    MobileUtils.swipeUp();
     sleep(2000);
   }
 
