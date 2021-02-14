@@ -3,10 +3,10 @@ package mobile.androidapp.apidemos.pageobjects;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import mobile.androidapp.common.AndroidUtilities;
+import mobile.utils.AndroidUtilities;
 import org.openqa.selenium.support.PageFactory;
 
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
+import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 
 public class ViewsPage {

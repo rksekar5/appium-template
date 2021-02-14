@@ -1,10 +1,10 @@
-package mobile.iosapp.common;
+package mobile.driverhandler;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import mobile.utils.AppFactory;
+import mobile.driverhandler.AppFactory;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;

@@ -4,11 +4,11 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.SneakyThrows;
-import mobile.androidapp.common.AndroidUtilities;
+import mobile.utils.AndroidUtilities;
 import org.openqa.selenium.support.PageFactory;
 
 import static java.lang.Thread.sleep;
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
+import static mobile.driverhandler.AndroidFactory.appiumDriver;
 
 public class DragAndDropPage {
 

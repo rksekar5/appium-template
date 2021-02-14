@@ -1,4 +1,4 @@
-package mobile.androidapp.common;
+package mobile.utils;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
@@ -23,7 +23,7 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofSeconds;
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
+import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static org.testng.Assert.assertSame;
 
 @Slf4j

@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static mobile.utils.AppFactory.appiumDriver;
+import static mobile.driverhandler.AppFactory.appiumDriver;
 import static mobile.utils.MobileUtils.*;
 
 public class HomePage {

@@ -15,7 +15,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.time.Duration;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
+import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static org.awaitility.Awaitility.await;
 
 @Slf4j

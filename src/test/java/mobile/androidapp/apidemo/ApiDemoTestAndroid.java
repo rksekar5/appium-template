@@ -3,7 +3,7 @@ package mobile.androidapp.apidemo;
 import lombok.SneakyThrows;
 import mobile.androidapp.apidemos.pageobjects.*;
 import mobile.androidapp.common.AndroidBaseTest;
-import mobile.androidapp.common.AndroidUtilities;
+import mobile.utils.AndroidUtilities;
 import mobile.androidapp.common.TestData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
