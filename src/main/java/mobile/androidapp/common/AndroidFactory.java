@@ -29,16 +29,16 @@ public class AndroidFactory extends AppFactory {
     HUB = readHubDetailsFromConfigFile("hub");
   }
 
-  /**
-   * @param deviceName
-   * @param platformName
-   * @param platformVersion
-   * @param automationName
-   * @return
-   * @throws MalformedURLException
-   */
-
   public static AppiumDriver<MobileElement> androidCapabilities(String appName) throws IOException {
+
+    /**
+     * @param deviceName
+     * @param platformName
+     * @param platformVersion
+     * @param automationName
+     * @return
+     * @throws MalformedURLException
+     */
 
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
