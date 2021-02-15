@@ -36,7 +36,6 @@ import static java.time.Duration.ofSeconds;
 import static mobile.driverhandler.AppFactory.appiumDriver;
 import static mobile.utils.Waiters.driver;
 import static org.testng.Assert.*;
-import static org.testng.Assert.assertSame;
 
 @Slf4j
 public class MobileUtils {
@@ -179,14 +178,14 @@ public class MobileUtils {
    */
   public static void moveFileToPath(File scrFile, File fileNamePath) throws IOException {
     if (Files.exists(Paths.get(String.valueOf(fileNamePath)))) {
-      System.out.println("File exists already");
+      Logger.logInfo("File exists already");
     } else {
       Path temp =
               Files.move(Paths.get(String.valueOf(scrFile)), Paths.get(String.valueOf(fileNamePath)));
       if (temp != null) {
-        System.out.println("File renamed and moved successfully");
+        Logger.logInfo("File renamed and moved successfully");
       } else {
-        System.out.println("Failed to move the file");
+        Logger.logInfo("Failed to move the file");
       }
     }
   }
@@ -230,15 +229,15 @@ public class MobileUtils {
    */
   public static void takeScreenshot(String filename) throws IOException {
 
-    File scrFile = driver.getScreenshotAs(OutputType.FILE);
+    File scrFile = appiumDriver.getScreenshotAs(OutputType.FILE);
 
     Path root = FileSystems.getDefault().getPath("").toAbsolutePath();
     Path filePath = Paths.get(root.toString(), "src", "main", "resources", "screenshots");
     File fileNamePath = new File(filePath.toString() + "/" + filename + ".png");
 
-    if (driver.getCapabilities().getCapability("platformName").equals("iOS")) {
+    if (appiumDriver.getCapabilities().getCapability("platformName").equals("iOS")) {
       moveFileToPath(scrFile, fileNamePath);
-    } else if (driver.getCapabilities().getCapability("platformName").equals("Android")) {
+    } else if (appiumDriver.getCapabilities().getCapability("platformName").equals("Android")) {
       moveFileToPath(scrFile, fileNamePath);
     }
   }
@@ -266,7 +265,6 @@ public class MobileUtils {
    *
    * @param mobileElement
    */
-  @Step
   public static void clearInputField(MobileElement mobileElement) {
     try {
       mobileElement.clear();
@@ -279,7 +277,6 @@ public class MobileUtils {
   /**
    * Get random numbers
    */
-  @Step
   public static int getRandomNumber(int min, int max) {
     Random random = new Random();
     return random.nextInt(max - min + 1) + min;
@@ -291,7 +288,6 @@ public class MobileUtils {
    * @param mobileElement
    * @param text
    */
-  @Step
   public static boolean isTextPresent(MobileElement mobileElement, String text) {
     try {
       return mobileElement.getText().contains(text);
@@ -308,7 +304,6 @@ public class MobileUtils {
    * @param mobileElement
    * @param text
    */
-  @Step
   public static boolean isTextNotPresent(MobileElement mobileElement, String text) {
     return ! isTextPresent(mobileElement, text);
   }
@@ -319,7 +314,6 @@ public class MobileUtils {
    * @param mobileElement
    * @param text
    */
-  @Step
   public static void verifyTextPresent(MobileElement mobileElement, String text) {
     boolean textPresent = isTextPresent(mobileElement, text);
     if (textPresent) {
@@ -335,7 +329,6 @@ public class MobileUtils {
    * @param mobileElement
    * @param text
    */
-  @Step
   public static void verifyTextNotPresent(MobileElement mobileElement, String text) {
     boolean textNotPresent = isTextNotPresent(mobileElement, text);
     if (! textNotPresent) {
@@ -351,7 +344,6 @@ public class MobileUtils {
    * @param mobileElement
    * @param text
    */
-  @Step
   public static void assertTextPresent(MobileElement mobileElement, String text) {
     Assert.assertTrue(mobileElement.getText().contains(text));
     Logger.logInfo(String.format("Text: '%s' is displayed as expected", text));
@@ -363,7 +355,6 @@ public class MobileUtils {
    * @param mobileElement
    * @param value
    */
-  @Step
   public static void assertValuePresent(MobileElement mobileElement, String value) {
     Assert.assertTrue(mobileElement.getAttribute("value").contains(value));
   }
@@ -374,7 +365,6 @@ public class MobileUtils {
    * @param mobileElement
    * @param text
    */
-  @Step
   public static void assertTextNotPresent(MobileElement mobileElement, String text) {
     Assert.assertFalse(mobileElement.getText().contains(text));
     Logger.logInfo(String.format("Text: '%s' is not displayed as expected", text));
@@ -385,7 +375,6 @@ public class MobileUtils {
    *
    * @param mobileElement
    */
-  @Step
   public static boolean isElementSelected(MobileElement mobileElement) {
     return mobileElement.isSelected();
   }
@@ -395,40 +384,11 @@ public class MobileUtils {
    *
    * @param mobileElement
    */
-  @Step
   public static Dimension getElementSize(MobileElement mobileElement) {
     return mobileElement.getSize();
   }
 
-//  @Step
-//  public static void selectFromListByIndex(String list, int option) {
-//    Waiters.getFluentWait()
-//            .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(list), 1));
-//    (new Select(tryFindElementByXpath(list))).selectByIndex(option);
-//  }
-//
-//  @Step
-//  public static void selectFromListByValue(String list, String value) {
-//    Logger.logInfo(String.format("Selecting from list %s by value ", list));
-//    Waiters.getFluentWait()
-//            .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(list), 1));
-//    (new Select(tryFindElementByXpath(list))).selectByValue(value);
-//    Waiters.getFluentWait().until(ExpectedConditions.attributeToBe(By.xpath(list), "value", value));
-//  }
-//
-//  @Step
-//  public static void selectFromListByVisibleText(MobileElement mobileElement, String list, String text) {
-//    (new Select(mobileElement(list))).selectByVisibleText(text);
-//  }
-//
-//  @Step
-//  public static void hoverOverElement(MobileElement mobileElement) {
-//    Actions builder = new Actions(AppiumDriver.getDriver());
-//    builder.moveToElement(mobileElement.perform();
-//  }
 
-
-  @Step
   /**
    * Get the active mobile element
    */
@@ -437,7 +397,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Start an Android Activity
    *
@@ -455,7 +414,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Get current Android Activity
    */
@@ -465,7 +423,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Get current Android Package
    */
@@ -474,7 +431,6 @@ public class MobileUtils {
     return packageName;
   }
 
-  @Step()
   /**
    * Get Device Time on the device
    */
@@ -482,7 +438,6 @@ public class MobileUtils {
     return driver.getDeviceTime();
   }
 
-  @Step()
   /**
    * Open the Keyboard
    */
@@ -557,7 +512,6 @@ public class MobileUtils {
     new TouchActions(appiumDriver).doubleTap(mobileElement).perform();
   }
 
-  @Step()
   /**
    * Perform touch
    */
@@ -569,7 +523,6 @@ public class MobileUtils {
     action.perform();
   }
 
-  @Step()
   /**
    * Double tap on the touch screen using finger motion events
    *
@@ -593,7 +546,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Finger move on the screen
    */
@@ -607,7 +559,6 @@ public class MobileUtils {
 
   }
 
-  @Step()
   /**
    * Perform multi touch on the screen
    */
@@ -628,7 +579,6 @@ public class MobileUtils {
     multiAction.perform();
   }
 
-  @Step()
   /**
    * Multi touch on the mobile element
    *
@@ -645,7 +595,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Vertical scroll down on the screen
    */
@@ -666,7 +615,6 @@ public class MobileUtils {
     action.release().perform();
   }
 
-  @Step()
   /**
    * Vertical scroll up on the screen
    */
@@ -688,7 +636,6 @@ public class MobileUtils {
 
   }
 
-  @Step()
   /**
    * Horizontal swipe on Seekbar (SeekBar is an extension of ProgressBar that adds a draggable thumb.
    * The user can touch the thumb and drag left or right to set the current progress level or use the arrow keys)
@@ -719,62 +666,16 @@ public class MobileUtils {
   }
 
   /**
-   * Single tap on the touch enabled device
+   * Single tap on the mobile element of a touch enabled device
    *
    * @param mobileElement
    */
-  public void tapOnMobileElement(MobileElement mobileElement){
+  public void tapOnMobileElement(MobileElement mobileElement) {
     logInfo("Tap on the mobile element");
     new TouchActions(appiumDriver).singleTap(mobileElement).perform();
   }
 
 
-  /**
-   * Check whether the specified app is installed on the Android device
-   *
-   * @param appPackage
-   */
-  public static boolean checkIfApkInstalled(String appPackage) {
-    // appPackage == "com.google.android.AppName"
-    try {
-      if (driver.isAppInstalled(appPackage)) {
-        return true;
-      } else {
-        Logger.logInfo(
-                String.format("App with AppPackage '%s' is not installed into Device ", appPackage));
-        return false;
-      }
-    } catch (TimeoutException var2) {
-      var2.getMessage();
-      return false;
-    }
-  }
-
-  @Step()
-  /**
-   * Install the given Android app in the device
-   *
-   *  @param app
-   * @param appPackage
-   */
-  public static void installAndroidApp(String app, String appPackage) {
-    try {
-      if (checkIfApkInstalled(appPackage)) {
-        Logger.logInfo(String.format("App with AppPackage '%s' is already present", appPackage));
-      } else {
-        driver.installApp(app);
-        Logger.logInfo(
-                String.format("App with AppPackage '%s' is now installed into Device ", appPackage));
-      }
-
-    } catch (TimeoutException var2) {
-      var2.getMessage();
-    }
-  }
-
-
-
-  @Step()
   /**
    * Launch the app under test on the device
    */
@@ -787,14 +688,12 @@ public class MobileUtils {
     }
   }
 
-  @Step()
   /**
    * Send the currently running app for this session to the background
    */
   public static void runAppInBackground(long time) {
     try {
       Duration duration = Duration.ofSeconds(time);
-      // driver.runAppInBackground(Duration.ofSeconds(time));
       driver.runAppInBackground(duration);
       Logger.logInfo(String.format("The App was running on Background of the device"));
     } catch (TimeoutException var2) {
@@ -802,7 +701,6 @@ public class MobileUtils {
     }
   }
 
-  @Step()
   /**
    * Close the app on device
    */
@@ -815,7 +713,6 @@ public class MobileUtils {
     }
   }
 
-  @Step()
   /**
    * Reset the currently running app for this session
    */
@@ -828,76 +725,7 @@ public class MobileUtils {
     }
   }
 
-  @Step()
-  /**
-   * Remove an app from Android device
-   *
-   * @param app
-   * @param appPackage
-   */
-  public static void removeApkFromAndroidDevice(String app, String appPackage) {
-    // bundleId == "com.example.AppName"
-    try {
-      if (checkIfApkInstalled(appPackage)) {
-        driver.removeApp(appPackage);
-        Logger.logInfo(String.format("App '%s' with AppPackage '%s' is removed from Android device",
-                app, appPackage));
-      } else {
-        Logger.logInfo(String.format(
-                "App '%s' with AppPackage '%s' is not installed/ not removed from Android device", app,
-                appPackage));
-      }
-    } catch (TimeoutException var2) {
-      var2.getMessage();
-    }
-  }
 
-
-
-
-  @Step("")
-  /**
-   * Terminate the given app onto Android device
-   *
-   * @param appPackage
-   */
-  public static void terminateAppOntoAndroidDevice(String appPackage) {
-    // bundleId == "com.example.AppName"
-    try {
-      if (driver.isAppInstalled(appPackage)) {
-        driver.terminateApp(appPackage);
-        Logger.logInfo(String.format("The App is terminated on the Android device"));
-      } else {
-        Logger.logInfo(String.format("The App is not terminated on the Android device"));
-      }
-    } catch (TimeoutException var2) {
-      var2.getMessage();
-    }
-  }
-
-
-  @Step()
-  /**
-   * Get the state of the app on the Android device
-   *
-   * @param appPackage
-   */
-  public static void getAndroidAppStatus(String appPackage) {
-    // bundleId == "com.example.AppName"
-    try {
-      if (driver.isAppInstalled(appPackage)) {
-        driver.queryAppState(appPackage);
-        Logger.logInfo(String.format("The given app status on Android device is: %s ",
-                driver.queryAppState(appPackage)));
-      }
-    } catch (TimeoutException var2) {
-      var2.getMessage();
-    }
-  }
-
-
-
-  @Step()
   /**
    * Lock the Android/iOS device
    */
@@ -915,7 +743,6 @@ public class MobileUtils {
     }
   }
 
-  @Step()
   /**
    * Check whether the device is locked or not
    */
@@ -938,8 +765,6 @@ public class MobileUtils {
   }
 
 
-
-  @Step()
   /**
    * Unlock the Android device
    */
@@ -961,7 +786,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Rotate the device in three dimensions only
    */
@@ -975,7 +799,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Toggle airplane mode on Android device
    */
@@ -989,7 +812,6 @@ public class MobileUtils {
   }
 
 
-  @Step()
   /**
    * Switch the state of the wifi service
    */
@@ -1000,7 +822,6 @@ public class MobileUtils {
     }
   }
 
-  @Step()
   /**
    * Switch the state of the location service
    */
@@ -1011,7 +832,7 @@ public class MobileUtils {
     }
   }
 
-  @Step()
+
   /**
    * Simulate an SMS message (Emulator only)
    */
@@ -1029,8 +850,6 @@ public class MobileUtils {
   }
 
 
-
-  @Step()
   /**
    * Open Android notification Bar (Emulator only)
    */
@@ -1040,7 +859,7 @@ public class MobileUtils {
     }
   }
 
-  @Step()
+
   /**
    * Open a url on the browser
    */
@@ -1048,7 +867,7 @@ public class MobileUtils {
     driver.get(url);
   }
 
-  @Step()
+
   /**
    * Switch to Alert
    */
@@ -1061,7 +880,6 @@ public class MobileUtils {
     }
   }
 
-  @Step()
   /**
    * Switch to Frame
    */
@@ -1070,7 +888,6 @@ public class MobileUtils {
     driver.switchTo().frame(element);
   }
 
-  @Step()
   /**
    * Reload the current page.
    */
@@ -1078,7 +895,6 @@ public class MobileUtils {
     driver.navigate().refresh();
   }
 
-  @Step()
   /**
    * Delete all cookies
    */

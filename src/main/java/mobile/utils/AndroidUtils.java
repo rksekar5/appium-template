@@ -1,56 +1,151 @@
 package mobile.utils;
 
+import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.WaitOptions;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.html5.Location;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.touch.TouchActions;
+import org.openqa.selenium.TimeoutException;
 
-import java.time.Duration;
-import java.util.HashMap;
-
-import static com.diconium.qa.testautomationframework.common.Logger.logError;
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
-import static io.appium.java_client.touch.offset.ElementOption.element;
-import static io.appium.java_client.touch.offset.PointOption.point;
-import static java.lang.Thread.sleep;
-import static java.time.Duration.ofSeconds;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
-import static org.testng.Assert.assertSame;
+import static mobile.utils.Waiters.driver;
 
 @Slf4j
 public class AndroidUtils {
 
+  /**
+   * Scroll to the specified text
+   *
+   * @param text
+   */
   public void scrollToText(String text) {
     appiumDriver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
         ".scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
   }
 
-
-
+  /**
+   * Scroll to the specified text
+   */
   public boolean isKeyboardDisplayed(){
-    System.out.println(((AndroidDriver<MobileElement>)appiumDriver).isKeyboardShown());
+    Logger.logInfo(String.valueOf(((AndroidDriver<MobileElement>)appiumDriver).isKeyboardShown()));
     return ((AndroidDriver<MobileElement>)appiumDriver).isKeyboardShown();
   }
 
+  /**
+   * Hide the Android keyboard
+   */
   public void hideAndroidKeyboard(){
     if(isKeyboardDisplayed()) {
       try {
         appiumDriver.hideKeyboard();
-        sleep(1000);
         logInfo("Keyboard minimized on the screen");
       } catch (Exception e) {
         logInfo("Unable to minimize the keyboard");
         e.printStackTrace();
       }
+    }
+  }
+
+  /**
+   * Remove an app from Android device
+   *
+   * @param app
+   * @param appPackage
+   * bundleId == "com.example.AppName"
+   */
+  public static void removeApkFromAndroidDevice(String app, String appPackage) {
+    try {
+      if (checkIfApkInstalled(appPackage)) {
+        driver.removeApp(appPackage);
+        Logger.logInfo(String.format("App '%s' with AppPackage '%s' is removed from Android device",
+                app, appPackage));
+      } else {
+        Logger.logInfo(String.format(
+                "App '%s' with AppPackage '%s' is not installed/ not removed from Android device", app,
+                appPackage));
+      }
+    } catch (TimeoutException var2) {
+      var2.getMessage();
+    }
+  }
+
+  /**
+   * Terminate the given app onto Android device
+   *
+   * @param appPackage
+   * bundleId == "com.example.AppName"
+   */
+  public static void terminateAppOnAndroidDevice(String appPackage) {
+    try {
+      if (driver.isAppInstalled(appPackage)) {
+        driver.terminateApp(appPackage);
+        Logger.logInfo(String.format("The App is terminated on the Android device"));
+      } else {
+        Logger.logInfo(String.format("The App is not terminated on the Android device"));
+      }
+    } catch (TimeoutException var2) {
+      var2.getMessage();
+    }
+  }
+
+  /**
+   * Check whether the specified app is installed on the Android device
+   *
+   * @param appPackage
+   * appPackage == "com.google.android.AppName"
+   */
+  public static boolean checkIfApkInstalled(String appPackage) {
+    try {
+      if (driver.isAppInstalled(appPackage)) {
+        return true;
+      } else {
+        Logger.logInfo(
+                String.format("App with AppPackage '%s' is not installed into Device ", appPackage));
+        return false;
+      }
+    } catch (TimeoutException var2) {
+      var2.getMessage();
+      return false;
+    }
+  }
+
+  /**
+   * Install the given Android app in the device
+   *
+   *  @param app
+   * @param appPackage
+   */
+  public static void installAndroidApp(String app, String appPackage) {
+    try {
+      if (checkIfApkInstalled(appPackage)) {
+        Logger.logInfo(String.format("App with AppPackage '%s' is already present", appPackage));
+      } else {
+        driver.installApp(app);
+        Logger.logInfo(
+                String.format("App with AppPackage '%s' is now installed into Device ", appPackage));
+      }
+
+    } catch (TimeoutException var2) {
+      var2.getMessage();
+    }
+  }
+
+  /**
+   * Get the state of the app on the Android device
+   *
+   * @param appPackage
+   */
+  public static void getAndroidAppStatus(String appPackage) {
+    // bundleId == "com.example.AppName"
+    try {
+      if (driver.isAppInstalled(appPackage)) {
+        driver.queryAppState(appPackage);
+        Logger.logInfo(String.format("The given app status on Android device is: %s ",
+                driver.queryAppState(appPackage)));
+      }
+    } catch (TimeoutException var2) {
+      var2.getMessage();
     }
   }
 }

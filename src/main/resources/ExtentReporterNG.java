@@ -4,7 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import org.testng.*;
+import org.testng.IReporter;
 import org.testng.xml.XmlSuite;
 
 import java.util.Calendar;

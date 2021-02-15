@@ -36,39 +36,49 @@ public class Waiters {
                 .ignoring(TimeoutException.class);
     }
 
-    @Step
-    public static void waitUntilMobileElementIsVisible(MobileElement mobileElement) {
+    /**
+     * Wait until the mobile element is visible
+     * @param mobileElement
+     * static way -> await().atMost(10, SECONDS).atLeast(1,SECONDS).until(mobileElement::isDisplayed);
+     */
+    public static void waitUntilMobileElementVisible(MobileElement mobileElement) {
         log.trace("Waiting for {} to be visible", mobileElement);
-//    await().atMost(10, SECONDS).atLeast(1,SECONDS).until(mobileElement::isDisplayed);
         getFluentWait().until(ExpectedConditions.visibilityOf(mobileElement));
     }
 
-    @Step
-    public static void waitUntilMobileElementIsInvisible(MobileElement mobileElement) {
+    /**
+     * Wait until the mobile element is not visible
+     * @param mobileElement
+     */
+    public static void waitUntilMobileElementInvisible(MobileElement mobileElement) {
         log.trace("Waiting for {} to be invisible", mobileElement);
-//    getFluentWait().until(ExpectedConditions.visibilityOf(mobileElement));
+        getFluentWait().until(ExpectedConditions.visibilityOf(mobileElement));
         await().atMost(10, SECONDS).atLeast(1,SECONDS)
                 .until(() -> !mobileElement.isDisplayed());
     }
 
-    @Step
+    /**
+     * Wait until text is present on the mobile element
+     * @param mobileElement
+     */
     public static void waitUntilTextIsPresent(MobileElement mobileElement, String text) {
         log.trace("Waiting for text \"{}\" to be present", mobileElement);
         getFluentWait().until(ExpectedConditions.textToBePresentInElement(mobileElement, text));
     }
 
-//    @Step
-//    public static void waitUntilTextWillBeInvisible(MobileElement mobileElement, String text) {
-//        log.trace("Waiting for text \"{}\" to be invisible", mobileElement);
-//        getFluentWait().until(ExpectedConditions.invisibilityOfElementWithText(mobileElement,text);
-//    }
-
-    @Step
-    public static void waitUntilElementIsClickable(MobileElement mobileElement) {
+    /**
+     * Wait until the mobile element is clickable
+     * @param mobileElement
+     */
+    public static void waitUntilElementClickable(MobileElement mobileElement) {
         log.trace("Waiting for element \"{}\" to be clickable", mobileElement);
         getFluentWait().until(ExpectedConditions.elementToBeClickable(mobileElement));
     }
 
+    /**
+     * Wait until expected value is present on the mobile element
+     * @param mobileElement
+     */
     @Step
     public static void waitUntilValueWillBePresentInElement(MobileElement mobileElement, String text) {
         log.trace("Waiting for element \"{}\" to be clickable", mobileElement);

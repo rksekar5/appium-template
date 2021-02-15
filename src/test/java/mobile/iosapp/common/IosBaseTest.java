@@ -9,8 +9,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
-import static mobile.utils.Waiters.driver;
-
 @Listeners({RetryListener.class})
 public class IosBaseTest extends IosFactory {
 
@@ -23,7 +21,8 @@ public class IosBaseTest extends IosFactory {
   @AfterMethod(alwaysRun = true)
   protected void tearDown(ITestResult testResult) {
     appiumDriver.closeApp();
-    //driver.removeApp(readMobileConfigFromConfigFile("apiDemo"));
+    appiumDriver.removeApp(readValueFromMobileConfigFile("apiDemo"));
     service.stop();
   }
+
 }
