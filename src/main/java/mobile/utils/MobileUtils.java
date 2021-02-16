@@ -560,27 +560,7 @@ public class MobileUtils {
   }
 
   /**
-   * Perform multi touch on the screen
-   */
-  public static void multiTouchPerform(Point point1, Point point2) {
-    TouchAction actionOne = new TouchAction(driver);
-    actionOne.press(PointOption.point(point1.getX(), point1.getY()));
-    actionOne.moveTo(PointOption.point(point1.getX(), point1.getY()));
-    actionOne.release();
-
-    TouchAction actionTwo = new TouchAction(driver);
-    actionTwo.press(PointOption.point(point2.getX(), point2.getY()));
-    actionTwo.moveTo(PointOption.point(point2.getX(), point2.getY()));
-    actionTwo.release();
-
-    MultiTouchAction multiAction = new MultiTouchAction(driver);
-    multiAction.add(actionOne);
-    multiAction.add(actionTwo);
-    multiAction.perform();
-  }
-
-  /**
-   * Multi touch on the mobile element
+   * Touch the mobile element multiple times on the app
    *
    * @param mobileElement
    */
@@ -645,24 +625,7 @@ public class MobileUtils {
     MobileElement element = mobileElement;
     String newValue = String.valueOf(percentage / 100);
     element.setValue(newValue);
-    Logger.logInfo(String.format("Element %s is moved to %s value", element,
-            element.getAttribute("value").toString()));
-  }
-
-
-
-  /**
-   * Single tap on the touch enabled device
-   *
-   * @param mobileElement
-   */
-  public static void singleTapAction(MobileElement mobileElement) {
-    TouchAction action = new TouchAction(driver);
-    MobileElement element = mobileElement;
-
-    action.tap(PointOption.point(element.getLocation().getX(), element.getLocation().getY()));
-    action.waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)));
-    action.perform();
+    Logger.logInfo(String.format("Element %s is moved to %s value " , getMobileAttributeValue(mobileElement)));
   }
 
   /**
@@ -1128,6 +1091,21 @@ public class MobileUtils {
 
   public MobileElement getMobileElementWithId(String locator){
     return appiumDriver.findElementById(locator);
+  }
+
+  /**
+   * Horizontal scroll to the element
+   * A horizontal scroll bar enables the user to scroll the content of a window to the left or right
+   *
+   * @param mobileElement
+   */
+  public void horizontalScroll(MobileElement mobileElement, int xOffset, int yOffset) throws InterruptedException {
+    Actions move = new Actions(appiumDriver);
+    move.moveToElement(mobileElement).clickAndHold();
+    move.moveByOffset(xOffset, yOffset);
+    move.release();
+    move.perform();
+    Thread.sleep(2000);
   }
 
 }
