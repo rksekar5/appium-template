@@ -34,8 +34,8 @@ public class IosFactory extends AppFactory {
     String platformVersion = readValueFromMobileConfigFile("ios_platform_version");
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName == null ? "iPhone 11" : deviceName);
-    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion == null ? "13.3" : platformVersion);
+    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName == null ? "iPhone 8" : deviceName);
+    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion == null ? "14.2" : platformVersion);
     capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
     capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
     capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
@@ -43,7 +43,18 @@ public class IosFactory extends AppFactory {
     capabilities.setCapability("xcodeSigningId", "iPhone Developer");
     capabilities.setCapability("useNewWDA", false);
     capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-
+    /**
+     * Use this capability when you want to reset the device before each run
+    capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
+    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "3600");
+     */
+    /**
+     * The below capabilities are meant to be used for real iOS devices
+     * bundleId - Change the .ipa file into .zip format and load into Intellij. Open info.plit and search CFBundleIdentifier
+     * UDID - connect the device and run xcrun xctrace or instruments -s device
+     capabilities.setCapability("bundleId", "com.volkswagen.oneapp.alpha");
+     capabilities.setCapability("UDID","00008030-000C353A0C3A802E");
+     */
     appiumDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
