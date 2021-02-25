@@ -5,6 +5,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import mobile.utils.AndroidUtils;
 import org.openqa.selenium.support.PageFactory;
+
 import static mobile.driverhandler.AppFactory.getAppiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 

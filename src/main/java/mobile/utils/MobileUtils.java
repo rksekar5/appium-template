@@ -15,7 +15,6 @@ import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.testng.Assert;
-import ru.yandex.qatools.allure.annotations.Step;
 
 import java.io.File;
 import java.io.IOException;
