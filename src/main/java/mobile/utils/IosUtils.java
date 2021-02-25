@@ -7,8 +7,8 @@ import org.openqa.selenium.TimeoutException;
 
 import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
+import static mobile.driverhandler.AppFactory.getAppiumDriver;
 import static mobile.utils.MobileUtils.isDeviceLocked;
-import static mobile.utils.Waiters.driver;
 
 public class IosUtils {
 
@@ -43,7 +43,7 @@ public class IosUtils {
    */
   public static boolean checkIfIOSAppInstalled(String app, String bundleId) {
     try {
-      if (driver.isAppInstalled(bundleId)) {
+      if (getAppiumDriver().isAppInstalled(bundleId)) {
         return true;
       } else {
         Logger.logInfo(String.format("App '%s' with AppPackage '%s' is not installed into Device ",
@@ -68,7 +68,7 @@ public class IosUtils {
         Logger.logInfo(
                 String.format("App '%s' with AppPackage '%s' is already present", app, bundleId));
       } else {
-        driver.installApp(app);
+        getAppiumDriver().installApp(app);
         Logger.logInfo(String.format("App '%s' with AppPackage '%s' is now installed into Device ",
                 app, bundleId));
       }
@@ -89,7 +89,7 @@ public class IosUtils {
 
     try {
       if (checkIfIOSAppInstalled(app, bundleId)) {
-        driver.removeApp(bundleId);
+        getAppiumDriver().removeApp(bundleId);
         Logger.logInfo(String.format("App '%s' with AppPackage '%s' is removed from iOS device",
                 app, bundleId));
       } else {
@@ -110,8 +110,8 @@ public class IosUtils {
    */
   public static void terminateAppOnIOSDevice(String bundleId) {
     try {
-      if (driver.isAppInstalled(bundleId)) {
-        driver.terminateApp(bundleId);
+      if (getAppiumDriver().isAppInstalled(bundleId)) {
+        getAppiumDriver().terminateApp(bundleId);
         Logger.logInfo(String.format("The App is terminated on iOS device"));
       } else {
         Logger.logInfo(String.format("The App is not terminated on iOS device"));
@@ -128,10 +128,10 @@ public class IosUtils {
    */
   public static void getIOSAppStatus(String bundleId) {
     try {
-      if (driver.isAppInstalled(bundleId)) {
-        driver.queryAppState(bundleId);
+      if (getAppiumDriver().isAppInstalled(bundleId)) {
+        getAppiumDriver().queryAppState(bundleId);
         Logger.logInfo(String.format("The given app status on iOS device is: %s ",
-                driver.queryAppState(bundleId)));
+                getAppiumDriver().queryAppState(bundleId)));
       }
     } catch (TimeoutException var2) {
       var2.getMessage();
@@ -143,8 +143,8 @@ public class IosUtils {
    */
   public static void shakeIOSDevice() {
     try {
-      if (driver.getPlatformName().equals("ios")) {
-        ((IOSDriver<MobileElement>) driver).shake();
+      if (getAppiumDriver().getPlatformName().equals("ios")) {
+        ((IOSDriver<MobileElement>) getAppiumDriver()).shake();
         Logger.logInfo(String.format("The iOS device has been shaken"));
       }
     } catch (TimeoutException var2) {
@@ -158,13 +158,13 @@ public class IosUtils {
    */
   public static void unlockIOSDevice() {
     try {
-      if (driver.getPlatformName().equals("ios")) {
+      if (getAppiumDriver().getPlatformName().equals("ios")) {
         if (isDeviceLocked()) {
-          ((IOSDriver<MobileElement>) driver).unlockDevice();
+          ((IOSDriver<MobileElement>) getAppiumDriver()).unlockDevice();
           Logger.logInfo(String.format("The iOS device is unlocked"));
         } else {
-          ((IOSDriver<MobileElement>) driver).lockDevice();
-          ((IOSDriver<MobileElement>) driver).unlockDevice();
+          ((IOSDriver<MobileElement>) getAppiumDriver()).lockDevice();
+          ((IOSDriver<MobileElement>) getAppiumDriver()).unlockDevice();
           Logger.logInfo(String.format("The iOS device is unlocked"));
         }
       }
@@ -179,8 +179,8 @@ public class IosUtils {
    */
   public static void toggleTouchIDEnrollment(boolean enrolled) {
     try {
-      if (driver.getPlatformName().equals("ios")) {
-        ((IOSDriver<MobileElement>) driver).toggleTouchIDEnrollment(enrolled);
+      if (getAppiumDriver().getPlatformName().equals("ios")) {
+        ((IOSDriver<MobileElement>) getAppiumDriver()).toggleTouchIDEnrollment(enrolled);
         Logger.logInfo(String.format("Toggle Touch ID has been enrolled"));
       } else {
         Logger.logInfo(String.format("Toggle Touch ID has not been enrolled because of incorrect platform name"));
@@ -199,12 +199,12 @@ public class IosUtils {
    */
   public static void performTouchID(boolean enrolled) {
     try {
-      if (driver.getPlatformName().equals("ios")) {
+      if (getAppiumDriver().getPlatformName().equals("ios")) {
         if (enrolled == true) {
-          ((IOSDriver<MobileElement>) driver).performTouchID(true);
+          ((IOSDriver<MobileElement>) getAppiumDriver()).performTouchID(true);
           Logger.logInfo(String.format("Touch ID has been simulated successfully"));
         } else {
-          ((IOSDriver<MobileElement>) driver).performTouchID(false);
+          ((IOSDriver<MobileElement>) getAppiumDriver()).performTouchID(false);
           Logger.logInfo(String.format("Touch ID simulation is failed"));
         }
       }

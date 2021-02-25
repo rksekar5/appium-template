@@ -5,14 +5,13 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import mobile.utils.AndroidUtils;
 import org.openqa.selenium.support.PageFactory;
-
-import static mobile.driverhandler.AndroidFactory.appiumDriver;
+import static mobile.driverhandler.AppFactory.getAppiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 
 public class ViewsPage {
 
   public ViewsPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
   }
 
   private final AndroidUtils androidUtils = new AndroidUtils();

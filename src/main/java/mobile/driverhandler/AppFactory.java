@@ -19,6 +19,10 @@ public class AppFactory {
 
   public static AppiumDriver<MobileElement> appiumDriver;
 
+  public static AppiumDriver<MobileElement> getAppiumDriver(){
+    return appiumDriver;
+  }
+
   public AppiumDriverLocalService startServer() {
     boolean flag = checkIfServerIsRunningAfterClosingSocket(4723);
     if (flag) {

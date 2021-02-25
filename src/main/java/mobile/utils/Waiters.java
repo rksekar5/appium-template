@@ -21,8 +21,6 @@ import static org.awaitility.Awaitility.await;
 @Slf4j
 public class Waiters {
 
-    public static AppiumDriver<MobileElement> driver;
-
     static Wait<AndroidDriver> getFluentWait() {
         return getFluentWait(WebConstants.FLUENT_WAIT_TIMEOUT_SECONDS);
     }
