@@ -55,16 +55,4 @@ public class TestAppTestIos extends IosBaseTest {
     homePage.clickOnCancelButtonOnAlert();
   }
 
-  // add test to press and drag slider
-
-  // Tap on and off the switch button
-
-  // Add sample ios to perform below actions:
-    // add test for date picker
-    // select from picker list
-    // add test to read toast message
-
-  // Change screen orientation
-
-
 }
