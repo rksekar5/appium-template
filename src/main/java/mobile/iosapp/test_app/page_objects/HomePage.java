@@ -31,34 +31,32 @@ public class HomePage {
   @iOSXCUITFindBy(accessibility = "OK")
   public MobileElement OK_BUTTON_ALERT;
 
-
-  public String getTextFieldValue(){
+  public String getTextFieldValue() {
     return getMobileAttributeValue(INPUT_FIELD);
   }
 
   public void enterValueInTextField(String input) {
-    sendKeysToMobileElement(INPUT_FIELD,input);
+    sendKeysToMobileElement(INPUT_FIELD, input);
     Logger.logInfo("The value has been entered on the text field");
   }
 
-  public void clickOnShowAlertButton(){
+  public void clickOnShowAlertButton() {
     clickMobileElement(SHOW_ALERT_BUTTON);
   }
 
-  public String getTitleFromAlertBox(){
+  public String getTitleFromAlertBox() {
     final String title = getTextFromMobileElement(ALERT_BOX_TITLE);
     logInfo(String.format("Alert box title is %s", title));
     return title;
   }
 
-  public void clickOnOkButtonOnAlert(){
+  public void clickOnOkButtonOnAlert() {
     clickMobileElement(OK_BUTTON_ALERT);
     logInfo("OK button has been clicked on the alert box");
   }
 
-  public void clickOnCancelButtonOnAlert(){
+  public void clickOnCancelButtonOnAlert() {
     clickMobileElement(CANCEL_BUTTON_ALERT);
     logInfo("Cancel button has been clicked on the alert box");
   }
-
 }

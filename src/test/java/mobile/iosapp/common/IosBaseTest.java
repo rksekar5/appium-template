@@ -17,5 +17,4 @@ public class IosBaseTest extends IosFactory {
   protected void setUpIosApp(ITestContext result) {
     service = startServer();
   }
-
 }

@@ -28,13 +28,11 @@ public class DragAndDropPage {
   @AndroidFindBy(xpath = "//android.view.View[@index=5]")
   public MobileElement DOT_4;
 
-
   @SneakyThrows
   public void dragAndDropCircles() {
-    MobileUtils.dragAndDrop(DOT_1,DOT_3);
+    MobileUtils.dragAndDrop(DOT_1, DOT_3);
     sleep(2000);
-    MobileUtils.dragAndDrop(DOT_3,DOT_4);
+    MobileUtils.dragAndDrop(DOT_3, DOT_4);
     sleep(2000);
   }
-
 }

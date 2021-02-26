@@ -38,21 +38,21 @@ public class AndroidFactory extends AppFactory {
      * @return
      * @throws MalformedURLException
      */
-
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
     String device = readValueFromMobileConfigFile("android_device");
-    if(isRemote()) {
+    if (isRemote()) {
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "samsung_galaxy_s6_7.1.1");
       capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.1");
       capabilities.setCapability("avd", "samsung_galaxy_s6_7.1.1");
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"chrome");
-      capabilities.setCapability(MobileCapabilityType.APP,"/tmp/app/"+readValueFromMobileConfigFile(appName));
-          appiumDriver = new AndroidDriver<>(new URL(HUB), capabilities);
+      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "chrome");
+      capabilities.setCapability(
+          MobileCapabilityType.APP, "/tmp/app/" + readValueFromMobileConfigFile(appName));
+      appiumDriver = new AndroidDriver<>(new URL(HUB), capabilities);
     } else {
       if (!device.contains("emulator")) {
         final String platformVersion = readValueFromMobileConfigFile("android_platform_version");
@@ -60,9 +60,9 @@ public class AndroidFactory extends AppFactory {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
       }
 
-      if(device.contains("emulator")){
-        capabilities.setCapability("avd", "Pixel_XL_API_28");
-      }
+      //      if(device.contains("emulator")){
+      //        capabilities.setCapability("avd", "Pixel_3a_API_30_x86");
+      //      }
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
@@ -77,13 +77,12 @@ public class AndroidFactory extends AppFactory {
     return Boolean.TRUE.equals(Boolean.valueOf(System.getProperty("remoteExecution")));
   }
 
-
   public static void getScreenshot(String s) throws IOException {
     File scrfile = ((TakesScreenshot) appiumDriver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrfile, new File(System.getProperty("user.dir") + "\\" + s + ".png"));
   }
 
   private static String readHubDetailsFromConfigFile(@NotNull String propName) {
-    return getValueFromJsonConfigFile("selenium_hub_config.json", propName);
+    return getValueFromJsonConfigFile("selenium_config.json", propName);
   }
 }

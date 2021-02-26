@@ -48,7 +48,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Test(dataProvider = "InputData", dataProviderClass = TestData.class)
   @Severity(SeverityLevel.NORMAL)
   @Description("This is a sample test to perform click and send text actions")
-  public void clickAndSendTextTest(String input){
+  public void clickAndSendTextTest(String input) {
     homePage.clickOnPreference();
 
     preferencesPage.clickOnDependencies();
@@ -120,7 +120,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Test
   @Severity(SeverityLevel.NORMAL)
   @Description("This is a sample test to get and set geo location for the device")
-  public void deviceLocationTest(){
+  public void deviceLocationTest() {
     MobileUtils.getDeviceLocation();
     MobileUtils.setDeviceLocation(49, 123, 10);
   }
@@ -129,7 +129,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Test
   @Severity(SeverityLevel.CRITICAL)
   @Description("This is a sample test to perform swipe up and down actions on the device")
-  public void swipeUpAndDownTest(){
+  public void swipeUpAndDownTest() {
     homePage.clickOnView();
 
     viewsPage.clickOnControls();
@@ -149,7 +149,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Test
   @Severity(SeverityLevel.BLOCKER)
   @Description("This is a sample test to set date for the device via date picker")
-  public void datePickerTest(){
+  public void datePickerTest() {
     homePage.clickOnView();
 
     viewsPage.clickOnDateWidgets();
@@ -162,9 +162,10 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
     dialogPage.clickOnPickDate();
     sleep(2000);
-    logInfo(String
-        .format("Current date from the header is %s %s", dialogPage.getDateFromDatePicker(),
-            dialogPage.getYearFromDatePicker()));
+    logInfo(
+        String.format(
+            "Current date from the header is %s %s",
+            dialogPage.getDateFromDatePicker(), dialogPage.getYearFromDatePicker()));
 
     dialogPage.selectPreviousMonth();
     dialogPage.selectNextMonth();
@@ -179,7 +180,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Test
   @Severity(SeverityLevel.BLOCKER)
   @Description("This is a sample test to set time for the device via time picker")
-  public void timePickerTest(){
+  public void timePickerTest() {
     homePage.clickOnView();
 
     viewsPage.clickOnDateWidgets();
@@ -190,33 +191,29 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     dialogPage.clickCancelOnTimePicker();
 
     dialogPage.clickOnChangeTime();
-    logInfo("Current time is" +dialogPage.getCurrentTimeFromTimePicker());
-    dialogPage.setTimeViaClock(5,45,"am");
+    logInfo("Current time is" + dialogPage.getCurrentTimeFromTimePicker());
+    dialogPage.setTimeViaClock(5, 45, "am");
     dialogPage.clickOkOnTimePicker();
 
     dialogPage.clickOnChangeTime();
-    logInfo("Now the new time set is" +dialogPage.getCurrentTimeFromTimePicker());
+    logInfo("Now the new time set is" + dialogPage.getCurrentTimeFromTimePicker());
     dialogPage.clickToggleMode();
-    dialogPage.setTimeViaInputField(9,19,"pm");
+    dialogPage.setTimeViaInputField(9, 19, "pm");
     dialogPage.clickOkOnTimePicker();
     dialogPage.clickOnChangeTime();
     dialogPage.clickToggleMode();
-    logInfo("Now the new time set is" +dialogPage.getCurrentTimeFromTimePicker());
+    logInfo("Now the new time set is" + dialogPage.getCurrentTimeFromTimePicker());
     dialogPage.clickCancelOnTimePicker();
   }
-
 
   // Create tests for the following
   // Views -> Date widget -> Inline (long press and move) --> drag and drop test
   // Content -> Storage -> External Storage (tap and check enable or disable)
-
 
   // app -> Alert dialogs (Alert handling)
   // app -> Menu -> Inflate (Inflate and deflate context menu)
   // app -> Alarm -> Alarm controller (Capture Toast message)
 
   // Push notification scenario
-
-
 
 }

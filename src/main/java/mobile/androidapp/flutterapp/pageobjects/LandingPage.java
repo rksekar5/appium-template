@@ -29,9 +29,7 @@ public class LandingPage {
 
   private AndroidUtils androidUtils = new AndroidUtils();
 
-
-  public void clickOnStumilateHostCard(){
+  public void clickOnStumilateHostCard() {
     MobileUtils.clickMobileElement(STIMULATE_HOST_CARD_BUTTON);
   }
-
 }

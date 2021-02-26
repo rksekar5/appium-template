@@ -22,9 +22,7 @@ public class ControlsPage {
   @AndroidFindBy(accessibility = "2. Dark Theme")
   public MobileElement DARK_THEME;
 
-
   private final AndroidUtils androidUtils = new AndroidUtils();
-
 
   public void clickLightTheme() {
     logInfo("Click on Light theme");
@@ -35,5 +33,4 @@ public class ControlsPage {
     logInfo("Click on Dark theme");
     clickMobileElement(DARK_THEME);
   }
-
 }

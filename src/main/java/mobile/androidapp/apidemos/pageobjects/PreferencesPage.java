@@ -17,8 +17,7 @@ public class PreferencesPage {
   @AndroidFindBy(xpath = "//android.widget.TextView[@text='3. Preference dependencies']")
   public MobileElement DEPENDENCIES;
 
-  public void clickOnDependencies(){
+  public void clickOnDependencies() {
     clickMobileElement(DEPENDENCIES);
   }
-
 }

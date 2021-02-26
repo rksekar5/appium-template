@@ -15,7 +15,7 @@ public class TestAppTestIos extends IosBaseTest {
 
   @SneakyThrows
   @BeforeMethod
-  public void setup(){
+  public void setup() {
 
     appiumDriver = iosCapabilities("ios_demo_app");
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -24,7 +24,7 @@ public class TestAppTestIos extends IosBaseTest {
   }
 
   @Test
-  public void testSendKeysToInput () {
+  public void testSendKeysToInput() {
 
     // Check that it doesn"t have a value
     String value = homePage.getTextFieldValue();
@@ -39,7 +39,7 @@ public class TestAppTestIos extends IosBaseTest {
   }
 
   @Test
-  public void testOpenAndCloseAlert () {
+  public void testOpenAndCloseAlert() {
 
     // Find Button element and click on it
     homePage.clickOnShowAlertButton();
@@ -54,5 +54,4 @@ public class TestAppTestIos extends IosBaseTest {
     homePage.clickOnShowAlertButton();
     homePage.clickOnCancelButtonOnAlert();
   }
-
 }

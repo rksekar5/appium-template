@@ -19,7 +19,7 @@ public class AppFactory {
 
   public static AppiumDriver<MobileElement> appiumDriver;
 
-  public static AppiumDriver<MobileElement> getAppiumDriver(){
+  public static AppiumDriver<MobileElement> getAppiumDriver() {
     return appiumDriver;
   }
 

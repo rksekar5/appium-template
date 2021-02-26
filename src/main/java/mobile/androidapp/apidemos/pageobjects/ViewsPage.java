@@ -26,16 +26,15 @@ public class ViewsPage {
   @AndroidFindBy(accessibility = "Date Widgets")
   public MobileElement DATE_WIDGETS;
 
-  public void clickOnDragAndDrop(){
+  public void clickOnDragAndDrop() {
     clickMobileElement(DRAG_AND_DROP);
   }
 
-  public void clickOnControls(){
+  public void clickOnControls() {
     clickMobileElement(CONTROLS);
   }
 
-  public void clickOnDateWidgets(){
+  public void clickOnDateWidgets() {
     clickMobileElement(DATE_WIDGETS);
   }
-
 }

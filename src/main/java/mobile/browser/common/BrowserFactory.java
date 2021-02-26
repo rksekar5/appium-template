@@ -25,12 +25,10 @@ public class BrowserFactory {
 
   private static String HUB;
   private static String HUB_IE;
-  private static String MOBILE_HUB;
 
   static {
     HUB = readHubDetailsFromConfigFile("hub");
     HUB_IE = readHubDetailsFromConfigFile("hub_ie");
-    MOBILE_HUB = readHubDetailsFromConfigFile("mobile_hub");
   }
 
   /** This method is to setup webDriverManager for different browser */
@@ -163,6 +161,6 @@ public class BrowserFactory {
   }
 
   private static String readHubDetailsFromConfigFile(@NotNull String propName) {
-    return getValueFromJsonConfigFile("selenium_hub_config.json", propName);
+    return getValueFromJsonConfigFile("selenium_config.json", propName);
   }
 }

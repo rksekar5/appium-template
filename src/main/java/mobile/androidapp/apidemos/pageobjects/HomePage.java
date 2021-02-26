@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 
-
 public class HomePage {
 
   public HomePage() {
@@ -21,13 +20,11 @@ public class HomePage {
   @AndroidFindBy(accessibility = "Views")
   public MobileElement VIEW;
 
-
-  public void clickOnPreference(){
+  public void clickOnPreference() {
     clickMobileElement(PREFERENCE);
   }
 
-  public void clickOnView(){
+  public void clickOnView() {
     clickMobileElement(VIEW);
   }
-
 }

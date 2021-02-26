@@ -12,19 +12,15 @@ import static mobile.utils.MobileUtils.isDeviceLocked;
 
 public class IosUtils {
 
-  /**
-   * Check If the keyboard is displayed
-   */
-  public boolean isKeyboardDisplayed(){
-    System.out.println(((IOSDriver<MobileElement>)appiumDriver).isKeyboardShown());
-    return ((IOSDriver<MobileElement>)appiumDriver).isKeyboardShown();
+  /** Check If the keyboard is displayed */
+  public boolean isKeyboardDisplayed() {
+    System.out.println(((IOSDriver<MobileElement>) appiumDriver).isKeyboardShown());
+    return ((IOSDriver<MobileElement>) appiumDriver).isKeyboardShown();
   }
 
-  /**
-   * Hide the iOS keyboard
-   */
-  public void hideIOSKeyboard(){
-    if(isKeyboardDisplayed()) {
+  /** Hide the iOS keyboard */
+  public void hideIOSKeyboard() {
+    if (isKeyboardDisplayed()) {
       try {
         appiumDriver.hideKeyboard();
         logInfo("Keyboard minimized on the screen");
@@ -46,8 +42,9 @@ public class IosUtils {
       if (getAppiumDriver().isAppInstalled(bundleId)) {
         return true;
       } else {
-        Logger.logInfo(String.format("App '%s' with AppPackage '%s' is not installed into Device ",
-                app, bundleId));
+        Logger.logInfo(
+            String.format(
+                "App '%s' with AppPackage '%s' is not installed into Device ", app, bundleId));
         return false;
       }
     } catch (TimeoutException var2) {
@@ -66,11 +63,12 @@ public class IosUtils {
     try {
       if (checkIfIOSAppInstalled(app, bundleId)) {
         Logger.logInfo(
-                String.format("App '%s' with AppPackage '%s' is already present", app, bundleId));
+            String.format("App '%s' with AppPackage '%s' is already present", app, bundleId));
       } else {
         getAppiumDriver().installApp(app);
-        Logger.logInfo(String.format("App '%s' with AppPackage '%s' is now installed into Device ",
-                app, bundleId));
+        Logger.logInfo(
+            String.format(
+                "App '%s' with AppPackage '%s' is now installed into Device ", app, bundleId));
       }
 
     } catch (TimeoutException var2) {
@@ -82,20 +80,20 @@ public class IosUtils {
    * Remove an app from iOS device
    *
    * @param app
-   * @param bundleId
-   * bundleId == "com.example.AppName"
+   * @param bundleId bundleId == "com.example.AppName"
    */
   public static void removeAppFromIOSDevice(String app, String bundleId) {
 
     try {
       if (checkIfIOSAppInstalled(app, bundleId)) {
         getAppiumDriver().removeApp(bundleId);
-        Logger.logInfo(String.format("App '%s' with AppPackage '%s' is removed from iOS device",
-                app, bundleId));
+        Logger.logInfo(
+            String.format(
+                "App '%s' with AppPackage '%s' is removed from iOS device", app, bundleId));
       } else {
-        Logger.logInfo(String.format(
-                "App '%s' with AppPackage '%s' is not removed from iOS device", app,
-                bundleId));
+        Logger.logInfo(
+            String.format(
+                "App '%s' with AppPackage '%s' is not removed from iOS device", app, bundleId));
       }
     } catch (TimeoutException var2) {
       var2.getMessage();
@@ -105,8 +103,7 @@ public class IosUtils {
   /**
    * Terminate the given app onto iOS device
    *
-   * @param bundleId
-   * bundleId == "com.example.AppName"
+   * @param bundleId bundleId == "com.example.AppName"
    */
   public static void terminateAppOnIOSDevice(String bundleId) {
     try {
@@ -123,14 +120,16 @@ public class IosUtils {
 
   /**
    * Get the state of the app on the iOS device
-   * @param bundleId
-   * bundleId == "com.example.AppName"
+   *
+   * @param bundleId bundleId == "com.example.AppName"
    */
   public static void getIOSAppStatus(String bundleId) {
     try {
       if (getAppiumDriver().isAppInstalled(bundleId)) {
         getAppiumDriver().queryAppState(bundleId);
-        Logger.logInfo(String.format("The given app status on iOS device is: %s ",
+        Logger.logInfo(
+            String.format(
+                "The given app status on iOS device is: %s ",
                 getAppiumDriver().queryAppState(bundleId)));
       }
     } catch (TimeoutException var2) {
@@ -138,9 +137,7 @@ public class IosUtils {
     }
   }
 
-  /**
-   * Perform a shake action on iOS device
-   */
+  /** Perform a shake action on iOS device */
   public static void shakeIOSDevice() {
     try {
       if (getAppiumDriver().getPlatformName().equals("ios")) {
@@ -152,10 +149,7 @@ public class IosUtils {
     }
   }
 
-
-  /**
-   * Unlock the iOS device
-   */
+  /** Unlock the iOS device */
   public static void unlockIOSDevice() {
     try {
       if (getAppiumDriver().getPlatformName().equals("ios")) {
@@ -173,24 +167,22 @@ public class IosUtils {
     }
   }
 
-
-  /**
-   * Toggle the simulator being enrolled to accept touchId (iOS Simulator only)
-   */
+  /** Toggle the simulator being enrolled to accept touchId (iOS Simulator only) */
   public static void toggleTouchIDEnrollment(boolean enrolled) {
     try {
       if (getAppiumDriver().getPlatformName().equals("ios")) {
         ((IOSDriver<MobileElement>) getAppiumDriver()).toggleTouchIDEnrollment(enrolled);
         Logger.logInfo(String.format("Toggle Touch ID has been enrolled"));
       } else {
-        Logger.logInfo(String.format("Toggle Touch ID has not been enrolled because of incorrect platform name"));
+        Logger.logInfo(
+            String.format(
+                "Toggle Touch ID has not been enrolled because of incorrect platform name"));
       }
 
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
-
 
   /**
    * Perform Touch ID (iOS Simulator only)
@@ -210,9 +202,8 @@ public class IosUtils {
       }
     } catch (TimeoutException var2) {
       var2.getMessage();
-      Logger.logInfo(String.format("Touch ID simulation is failed because of incorrect platform name"));
+      Logger.logInfo(
+          String.format("Touch ID simulation is failed because of incorrect platform name"));
     }
   }
-
-
 }

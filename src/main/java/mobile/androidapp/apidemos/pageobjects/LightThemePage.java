@@ -57,65 +57,62 @@ public class LightThemePage {
   @AndroidFindBy(accessibility = "(And all inside of a ScrollView!)")
   public MobileElement SCROLL_VIEW;
 
-
   private final AndroidUtils androidUtils = new AndroidUtils();
 
-
   public void sendTextToInputField(String text) {
-      sendKeysToMobileElement(TEXT_FIELD,text);
+    sendKeysToMobileElement(TEXT_FIELD, text);
   }
 
-
-  public void checkOnCheckbox1(){
+  public void checkOnCheckbox1() {
     MobileUtils.checkOnCheckbox(CHECKBOX_1);
   }
 
-  public void uncheckCheckbox1(){
+  public void uncheckCheckbox1() {
     MobileUtils.uncheckOnCheckbox(CHECKBOX_1);
   }
 
-  public void checkOnCheckbox2(){
+  public void checkOnCheckbox2() {
     MobileUtils.checkOnCheckbox(CHECKBOX_2);
   }
 
-  public void selectRadioButton1(){
+  public void selectRadioButton1() {
     MobileUtils.clickMobileElement(RADIO_BUTTON_1);
   }
 
-  public void selectRadioButton2(){
+  public void selectRadioButton2() {
     MobileUtils.clickMobileElement(RADIO_BUTTON_2);
   }
 
-  public void turnOnStar(){
+  public void turnOnStar() {
     MobileUtils.checkOnCheckbox(STAR_BUTTON);
   }
 
-  public void turnOffStar(){
+  public void turnOffStar() {
     MobileUtils.uncheckOnCheckbox(STAR_BUTTON);
   }
 
-  public void turnOnToggle1(){
+  public void turnOnToggle1() {
     MobileUtils.checkOnCheckbox(TOGGLE_1);
   }
 
-  public void verifyToggle2IsTurnedOff(){
+  public void verifyToggle2IsTurnedOff() {
     assertFalse(isCheckboxChecked(TOGGLE_2));
     logInfo("Toggle 2 is turned off as exoected");
   }
 
-  public void selectSpinnerDropdown(){
+  public void selectSpinnerDropdown() {
     clickMobileElement(SPINNER_DROPDOWN);
-//    waitUntilMobileElementVisible(DROPDOWN_LIST_BOX);
+    //    waitUntilMobileElementVisible(DROPDOWN_LIST_BOX);
   }
 
   @SneakyThrows
-  public void selectPlanetFromList(String planetName){
-    MobileElement planetToBeSelected = appiumDriver
-        .findElementByXPath("//android.widget.CheckedTextView[@text='"+planetName+"']");
+  public void selectPlanetFromList(String planetName) {
+    MobileElement planetToBeSelected =
+        appiumDriver.findElementByXPath(
+            "//android.widget.CheckedTextView[@text='" + planetName + "']");
     clickMobileElement(planetToBeSelected);
-    logInfo("Clicked on the "+planetName+" successfully");
+    logInfo("Clicked on the " + planetName + " successfully");
     sleep(3000);
     assertEquals(getTextFromMobileElement(SPINNER_DROPDOWN_TEXT).trim(), planetName);
   }
-
 }

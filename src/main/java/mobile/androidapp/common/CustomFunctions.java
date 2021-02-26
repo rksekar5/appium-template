@@ -1,4 +1,3 @@
 package mobile.androidapp.common;
 
-public class CustomFunctions {
-}
+public class CustomFunctions {}

@@ -17,7 +17,7 @@ public class FlutterDemoTest extends FlutterBaseTest {
   private LandingPage landingPage;
 
   @BeforeMethod
-  public void setup(){
+  public void setup() {
     landingPage = new LandingPage();
   }
 
@@ -28,7 +28,6 @@ public class FlutterDemoTest extends FlutterBaseTest {
     landingPage.clickOnStumilateHostCard();
     sleep(5000);
 
-    logInfo("Current context of the app is "+ appiumDriver.getContext());
-
+    logInfo("Current context of the app is " + appiumDriver.getContext());
   }
 }

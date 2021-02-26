@@ -37,5 +37,4 @@ public class AndroidBaseTest extends AndroidFactory {
       log.debug("Uninstalling the app as part of cleanup");
     appiumDriver.removeApp(readValueFromMobileConfigFile("android_package_name"));
   }
-
 }

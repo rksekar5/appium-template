@@ -20,23 +20,23 @@ public class AndroidUtils {
    * @param text
    */
   public void scrollToText(String text) {
-    appiumDriver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
-        ".scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
+    appiumDriver.findElement(
+        MobileBy.AndroidUIAutomator(
+            "new UiScrollable(new UiSelector())"
+                + ".scrollIntoView(new UiSelector().text(\""
+                + text
+                + "\"));"));
   }
 
-  /**
-   * Scroll to the specified text
-   */
-  public boolean isKeyboardDisplayed(){
-    Logger.logInfo(String.valueOf(((AndroidDriver<MobileElement>)appiumDriver).isKeyboardShown()));
-    return ((AndroidDriver<MobileElement>)appiumDriver).isKeyboardShown();
+  /** Scroll to the specified text */
+  public boolean isKeyboardDisplayed() {
+    Logger.logInfo(String.valueOf(((AndroidDriver<MobileElement>) appiumDriver).isKeyboardShown()));
+    return ((AndroidDriver<MobileElement>) appiumDriver).isKeyboardShown();
   }
 
-  /**
-   * Hide the Android keyboard
-   */
-  public void hideAndroidKeyboard(){
-    if(isKeyboardDisplayed()) {
+  /** Hide the Android keyboard */
+  public void hideAndroidKeyboard() {
+    if (isKeyboardDisplayed()) {
       try {
         appiumDriver.hideKeyboard();
         logInfo("Keyboard minimized on the screen");
@@ -51,19 +51,20 @@ public class AndroidUtils {
    * Remove an app from Android device
    *
    * @param app
-   * @param appPackage
-   * bundleId == "com.example.AppName"
+   * @param appPackage bundleId == "com.example.AppName"
    */
   public static void removeApkFromAndroidDevice(String app, String appPackage) {
     try {
       if (checkIfApkInstalled(appPackage)) {
         getAppiumDriver().removeApp(appPackage);
-        Logger.logInfo(String.format("App '%s' with AppPackage '%s' is removed from Android device",
-                app, appPackage));
+        Logger.logInfo(
+            String.format(
+                "App '%s' with AppPackage '%s' is removed from Android device", app, appPackage));
       } else {
-        Logger.logInfo(String.format(
-                "App '%s' with AppPackage '%s' is not installed/ not removed from Android device", app,
-                appPackage));
+        Logger.logInfo(
+            String.format(
+                "App '%s' with AppPackage '%s' is not installed/ not removed from Android device",
+                app, appPackage));
       }
     } catch (TimeoutException var2) {
       var2.getMessage();
@@ -73,8 +74,7 @@ public class AndroidUtils {
   /**
    * Terminate the given app onto Android device
    *
-   * @param appPackage
-   * bundleId == "com.example.AppName"
+   * @param appPackage bundleId == "com.example.AppName"
    */
   public static void terminateAppOnAndroidDevice(String appPackage) {
     try {
@@ -92,8 +92,7 @@ public class AndroidUtils {
   /**
    * Check whether the specified app is installed on the Android device
    *
-   * @param appPackage
-   * appPackage == "com.google.android.AppName"
+   * @param appPackage appPackage == "com.google.android.AppName"
    */
   public static boolean checkIfApkInstalled(String appPackage) {
     try {
@@ -101,7 +100,7 @@ public class AndroidUtils {
         return true;
       } else {
         Logger.logInfo(
-                String.format("App with AppPackage '%s' is not installed into Device ", appPackage));
+            String.format("App with AppPackage '%s' is not installed into Device ", appPackage));
         return false;
       }
     } catch (TimeoutException var2) {
@@ -113,7 +112,7 @@ public class AndroidUtils {
   /**
    * Install the given Android app in the device
    *
-   *  @param app
+   * @param app
    * @param appPackage
    */
   public static void installAndroidApp(String app, String appPackage) {
@@ -123,7 +122,7 @@ public class AndroidUtils {
       } else {
         getAppiumDriver().installApp(app);
         Logger.logInfo(
-                String.format("App with AppPackage '%s' is now installed into Device ", appPackage));
+            String.format("App with AppPackage '%s' is now installed into Device ", appPackage));
       }
 
     } catch (TimeoutException var2) {
@@ -141,7 +140,9 @@ public class AndroidUtils {
     try {
       if (getAppiumDriver().isAppInstalled(appPackage)) {
         getAppiumDriver().queryAppState(appPackage);
-        Logger.logInfo(String.format("The given app status on Android device is: %s ",
+        Logger.logInfo(
+            String.format(
+                "The given app status on Android device is: %s ",
                 getAppiumDriver().queryAppState(appPackage)));
       }
     } catch (TimeoutException var2) {

@@ -53,7 +53,7 @@ public class MobileUtils {
    * @param mobileElement
    * @return string
    */
-  public static boolean getMobileElementCheckboxStatus(MobileElement mobileElement) {
+  private static boolean getMobileElementCheckboxStatus(MobileElement mobileElement) {
     return Boolean.parseBoolean(mobileElement.getAttribute("checked"));
   }
 
@@ -64,14 +64,13 @@ public class MobileUtils {
    * @return string
    */
   public static boolean isCheckboxChecked(MobileElement mobileElement) {
-    boolean checkboxStatus = getMobileElementCheckboxStatus(mobileElement);
+    final boolean checkboxStatus = getMobileElementCheckboxStatus(mobileElement);
     if (checkboxStatus) {
       logInfo("Check box: " + mobileElement + " is checked on");
-      return true;
     } else {
       logInfo("Check box: " + mobileElement + " is checked off");
-      return false;
     }
+    return checkboxStatus;
   }
 
   /**
@@ -80,12 +79,13 @@ public class MobileUtils {
    * @param mobileElement
    * @return string
    */
-
   public static void checkOnCheckbox(MobileElement mobileElement) {
-    if (! isCheckboxChecked(mobileElement)) {
+    if (!isCheckboxChecked(mobileElement)) {
       clickMobileElement(mobileElement);
       assertTrue(isCheckboxChecked(mobileElement));
       logInfo("Checked on the checkbox successfully");
+    } else {
+      logInfo("The checkbox is already checked on");
     }
   }
 
@@ -100,9 +100,10 @@ public class MobileUtils {
       clickMobileElement(mobileElement);
       assertFalse(isCheckboxChecked(mobileElement));
       logInfo("UnChecked the checkbox successfully");
+    } else {
+      logInfo("The checkbox is already unchecked on");
     }
   }
-
 
   /**
    * Click on the mobile element
@@ -143,13 +144,7 @@ public class MobileUtils {
    * @return true or false
    */
   public boolean isMobileElementNotPresent(MobileElement mobileElement) {
-    boolean isDisplayed = ! mobileElement.isDisplayed();
-    if (isDisplayed) {
-      logInfo("Element is displayed");
-    } else {
-      logInfo("Element is NOT displayed");
-    }
-    return isDisplayed;
+    return !mobileElement.isDisplayed();
   }
 
   /**
@@ -158,14 +153,8 @@ public class MobileUtils {
    * @param mobileElement
    * @return true or false
    */
-  public boolean isMobileElementPresent(MobileElement mobileElement) {
-    boolean isDisplayed = mobileElement.isDisplayed();
-    if (isDisplayed) {
-      logInfo("Element is displayed");
-    } else {
-      logInfo("Element is NOT displayed");
-    }
-    return isDisplayed;
+  public static boolean isMobileElementPresent(MobileElement mobileElement) {
+    return mobileElement.isDisplayed();
   }
 
   /**
@@ -179,7 +168,7 @@ public class MobileUtils {
       Logger.logInfo("File exists already");
     } else {
       Path temp =
-              Files.move(Paths.get(String.valueOf(scrFile)), Paths.get(String.valueOf(fileNamePath)));
+          Files.move(Paths.get(String.valueOf(scrFile)), Paths.get(String.valueOf(fileNamePath)));
       if (temp != null) {
         Logger.logInfo("File renamed and moved successfully");
       } else {
@@ -188,35 +177,27 @@ public class MobileUtils {
     }
   }
 
-  /**
-   * Switch the active screen to Landscape mode
-   */
-  public static void switchScreenToLandscape(){
+  /** Switch the active screen to Landscape mode */
+  public static void switchScreenToLandscape() {
     getAppiumDriver().rotate(ScreenOrientation.LANDSCAPE);
     ScreenOrientation orientation = getAppiumDriver().getOrientation();
     assertSame(orientation, ScreenOrientation.LANDSCAPE);
   }
 
-  /**
-   * Switch the active screen to Portrait mode
-   */
-  public static void switchScreenToPortrait(){
+  /** Switch the active screen to Portrait mode */
+  public static void switchScreenToPortrait() {
     getAppiumDriver().rotate(ScreenOrientation.PORTRAIT);
     ScreenOrientation orientation = getAppiumDriver().getOrientation();
     assertSame(orientation, ScreenOrientation.PORTRAIT);
   }
 
-  /**
-   * Set context to web view
-   */
-  public static void setContextToWebView(String packageName){
-    getAppiumDriver().context("WEBVIEW_"+packageName);
+  /** Set context to web view */
+  public static void setContextToWebView(String packageName) {
+    getAppiumDriver().context("WEBVIEW_" + packageName);
   }
 
-  /**
-   * Set context to native app
-   */
-  public static void setContextToNativeApp(){
+  /** Set context to native app */
+  public static void setContextToNativeApp() {
     getAppiumDriver().context("NATIVE_APP");
   }
 
@@ -233,9 +214,9 @@ public class MobileUtils {
     Path filePath = Paths.get(root.toString(), "src", "main", "resources", "screenshots");
     File fileNamePath = new File(filePath.toString() + "/" + filename + ".png");
 
-    if (getAppiumDriver().getCapabilities().getCapability("platformName").equals("iOS")) {
+    if (isPlatformIos()) {
       moveFileToPath(scrFile, fileNamePath);
-    } else if (getAppiumDriver().getCapabilities().getCapability("platformName").equals("Android")) {
+    } else if (isPlatformAndroid()) {
       moveFileToPath(scrFile, fileNamePath);
     }
   }
@@ -245,7 +226,7 @@ public class MobileUtils {
    *
    * @param mobileElement
    */
-  public void assertMobileElementPresent(MobileElement mobileElement) {
+  public static void assertMobileElementPresent(MobileElement mobileElement) {
     assertTrue(isMobileElementPresent(mobileElement));
   }
 
@@ -254,7 +235,7 @@ public class MobileUtils {
    *
    * @param mobileElement
    */
-  public void assertMobileElementNotPresent(MobileElement mobileElement) {
+  public static void assertMobileElementNotPresent(MobileElement mobileElement) {
     assertFalse(isMobileElementPresent(mobileElement));
   }
 
@@ -272,9 +253,7 @@ public class MobileUtils {
     }
   }
 
-  /**
-   * Get random numbers
-   */
+  /** Get random numbers */
   public static int getRandomNumber(int min, int max) {
     Random random = new Random();
     return random.nextInt(max - min + 1) + min;
@@ -288,7 +267,7 @@ public class MobileUtils {
    */
   public static boolean isTextPresent(MobileElement mobileElement, String text) {
     try {
-      return mobileElement.getText().contains(text);
+      return getTextFromMobileElement(mobileElement).contains(text);
     } catch (TimeoutException var3) {
       Logger.logError(String.format("The Text %s is not present", text));
       var3.getCause();
@@ -303,7 +282,7 @@ public class MobileUtils {
    * @param text
    */
   public static boolean isTextNotPresent(MobileElement mobileElement, String text) {
-    return ! isTextPresent(mobileElement, text);
+    return !isTextPresent(mobileElement, text);
   }
 
   /**
@@ -329,7 +308,7 @@ public class MobileUtils {
    */
   public static void verifyTextNotPresent(MobileElement mobileElement, String text) {
     boolean textNotPresent = isTextNotPresent(mobileElement, text);
-    if (! textNotPresent) {
+    if (!textNotPresent) {
       Logger.logInfo(String.format("Text: '%s' is still displayed", text));
     } else {
       Logger.logError(String.format("Text '%s' is not displayed as expected ", text));
@@ -386,59 +365,41 @@ public class MobileUtils {
     return mobileElement.getSize();
   }
 
-
-  /**
-   * Get the active mobile element
-   */
+  /** Get the active mobile element */
   public static void getActiveElement() {
     getAppiumDriver().switchTo().activeElement();
   }
-
 
   /**
    * Start an Android Activity
    *
    * @param activityName
    */
-
   public static void startAnAndroidActivity(Activity activityName) {
     try {
       ((AndroidDriver) getAppiumDriver()).startActivity(activityName);
     } catch (Exception e) {
       e.printStackTrace();
-      e.getMessage();
       e.getCause();
     }
   }
 
-
-  /**
-   * Get current Android Activity
-   */
+  /** Get current Android Activity */
   public static String getCurrentAnAndroidActivity() {
-    String activity = ((AndroidDriver) getAppiumDriver()).currentActivity();
-    return activity;
+    return ((AndroidDriver) getAppiumDriver()).currentActivity();
   }
 
-
-  /**
-   * Get current Android Package
-   */
+  /** Get current Android Package */
   public static String getCurrentAnAndroidPackage() {
-    String packageName = ((AndroidDriver) getAppiumDriver()).getCurrentPackage();
-    return packageName;
+    return ((AndroidDriver) getAppiumDriver()).getCurrentPackage();
   }
 
-  /**
-   * Get Device Time on the device
-   */
+  /** Get Device Time on the device */
   public static String getDeviceTime() {
     return getAppiumDriver().getDeviceTime();
   }
 
-  /**
-   * Open the Keyboard
-   */
+  /** Open the Keyboard */
   public static void getKeyboard() {
     getAppiumDriver().getKeyboard();
   }
@@ -446,12 +407,13 @@ public class MobileUtils {
   /**
    * Long Press on the mobile element
    *
-   *  @param mobileElement
+   * @param mobileElement
    */
-  public static void longPressOnTheElement(MobileElement mobileElement) throws InterruptedException {
-
+  public static void longPressOnTheElement(MobileElement mobileElement)
+      throws InterruptedException {
     TouchAction action = new TouchAction(getAppiumDriver());
-    action.longPress(PointOption.point(mobileElement.getLocation().getX(), mobileElement.getLocation().getY()));
+    action.longPress(
+        PointOption.point(mobileElement.getLocation().getX(), mobileElement.getLocation().getY()));
     action.waitAction(WaitOptions.waitOptions(Duration.ofMillis(10000)));
     action.release().perform();
   }
@@ -459,57 +421,55 @@ public class MobileUtils {
   /**
    * Long Press on the mobile element and release
    *
-   *  @param mobileElement
+   * @param mobileElement
    */
   public void longPressAndRelease(MobileElement mobileElement) {
     logInfo("Long press and release the element");
     new TouchAction<>(getAppiumDriver())
-            .longPress(longPressOptions()
-                    .withElement(element(mobileElement))
-                    .withDuration(ofSeconds(1)))
-            .release().perform();
+        .longPress(
+            longPressOptions().withElement(element(mobileElement)).withDuration(ofSeconds(1)))
+        .release()
+        .perform();
   }
 
-  /**
-   * Tap on the mobile element by coordinates
-   */
+  /** Tap on the mobile element by coordinates */
   public static void tapByCoordinates(int xOffset, int yOffset) {
     TouchAction action = new TouchAction(getAppiumDriver());
-    action.tap(PointOption.point(xOffset, yOffset))
-            .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3))).perform();
+    action
+        .tap(PointOption.point(xOffset, yOffset))
+        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3)))
+        .perform();
   }
 
-  /**
-   * Double tap on the mobile element by coordinates
-   */
+  /** Double tap on the mobile element by coordinates */
   public static void doubleTapByCoordinates(int x, int y) {
     TouchAction action = new TouchAction(getAppiumDriver());
     Point point = new Point(x, y);
-    int xcord = point.getX();
-    int ycord = point.getY();
+    int xCoordinate = point.getX();
+    int yCoordinate = point.getY();
 
-    action.tap(PointOption.point(xcord, ycord))
-            .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)));
+    action
+        .tap(PointOption.point(xCoordinate, yCoordinate))
+        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)));
     action.perform();
 
-    action.tap(PointOption.point(xcord, ycord))
-            .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)));
+    action
+        .tap(PointOption.point(xCoordinate, yCoordinate))
+        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)));
     action.perform();
   }
 
-
   /**
    * Double tap on the mobile element
+   *
    * @param mobileElement
    */
-  public void doubleTapOnMobileElement(MobileElement mobileElement){
+  public void doubleTapOnMobileElement(MobileElement mobileElement) {
     logInfo("Double tap on the element");
     new TouchActions(getAppiumDriver()).doubleTap(mobileElement).perform();
   }
 
-  /**
-   * Perform touch
-   */
+  /** Perform touch */
   public static void performTouch(int xOffset, int y1Offset, int y2xOffset) {
     TouchAction action = new TouchAction(getAppiumDriver());
     action.press(PointOption.point(xOffset, y1Offset));
@@ -521,36 +481,35 @@ public class MobileUtils {
   /**
    * Double tap on the touch screen using finger motion events
    *
-   *  @param mobileElement
+   * @param mobileElement
    */
   public static void doubleTapAction(MobileElement mobileElement) {
     TouchAction action = new TouchAction(getAppiumDriver());
-    assert mobileElement != null;
+    assertMobileElementPresent(mobileElement);
     Point point = mobileElement.getLocation();
-    int xcord = point.getX();
-    int ycord = point.getY();
+    int xCoordinate = point.getX();
+    int yCoordinate = point.getY();
 
-    action.press(PointOption.point(xcord, ycord))
-            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(100)));
+    action
+        .press(PointOption.point(xCoordinate, yCoordinate))
+        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(100)));
     action.release().perform();
 
-    action.press(PointOption.point(xcord, ycord))
-            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(50)));
+    action
+        .press(PointOption.point(xCoordinate, yCoordinate))
+        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(50)));
     action.release().perform();
   }
 
-
-  /**
-   * Finger move on the screen
-   */
+  /** Finger move on the screen */
   public static void moveToScreen(int startx, int starty, int endx, int endy) {
     TouchAction action = new TouchAction(getAppiumDriver());
 
-    action.press(PointOption.point(startx, starty))
-            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(100)))
-            .moveTo(PointOption.point(endx, endy));
+    action
+        .press(PointOption.point(startx, starty))
+        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(100)))
+        .moveTo(PointOption.point(endx, endy));
     action.release().perform();
-
   }
 
   /**
@@ -561,19 +520,20 @@ public class MobileUtils {
   public static void multiTouchByElement(MobileElement mobileElement) {
     TouchAction action = new TouchAction(getAppiumDriver());
 
-    action.press(PointOption.point(mobileElement.getLocation().getX(), mobileElement.getLocation().getY()))
-            .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))).release();
+    action
+        .press(
+            PointOption.point(
+                mobileElement.getLocation().getX(), mobileElement.getLocation().getY()))
+        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+        .release();
     MultiTouchAction multiAction = new MultiTouchAction(getAppiumDriver());
     multiAction.add(action).perform();
   }
 
-
-  /**
-   * Vertical scroll down on the screen
-   */
+  /** Vertical scroll down on the screen */
   public static void verticalScrollDown() {
     TouchAction action = new TouchAction(getAppiumDriver());
-    Dimension size = getAppiumDriver().manage().window().getSize();
+    final Dimension size = getAppiumDriver().manage().window().getSize();
     // Down area points
     int start_x_down = (int) (size.width * 0.5);
     int end_x_down = (int) (size.height * 0.95);
@@ -587,13 +547,10 @@ public class MobileUtils {
     action.release().perform();
   }
 
-  /**
-   * Vertical scroll up on the screen
-   */
+  /** Vertical scroll up on the screen */
   public static void verticalScrollUp() {
     TouchAction action = new TouchAction(getAppiumDriver());
-
-    Dimension size = getAppiumDriver().manage().window().getSize();
+    final Dimension size = getAppiumDriver().manage().window().getSize();
     // Area points
     int start_x = (int) (size.width / 2);
     int start_y = (int) (size.height * 0.8);
@@ -603,18 +560,21 @@ public class MobileUtils {
     action.waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)));
     action.moveTo(PointOption.point(start_x, start_y));
     action.release().perform();
-
   }
 
   /**
-   * Horizontal swipe on Seekbar (SeekBar is an extension of ProgressBar that adds a draggable thumb.
-   * The user can touch the thumb and drag left or right to set the current progress level or use the arrow keys)
+   * Horizontal swipe on Seekbar (SeekBar is an extension of ProgressBar that adds a draggable
+   * thumb. The user can touch the thumb and drag left or right to set the current progress level or
+   * use the arrow keys)
+   *
    * @param mobileElement
    */
   public static void swipeOnSeekbar(MobileElement mobileElement, int percentage) {
-    String newValue = String.valueOf(percentage / 100);
+    final String newValue = String.valueOf(percentage / 100);
     mobileElement.setValue(newValue);
-    Logger.logInfo(String.format("Element %s is moved to %s value " , getMobileAttributeValue(mobileElement)));
+    Logger.logInfo(
+        String.format(
+            "Element %s is moved to %s value ", getMobileAttributeValue(mobileElement), newValue));
   }
 
   /**
@@ -627,109 +587,104 @@ public class MobileUtils {
     new TouchActions(getAppiumDriver()).singleTap(mobileElement).perform();
   }
 
-
-  /**
-   * Launch the app under test on the device
-   */
+  /** Launch the app under test on the device */
   public static void launchApp() {
     try {
       getAppiumDriver().launchApp();
-      Logger.logInfo(String.format("The App is launched on the device"));
+      Logger.logInfo("The App is launched on the device");
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
 
-  /**
-   * Send the currently running app for this session to the background
-   */
+  /** Send the currently running app for this session to the background */
   public static void runAppInBackground(long time) {
     try {
       Duration duration = Duration.ofSeconds(time);
       getAppiumDriver().runAppInBackground(duration);
-      Logger.logInfo(String.format("The App was running on Background of the device"));
+      Logger.logInfo("The App was running on Background of the device");
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
 
-  /**
-   * Close the app on device
-   */
+  /** Close the app on device */
   public static void closeAnApp() {
     try {
       getAppiumDriver().closeApp();
-      Logger.logInfo(String.format("The App is closed on the device"));
+      Logger.logInfo("The App is closed on the device");
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
 
-  /**
-   * Reset the currently running app for this session
-   */
+  /** Reset the currently running app for this session */
   public static void resetApp() {
     try {
       getAppiumDriver().resetApp();
-      Logger.logInfo(String.format("The App is reset for this session"));
+      Logger.logInfo("The App is reset for this session");
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
 
-
-  /**
-   * Lock the Android/iOS device
-   */
+  /** Lock the Android/iOS device */
   public static void lockDevice() {
     try {
-      if (getAppiumDriver().getPlatformName().equals("ios")) {
+      if (isPlatformIos()) {
         ((IOSDriver<MobileElement>) getAppiumDriver()).lockDevice();
-        Logger.logInfo(String.format("The iOS device is locked"));
-      } else if (getAppiumDriver().getPlatformName().equals("android")) {
+        Logger.logInfo("The iOS device is locked");
+      } else if (isPlatformAndroid()) {
         ((AndroidDriver<MobileElement>) getAppiumDriver()).lockDevice();
-        Logger.logInfo(String.format("The Android device is locked"));
+        Logger.logInfo("The Android device is locked");
       }
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
 
-  /**
-   * Check whether the device is locked or not
-   */
+  private static boolean isPlatformIos() {
+    return getPlatformName().equalsIgnoreCase("ios");
+  }
+
+  private static boolean isPlatformAndroid() {
+    return getPlatformName().equalsIgnoreCase("android");
+  }
+
+  private static String getPlatformName() {
+    final String platformName = getAppiumDriver().getPlatformName();
+    assertNotNull(platformName, "Unable to retrieve the platform details");
+    return platformName;
+  }
+
+  /** Check whether the device is locked or not */
   public static boolean isDeviceLocked() {
-    boolean isLocked;
+    boolean isLocked = false;
     try {
-      if (getAppiumDriver().getPlatformName().equals("ios")) {
+      if (isPlatformIos()) {
         isLocked = ((IOSDriver<MobileElement>) getAppiumDriver()).isDeviceLocked();
-        return isLocked;
-      } else if (getAppiumDriver().getPlatformName().equals("android")) {
+      } else if (isPlatformAndroid()) {
         isLocked = ((AndroidDriver<MobileElement>) getAppiumDriver()).isDeviceLocked();
-        return isLocked;
       }
-      Logger.logInfo(String.format("The device is unlocked"));
+      Logger.logInfo("The device is unlocked");
+      return isLocked;
     } catch (TimeoutException var2) {
       var2.getMessage();
       return false;
     }
-    return false;
   }
 
-
-  /**
-   * Unlock the Android device
-   */
+  /** Unlock the Android device */
   public static void unlockAndroidDevice() {
     try {
-      if (getAppiumDriver().getPlatformName().equals("android")) {
+      if (isPlatformAndroid()) {
         if (isDeviceLocked()) {
           ((AndroidDriver<MobileElement>) getAppiumDriver()).unlockDevice();
-          Logger.logInfo(String.format("The Android device is unlocked"));
+          Logger.logInfo("The Android device is unlocked");
         } else {
           ((AndroidDriver<MobileElement>) getAppiumDriver()).lockDevice();
           ((AndroidDriver<MobileElement>) getAppiumDriver()).unlockDevice();
-          Logger.logInfo(String.format("The Android device is unlocked"));
+          Logger.logInfo("The Android device is unlocked");
         }
       }
     } catch (TimeoutException var2) {
@@ -737,250 +692,190 @@ public class MobileUtils {
     }
   }
 
-
-  /**
-   * Rotate the device in three dimensions only
-   */
+  /** Rotate the device in three dimensions only */
   public static void rotateDevice() {
     try {
       getAppiumDriver().rotate(new DeviceRotation(10, 10, 10));
-      Logger.logInfo(String.format("The Device is rotated in three dimensions"));
+      Logger.logInfo("The Device is rotated in three dimensions");
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
 
-
-  /**
-   * Toggle airplane mode on Android device
-   */
+  /** Toggle airplane mode on Android device */
   public static void toggleAirplaneMode() {
-    if (getAppiumDriver().getPlatformName().equals("android")) {
+    if (isPlatformAndroid()) {
       ((AndroidDriver<MobileElement>) getAppiumDriver()).toggleAirplaneMode();
-      Logger.logInfo(String.format("The Device is in Airplane mode"));
+      Logger.logInfo("The Device is in Airplane mode");
     } else {
-      Logger.logInfo(String.format("The Device is not in Airplane mode"));
+      Logger.logInfo("The Device is not in Airplane mode");
     }
   }
 
-
-  /**
-   * Switch the state of the wifi service
-   */
+  /** Switch the state of the wifi service */
   public static void toogleWifi() {
-    if (getAppiumDriver().getPlatformName().equals("android")) {
+    if (isPlatformAndroid()) {
       ((AndroidDriver<MobileElement>) getAppiumDriver()).toggleWifi();
-      Logger.logInfo(String.format("Toggle Wifi"));
+      Logger.logInfo("Toggle Wifi");
     }
   }
 
-  /**
-   * Switch the state of the location service
-   */
+  /** Switch the state of the location service */
   public static void toggleLocationServices() {
-    if (getAppiumDriver().getPlatformName().equals("android")) {
+    if (isPlatformAndroid()) {
       ((AndroidDriver<MobileElement>) getAppiumDriver()).toggleLocationServices();
-      Logger.logInfo(String.format("Toggle Location service"));
+      Logger.logInfo("Toggle Location service");
     }
   }
 
-
-  /**
-   * Simulate an SMS message (Emulator only)
-   */
+  /** Simulate an SMS message (Emulator only) */
   public static void sendSMS(String phoneNumber, String message) {
     try {
-      if (getAppiumDriver().getPlatformName().equals("android")) {
+      if (isPlatformAndroid()) {
         ((AndroidDriver<MobileElement>) getAppiumDriver()).sendSMS(phoneNumber, message);
-        Logger.logInfo(String.format("A SMS Message is sent"));
+        Logger.logInfo("A SMS Message is sent");
       } else {
-        Logger.logInfo(String.format("Not possible to send a SMS Message"));
+        Logger.logInfo("Not possible to send a SMS Message");
       }
     } catch (TimeoutException var2) {
       var2.getMessage();
     }
   }
 
-
-  /**
-   * Open Android notification Bar (Emulator only)
-   */
+  /** Open Android notification Bar (Emulator only) */
   public static void openNotifications() {
-    if (getAppiumDriver().getPlatformName().equals("android")) {
+    if (isPlatformAndroid()) {
       ((AndroidDriver<MobileElement>) getAppiumDriver()).openNotifications();
     }
   }
 
-
-  /**
-   * Open a url on the browser
-   */
+  /** Open a url on the browser */
   public static void openBrowserUrl(String url) {
     getAppiumDriver().get(url);
   }
 
-
-  /**
-   * Switch to Alert
-   */
+  /** Switch to Alert */
   public static void switchToAlert() {
     try {
       getAppiumDriver().switchTo().alert();
     } catch (Exception e) {
       e.getCause();
-      e.getMessage();
     }
   }
 
-  /**
-   * Switch to Frame
-   */
+  /** Switch to Frame */
   public static void switchToFrame(MobileElement mobileElement) {
-    MobileElement element = mobileElement;
-    getAppiumDriver().switchTo().frame(element);
+    getAppiumDriver().switchTo().frame(mobileElement);
   }
 
-  /**
-   * Reload the current page.
-   */
+  /** Reload the current page. */
   public static void reload() {
     getAppiumDriver().navigate().refresh();
   }
 
-  /**
-   * Delete all cookies
-   */
+  /** Delete all cookies */
   public static void deleteAllCookies() {
     getAppiumDriver().manage().deleteAllCookies();
   }
 
   /**
    * Perform drag and drop
+   *
    * @param fromElement
    * @param toElement
    */
   public static void dragAndDrop(MobileElement fromElement, MobileElement toElement) {
     logInfo(String.format("Drag element from %s to %s", fromElement, toElement));
     new TouchAction<>(getAppiumDriver())
-            .longPress(longPressOptions()
-                    .withElement(element(fromElement))
-                    .withDuration(ofSeconds(1)))
-            .moveTo(element(toElement))
-            .release().perform();
+        .longPress(longPressOptions().withElement(element(fromElement)).withDuration(ofSeconds(1)))
+        .moveTo(element(toElement))
+        .release()
+        .perform();
   }
 
   /**
    * Click and hold on the mobile element
+   *
    * @param mobileElement
    */
-  public void clickAndHold(MobileElement mobileElement){
+  public void clickAndHold(MobileElement mobileElement) {
     logInfo("Click and hold on the element");
     new Actions(getAppiumDriver()).clickAndHold(mobileElement).release().perform();
   }
 
-  /**
-   * Swipe from top to bottom
-   */
-  public void swipeFromUpToBottomWithJavascriptExecutor()
-  {
+  /** Swipe from top to bottom */
+  public void swipeFromUpToBottomWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "up");
       js.executeScript("mobile: swipe", scrollObject);
       log.debug("Swipe up was Successfully done");
-    }
-    catch (Exception e)
-    {
-      logError("swipe up was not successfull: "+e);
+    } catch (Exception e) {
+      logError("swipe up was not successfull: " + e);
     }
   }
 
-  /**
-   * Swipe from bottom to top
-   */
-  public void swipeFromBottomToUpWithJavascriptExecutor()
-  {
-    try  {
+  /** Swipe from bottom to top */
+  public void swipeFromBottomToUpWithJavascriptExecutor() {
+    try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "down");
       js.executeScript("mobile: swipe", scrollObject);
       log.debug("Swipe down was Successfully done");
-    }
-    catch (Exception e)
-    {
-      logError("swipe up was not successfull: "+e);
+    } catch (Exception e) {
+      logError("swipe up was not successfull: " + e);
     }
   }
 
-  /**
-   * Scroll from top to bottom
-   */
-  public void scrollFromUpToBottomWithJavascriptExecutor()
-  {
+  /** Scroll from top to bottom */
+  public void scrollFromUpToBottomWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "up");
       js.executeScript("mobile: scroll", scrollObject);
       log.debug("Swipe up was Successfully done");
-    }
-    catch (Exception e)
-    {
-      logError("swipe up was not successful: "+e);
+    } catch (Exception e) {
+      logError("swipe up was not successful: " + e);
     }
   }
 
-  /**
-   * Scroll from bottom to top
-   */
-  public void scrollFromBottomToUpWithJavascriptExecutor()
-  {
-    try  {
+  /** Scroll from bottom to top */
+  public void scrollFromBottomToUpWithJavascriptExecutor() {
+    try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
       scrollObject.put("direction", "down");
       js.executeScript("mobile: scroll", scrollObject);
       log.debug("Swipe down was Successfully done");
-    }
-    catch (Exception e)
-    {
-      logError("swipe up was not successful: "+e);
+    } catch (Exception e) {
+      logError("swipe up was not successful: " + e);
     }
   }
 
-  /**
-   * Swipe right
-   */
-  public void swipeRight(){
+  /** Swipe right */
+  public void swipeRight() {
     swipe("right");
   }
 
-  /**
-   * Swipe left
-   */
-  public void swipeLeft(){
+  /** Swipe left */
+  public void swipeLeft() {
     swipe("right");
   }
 
-  /**
-   * Swipe up
-   */
-  public static void swipeUp(){
+  /** Swipe up */
+  public static void swipeUp() {
     swipe("up");
   }
 
-  /**
-   * Swipe down
-   */
-  public static void swipeDown(){
+  /** Swipe down */
+  public static void swipeDown() {
     swipe("down");
   }
 
-  /**
-   * Swipe on the given direction
-   */
+  /** Swipe on the given direction */
   private static void swipe(String direction) {
     Dimension size = getAppiumDriver().manage().window().getSize();
 
@@ -995,11 +890,11 @@ public class MobileUtils {
         startX = (int) (size.width * 0.90);
         endX = (int) (size.width * 0.05);
         new TouchAction<>(getAppiumDriver())
-                .press(point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(point(endX, startY))
-                .release()
-                .perform();
+            .press(point(startX, startY))
+            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+            .moveTo(point(endX, startY))
+            .release()
+            .perform();
         break;
 
       case "left":
@@ -1007,11 +902,11 @@ public class MobileUtils {
         startX = (int) (size.width * 0.05);
         endX = (int) (size.width * 0.90);
         new TouchAction<>(getAppiumDriver())
-                .press(point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(point(endX, startY))
-                .release()
-                .perform();
+            .press(point(startX, startY))
+            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+            .moveTo(point(endX, startY))
+            .release()
+            .perform();
         break;
 
       case "up":
@@ -1019,11 +914,11 @@ public class MobileUtils {
         startY = (int) (size.height * 0.30);
         startX = (size.width / 2);
         new TouchAction<>(getAppiumDriver())
-                .press(point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(point(startX, endY))
-                .release()
-                .perform();
+            .press(point(startX, startY))
+            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+            .moveTo(point(startX, endY))
+            .release()
+            .perform();
         break;
 
       case "down":
@@ -1031,19 +926,17 @@ public class MobileUtils {
         endY = (int) (size.height * 0.30);
         startX = (size.width / 2);
         new TouchAction<>(getAppiumDriver())
-                .press(point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(point(startX, endY))
-                .release()
-                .perform();
+            .press(point(startX, startY))
+            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+            .moveTo(point(startX, endY))
+            .release()
+            .perform();
         break;
     }
   }
 
-  /**
-   * Retrieves the device location
-   */
-  public static void getDeviceLocation(){
+  /** Retrieves the device location */
+  public static void getDeviceLocation() {
     final Location location = getAppiumDriver().location();
     logInfo(String.format("Device location is: %s", location.toString()));
   }
@@ -1055,10 +948,11 @@ public class MobileUtils {
    * @param longitude
    * @param altitude
    */
-  public static void setDeviceLocation(long latitude, long longitude, long altitude){
-    getAppiumDriver().setLocation(new Location(latitude,longitude,altitude));
-    logInfo(String
-            .format("Location set for devices successfully to %s %s %s", latitude, longitude, altitude));
+  public static void setDeviceLocation(long latitude, long longitude, long altitude) {
+    getAppiumDriver().setLocation(new Location(latitude, longitude, altitude));
+    logInfo(
+        String.format(
+            "Location set for devices successfully to %s %s %s", latitude, longitude, altitude));
   }
 
   /**
@@ -1066,31 +960,32 @@ public class MobileUtils {
    *
    * @param mobileElement
    */
-  public void scrollToElement(MobileElement mobileElement){
+  public void scrollToElement(MobileElement mobileElement) {
     new TouchActions(getAppiumDriver()).scroll(mobileElement, 10, 100).perform();
   }
 
-  public static MobileElement getMobileElementWithXpath(String locator){
+  public static MobileElement getMobileElementWithXpath(String locator) {
     return getAppiumDriver().findElementByXPath(locator);
   }
 
-  public static MobileElement getMobileElementWithAccessibilityId(String locator){
+  public static MobileElement getMobileElementWithAccessibilityId(String locator) {
     return getAppiumDriver().findElementByAccessibilityId(locator);
   }
 
-  public MobileElement getMobileElementWithId(String locator){
+  public MobileElement getMobileElementWithId(String locator) {
     return getAppiumDriver().findElementById(locator);
   }
 
   /**
-   * Horizontal scroll to the element
-   * A horizontal scroll bar enables the user to scroll the content of a window to the left or right
+   * Horizontal scroll to the element A horizontal scroll bar enables the user to scroll the content
+   * of a window to the left or right
    *
    * @param mobileElement
    * @param xOffset
    * @param yOffset
    */
-  public void horizontalScroll(MobileElement mobileElement, int xOffset, int yOffset) throws InterruptedException {
+  public void horizontalScroll(MobileElement mobileElement, int xOffset, int yOffset)
+      throws InterruptedException {
     Actions move = new Actions(getAppiumDriver());
     move.moveToElement(mobileElement).clickAndHold();
     move.moveByOffset(xOffset, yOffset);
@@ -1098,5 +993,4 @@ public class MobileUtils {
     move.perform();
     Thread.sleep(2000);
   }
-
 }

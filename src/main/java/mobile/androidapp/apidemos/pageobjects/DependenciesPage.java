@@ -30,29 +30,25 @@ public class DependenciesPage {
   @AndroidFindBy(className = "android.widget.Button")
   public List<MobileElement> BUTTONS;
 
-
-
-
-  public void clickWifiCheckbox(){
+  public void clickWifiCheckbox() {
     clickMobileElement(WIFI_CHECK_BOX);
   }
 
-  public void clickWifiSettingsOption(){
+  public void clickWifiSettingsOption() {
     clickMobileElement(WIFI_SETTINGS_OPTIONS);
   }
 
-  public void enterInputInWifiSettings(String input){
-    sendKeysToMobileElement(WIFI_SETTINS_INPUT_FIELD,input);
+  public void enterInputInWifiSettings(String input) {
+    sendKeysToMobileElement(WIFI_SETTINS_INPUT_FIELD, input);
   }
 
-  public void clickOnOkButtonOnWifiSettings(){
+  public void clickOnOkButtonOnWifiSettings() {
     BUTTONS.get(1).click();
     logInfo("Ok button has been clicked on successfully");
   }
 
-  public void clickOnCancelButtonOnWifiSettings(){
+  public void clickOnCancelButtonOnWifiSettings() {
     BUTTONS.get(0).click();
     logInfo("Cancel button has been clicked on successfully");
   }
-
 }

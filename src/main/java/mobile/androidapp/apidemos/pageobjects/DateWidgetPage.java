@@ -22,9 +22,7 @@ public class DateWidgetPage {
   @AndroidFindBy(accessibility = "2. Inline")
   public MobileElement INLINE;
 
-
   private final AndroidUtils androidUtils = new AndroidUtils();
-
 
   public void clickOnDialog() {
     logInfo("Click on Dialog");
@@ -35,5 +33,4 @@ public class DateWidgetPage {
     logInfo("Click on Inline");
     clickMobileElement(INLINE);
   }
-
 }
