@@ -1,23 +1,19 @@
 package mobile.androidapp.apidemos.pageobjects;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static java.lang.Thread.sleep;
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
-import static mobile.utils.MobileUtils.clickMobileElement;
-import static mobile.utils.MobileUtils.getTextFromMobileElement;
-import static mobile.utils.MobileUtils.isCheckboxChecked;
-import static mobile.utils.MobileUtils.sendKeysToMobileElement;
-import static mobile.utils.MobileUtils.waitUntilMobileElementVisible;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.SneakyThrows;
-import mobile.androidapp.common.AndroidUtilities;
+import mobile.utils.AndroidUtils;
 import mobile.utils.MobileUtils;
 import org.openqa.selenium.support.PageFactory;
+
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static java.lang.Thread.sleep;
+import static mobile.driverhandler.AndroidFactory.appiumDriver;
+import static mobile.utils.MobileUtils.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
 public class LightThemePage {
 
@@ -62,7 +58,7 @@ public class LightThemePage {
   public MobileElement SCROLL_VIEW;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities();
+  private final AndroidUtils androidUtils = new AndroidUtils();
 
 
   public void sendTextToInputField(String text) {

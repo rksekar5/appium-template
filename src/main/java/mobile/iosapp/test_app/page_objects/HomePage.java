@@ -1,21 +1,19 @@
 package mobile.iosapp.test_app.page_objects;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static mobile.utils.AppFactory.appiumDriver;
-import static mobile.utils.MobileUtils.clickMobileElement;
-import static mobile.utils.MobileUtils.getMobileAttributeValue;
-import static mobile.utils.MobileUtils.getTextFromMobileElement;
-import static mobile.utils.MobileUtils.sendKeysToMobileElement;
-
+import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static mobile.driverhandler.AppFactory.getAppiumDriver;
+import static mobile.utils.MobileUtils.*;
+
 public class HomePage {
 
   public HomePage() {
-    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
+    PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
   }
 
   @iOSXCUITFindBy(accessibility = "TextField1")
@@ -40,6 +38,7 @@ public class HomePage {
 
   public void enterValueInTextField(String input) {
     sendKeysToMobileElement(INPUT_FIELD,input);
+    Logger.logInfo("The value has been entered on the text field");
   }
 
   public void clickOnShowAlertButton(){
@@ -54,12 +53,12 @@ public class HomePage {
 
   public void clickOnOkButtonOnAlert(){
     clickMobileElement(OK_BUTTON_ALERT);
-    logInfo("Ok button has been clicked on successfully on th alert box");
+    logInfo("OK button has been clicked on the alert box");
   }
 
   public void clickOnCancelButtonOnAlert(){
     clickMobileElement(CANCEL_BUTTON_ALERT);
-    logInfo("Cancel button has been clicked on successfully on th alert box");
+    logInfo("Cancel button has been clicked on the alert box");
   }
 
 }

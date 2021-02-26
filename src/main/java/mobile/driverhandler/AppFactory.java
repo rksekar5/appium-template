@@ -1,15 +1,16 @@
-package mobile.utils;
-
-import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
+package mobile.driverhandler;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.net.ServerSocket;
-import javax.validation.constraints.NotNull;
-import lombok.extern.slf4j.Slf4j;
+
+import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
 
 @Slf4j
 public class AppFactory {
@@ -18,8 +19,12 @@ public class AppFactory {
 
   public static AppiumDriver<MobileElement> appiumDriver;
 
+  public static AppiumDriver<MobileElement> getAppiumDriver(){
+    return appiumDriver;
+  }
+
   public AppiumDriverLocalService startServer() {
-    boolean flag = checkIfServerIsRunnningAfterClosingSocker(4723);
+    boolean flag = checkIfServerIsRunningAfterClosingSocket(4723);
     if (flag) {
       service.stop();
       log.debug("Killing Appium service before starting a new session");
@@ -30,7 +35,7 @@ public class AppFactory {
     return service;
   }
 
-  public static boolean checkIfServerIsRunnningAfterClosingSocker(int port) {
+  public static boolean checkIfServerIsRunningAfterClosingSocket(int port) {
 
     boolean isServerRunning = false;
     ServerSocket serverSocket;
