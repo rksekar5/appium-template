@@ -1,6 +1,6 @@
 {
   "android_device":"emulator-5554",
-  "android_platform_version":"9",
+  "android_platform_version":"11.0",
 
   "android_demo_app":"ApiDemos-debug.apk",
   "android_package_name":"io.appium.android.apis",
