@@ -1,8 +1,8 @@
 package mobile.iosapp.common;
 
 import com.diconium.qa.testautomationframework.common.RetryListener;
-import java.util.concurrent.TimeUnit;
 import lombok.SneakyThrows;
+import mobile.driverhandler.IosFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -18,10 +18,4 @@ public class IosBaseTest extends IosFactory {
     service = startServer();
   }
 
-  @AfterMethod(alwaysRun = true)
-  protected void tearDown(ITestResult testResult) {
-    appiumDriver.closeApp();
-    //    driver.removeApp(readMobileConfigFromConfigFile("apiDemo"));
-    service.stop();
-  }
 }

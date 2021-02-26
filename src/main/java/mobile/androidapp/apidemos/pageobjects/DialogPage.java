@@ -1,25 +1,23 @@
 package mobile.androidapp.apidemos.pageobjects;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logError;
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static java.lang.Thread.sleep;
-import static mobile.androidapp.common.AndroidFactory.appiumDriver;
-import static mobile.utils.MobileUtils.clickMobileElement;
-import static mobile.utils.MobileUtils.getTextFromMobileElement;
-import static mobile.utils.MobileUtils.isCheckboxChecked;
-import static mobile.utils.MobileUtils.sendKeysToMobileElement;
-import static mobile.utils.MobileUtils.waitUntilMobileElementVisible;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import java.util.Objects;
 import lombok.SneakyThrows;
-import mobile.androidapp.common.AndroidUtilities;
+import mobile.utils.AndroidUtils;
+import mobile.utils.MobileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.Objects;
+
+import static com.diconium.qa.testautomationframework.common.Logger.logError;
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static java.lang.Thread.sleep;
+import static mobile.driverhandler.AndroidFactory.appiumDriver;
+import static mobile.utils.MobileUtils.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class DialogPage {
 
@@ -91,7 +89,7 @@ public class DialogPage {
   public MobileElement PM_DROPDOWN;
 
 
-  private final AndroidUtilities androidUtilities = new AndroidUtilities();
+  private final AndroidUtils androidUtils = new AndroidUtils();
 
 
   public void clickOnPickDate() {
@@ -188,7 +186,7 @@ public class DialogPage {
 
   public void setHoursOnTimePicker(int hours){
     clickMobileElement(TIME_HOUR);
-    final MobileElement hourElement = androidUtilities.getMobileElementWithAccessibilityId(String.valueOf(hours));
+    final MobileElement hourElement = MobileUtils.getMobileElementWithAccessibilityId(String.valueOf(hours));
     clickMobileElement(hourElement);
     assertEquals(hours, getHours());
     logInfo("Hours set on the clock successfully");
@@ -196,7 +194,7 @@ public class DialogPage {
 
   public void setMinutesOnTimePicker(int minutes){
     clickMobileElement(TIME_MINUTES);
-    final MobileElement minutesElement = androidUtilities.getMobileElementWithAccessibilityId(String.valueOf(minutes));
+    final MobileElement minutesElement = MobileUtils.getMobileElementWithAccessibilityId(String.valueOf(minutes));
     clickMobileElement(minutesElement);
     assertEquals(minutes, getMinutes());
     logInfo("Minutes set on the clock successfully");

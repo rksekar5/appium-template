@@ -1,27 +1,20 @@
 package mobile.androidapp.apidemo;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
-import static java.lang.Thread.sleep;
-import static org.testng.Assert.assertEquals;
-
 import lombok.SneakyThrows;
-import mobile.androidapp.apidemos.pageobjects.ControlsPage;
-import mobile.androidapp.apidemos.pageobjects.DateWidgetPage;
-import mobile.androidapp.apidemos.pageobjects.DependenciesPage;
-import mobile.androidapp.apidemos.pageobjects.DialogPage;
-import mobile.androidapp.apidemos.pageobjects.DragAndDropPage;
-import mobile.androidapp.apidemos.pageobjects.HomePage;
-import mobile.androidapp.apidemos.pageobjects.LightThemePage;
-import mobile.androidapp.apidemos.pageobjects.PreferencesPage;
-import mobile.androidapp.apidemos.pageobjects.ViewsPage;
+import mobile.androidapp.apidemos.pageobjects.*;
 import mobile.androidapp.common.AndroidBaseTest;
-import mobile.androidapp.common.AndroidUtilities;
 import mobile.androidapp.common.TestData;
+import mobile.utils.AndroidUtils;
+import mobile.utils.MobileUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.model.SeverityLevel;
+
+import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static java.lang.Thread.sleep;
+import static org.testng.Assert.assertEquals;
 
 public class ApiDemoTestAndroid extends AndroidBaseTest {
 
@@ -35,7 +28,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   private DateWidgetPage dateWidgetPage;
   private DialogPage dialogPage;
 
-  private AndroidUtilities androidUtilities;
+  private AndroidUtils androidUtils;
 
   @BeforeMethod
   public void setup() {
@@ -49,7 +42,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     dateWidgetPage = new DateWidgetPage();
     dialogPage = new DialogPage();
 
-    androidUtilities = new AndroidUtilities();
+    androidUtils = new AndroidUtils();
   }
 
   @Test(dataProvider = "InputData", dataProviderClass = TestData.class)
@@ -102,7 +95,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     lightThemePage.turnOffStar();
     lightThemePage.turnOnStar();
 
-    androidUtilities.hideAndroidKeyboard();
+    androidUtils.hideAndroidKeyboard();
 
     lightThemePage.turnOnToggle1();
     lightThemePage.verifyToggle2IsTurnedOff();
@@ -110,7 +103,7 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     lightThemePage.selectSpinnerDropdown();
     lightThemePage.selectPlanetFromList("Venus");
 
-    androidUtilities.scrollToText("(And all inside of a ScrollView!)");
+    androidUtils.scrollToText("(And all inside of a ScrollView!)");
   }
 
   @SneakyThrows
@@ -118,9 +111,9 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Severity(SeverityLevel.MINOR)
   @Description("This is a sample test to switch screen orientation")
   public void changeScreenOrientationTest() {
-    androidUtilities.switchScreenToLandscape();
+    MobileUtils.switchScreenToLandscape();
     sleep(2000);
-    androidUtilities.switchScreenToPortrait();
+    MobileUtils.switchScreenToPortrait();
     sleep(2000);
   }
 
@@ -128,8 +121,8 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Description("This is a sample test to get and set geo location for the device")
   public void deviceLocationTest(){
-    androidUtilities.getDeviceLocation();
-    androidUtilities.setDeviceLocation(49, 123, 10);
+    MobileUtils.getDeviceLocation();
+    MobileUtils.setDeviceLocation(49, 123, 10);
   }
 
   @SneakyThrows
@@ -143,12 +136,12 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
 
     controlsPage.clickLightTheme();
 
-    androidUtilities.hideAndroidKeyboard();
+    androidUtils.hideAndroidKeyboard();
 
-    androidUtilities.swipeDown();
+    MobileUtils.swipeDown();
     sleep(2000);
 
-    androidUtilities.swipeUp();
+    MobileUtils.swipeUp();
     sleep(2000);
   }
 

@@ -1,12 +1,6 @@
 package mobile.browser.common;
 
-import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
-import static mobile.browser.common.WebDriverHolder.getDriver;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.net.MalformedURLException;
-import java.net.URL;
-import javax.validation.constraints.NotNull;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +13,13 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import javax.validation.constraints.NotNull;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
+import static mobile.browser.common.WebDriverHolder.getDriver;
 
 public class BrowserFactory {
 
