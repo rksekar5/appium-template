@@ -42,6 +42,7 @@ public class IosFactory extends AppFactory {
     capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
     capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
     capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+    capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
     capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
     capabilities.setCapability("xcodeSigningId", "iPhone Developer");
     capabilities.setCapability("useNewWDA", false);

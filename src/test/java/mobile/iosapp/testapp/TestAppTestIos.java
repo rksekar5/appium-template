@@ -16,10 +16,6 @@ public class TestAppTestIos extends IosBaseTest {
   @SneakyThrows
   @BeforeMethod
   public void setup() {
-
-    appiumDriver = iosCapabilities("ios_demo_app");
-    appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     homePage = new HomePage();
   }
 
