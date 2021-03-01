@@ -259,21 +259,6 @@ public class MobileUtils {
     return random.nextInt(max - min + 1) + min;
   }
 
-  /**
-   * Check If the expected text is present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static boolean isTextPresent(MobileElement mobileElement, String text) {
-    try {
-      return getTextFromMobileElement(mobileElement).contains(text);
-    } catch (TimeoutException var3) {
-      Logger.logError(String.format("The Text %s is not present", text));
-      var3.getCause();
-      return false;
-    }
-  }
 
   /**
    * Check If the expected text is NOT present
@@ -283,21 +268,6 @@ public class MobileUtils {
    */
   public static boolean isTextNotPresent(MobileElement mobileElement, String text) {
     return !isTextPresent(mobileElement, text);
-  }
-
-  /**
-   * Verify If the text is present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static void verifyTextPresent(MobileElement mobileElement, String text) {
-    boolean textPresent = isTextPresent(mobileElement, text);
-    if (textPresent) {
-      Logger.logInfo(String.format("Text: '%s' is displayed as expected", text));
-    } else {
-      Logger.logError(String.format("Text '%s' is not displayed", text));
-    }
   }
 
   /**

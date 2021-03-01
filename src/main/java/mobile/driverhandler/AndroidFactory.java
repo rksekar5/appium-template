@@ -13,7 +13,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -61,10 +60,9 @@ public class AndroidFactory extends AppFactory {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
       }
-
-            if(device.contains("emulator")){
-              capabilities.setCapability("avd", "Pixel 4 API 30");
-            }
+//            if(device.contains("emulator")){
+//              capabilities.setCapability("avd", "Pixel 4 XL API 28");
+//            }
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
