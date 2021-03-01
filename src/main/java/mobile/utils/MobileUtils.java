@@ -261,21 +261,6 @@ public class MobileUtils {
 
 
   /**
-   * Verify If the text is NOT present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static void verifyTextNotPresent(MobileElement mobileElement, String text) {
-    boolean textNotPresent = isTextNotPresent(mobileElement, text);
-    if (!textNotPresent) {
-      Logger.logInfo(String.format("Text: '%s' is still displayed", text));
-    } else {
-      Logger.logError(String.format("Text '%s' is not displayed as expected ", text));
-    }
-  }
-
-  /**
    * Assert If the text is present
    *
    * @param mobileElement
