@@ -261,16 +261,6 @@ public class MobileUtils {
 
 
   /**
-   * Check If the expected text is NOT present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static boolean isTextNotPresent(MobileElement mobileElement, String text) {
-    return !isTextPresent(mobileElement, text);
-  }
-
-  /**
    * Verify If the text is NOT present
    *
    * @param mobileElement
