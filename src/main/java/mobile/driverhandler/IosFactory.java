@@ -26,6 +26,9 @@ public class IosFactory extends AppFactory {
      *     capabilities.setCapability("bundleId", "com.volkswagen.oneapp.alpha"); UDID - connect the
      *     device and run xcrun xctrace or instruments -s device
      *     capabilities.setCapability("UDID","00008030-000C353A0C3A802E");
+     *     Provide the gitlab url where the app is present and it will pick automatically
+     *     capabilities.setCapability(MobileCapabilityType.APP, "https://git.diconium.com/diconium/testmgmt/appium-template/-/blob/development/app/TestApp.app.zip");
+     *     capabilities.setCapability("app","https://github.com/appium/appium/blob/master/sample-code/apps/TestApp.app.zip?raw=true");
      */
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
