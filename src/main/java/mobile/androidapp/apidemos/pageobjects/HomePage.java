@@ -1,5 +1,6 @@
 package mobile.androidapp.apidemos.pageobjects;
 
+import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -22,9 +23,11 @@ public class HomePage {
 
   public void clickOnPreference() {
     clickMobileElement(PREFERENCE);
+    Logger.logInfo("Preference has been clicked");
   }
 
   public void clickOnView() {
     clickMobileElement(VIEW);
+    Logger.logInfo("View has been clicked");
   }
 }

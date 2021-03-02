@@ -206,14 +206,4 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     dialogPage.clickCancelOnTimePicker();
   }
 
-  // Create tests for the following
-  // Views -> Date widget -> Inline (long press and move) --> drag and drop test
-  // Content -> Storage -> External Storage (tap and check enable or disable)
-
-  // app -> Alert dialogs (Alert handling)
-  // app -> Menu -> Inflate (Inflate and deflate context menu)
-  // app -> Alarm -> Alarm controller (Capture Toast message)
-
-  // Push notification scenario
-
 }

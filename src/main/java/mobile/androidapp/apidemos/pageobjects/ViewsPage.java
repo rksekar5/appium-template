@@ -1,5 +1,6 @@
 package mobile.androidapp.apidemos.pageobjects;
 
+import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -28,13 +29,16 @@ public class ViewsPage {
 
   public void clickOnDragAndDrop() {
     clickMobileElement(DRAG_AND_DROP);
+    Logger.logInfo("Clicked on drag and drop");
   }
 
   public void clickOnControls() {
     clickMobileElement(CONTROLS);
+    Logger.logInfo("Clicked on controls");
   }
 
   public void clickOnDateWidgets() {
     clickMobileElement(DATE_WIDGETS);
+    Logger.logInfo("Clicked on date widgets");
   }
 }

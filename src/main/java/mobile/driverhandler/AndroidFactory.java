@@ -47,12 +47,12 @@ public class AndroidFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10");
       capabilities.setCapability("avd", "HUAWEI P30");
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-     // capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "chrome");
+      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "chrome");
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-//      capabilities.setCapability(
-//          MobileCapabilityType.APP, "/tmp/app/" + readValueFromMobileConfigFile(appName));
+      capabilities.setCapability(
+          MobileCapabilityType.APP, "/tmp/app/" + readValueFromMobileConfigFile(appName));
       appiumDriver = new AndroidDriver<>(new URL(HUB), capabilities);
     } else {
       if (!device.contains("emulator")) {

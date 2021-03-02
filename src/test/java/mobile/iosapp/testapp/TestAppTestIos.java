@@ -1,5 +1,6 @@
 package mobile.iosapp.testapp;
 
+import com.diconium.qa.testautomationframework.common.Logger;
 import lombok.SneakyThrows;
 import mobile.iosapp.common.IosBaseTest;
 import mobile.iosapp.test_app.page_objects.HomePage;
@@ -20,31 +21,23 @@ public class TestAppTestIos extends IosBaseTest {
   @Test
   public void testSendKeysToInput() {
 
-    // Check that it doesn"t have a value
     String value = homePage.getTextFieldValue();
     Assert.assertNull(value);
 
-    // Send keys to that input
     homePage.enterValueInTextField("Hello World!");
 
-    // Check that the input has new value
     value = homePage.getTextFieldValue();
     Assert.assertEquals(value, "Hello World!");
+    Logger.logInfo("The entered value is : " +value);
   }
 
   @Test
   public void testOpenAndCloseAlert() {
 
-    // Find Button element and click on it
     homePage.clickOnShowAlertButton();
-
-    // Check the text
     String alertTitle = homePage.getTitleFromAlertBox();
     Assert.assertEquals(alertTitle, "Cool title");
-
-    // Dismiss the alert
     homePage.clickOnOkButtonOnAlert();
-
     homePage.clickOnShowAlertButton();
     homePage.clickOnCancelButtonOnAlert();
   }

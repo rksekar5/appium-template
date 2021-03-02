@@ -32,19 +32,22 @@ public class DependenciesPage {
 
   public void clickWifiCheckbox() {
     clickMobileElement(WIFI_CHECK_BOX);
+    logInfo("WIFI checkbox has been clicked");
   }
 
   public void clickWifiSettingsOption() {
     clickMobileElement(WIFI_SETTINGS_OPTIONS);
+    logInfo("WIFI settings option has been clicked");
   }
 
   public void enterInputInWifiSettings(String input) {
     sendKeysToMobileElement(WIFI_SETTINS_INPUT_FIELD, input);
+    logInfo("WIFI settings input field has been clicked");
   }
 
   public void clickOnOkButtonOnWifiSettings() {
     BUTTONS.get(1).click();
-    logInfo("Ok button has been clicked on successfully");
+    logInfo("Ok button has been clicked successfully");
   }
 
   public void clickOnCancelButtonOnWifiSettings() {
