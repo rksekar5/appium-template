@@ -13,7 +13,7 @@
   "ios_demo_app":"TestApp.app.zip",
 
   "ios_real_device":"iPhone 11 Pro Max",
-  "ios_platform_version":"14.2",
+  "ios_real_platform_version":"14.2",
   "ios_demo_app_ipa":"WeConnect.ipa"
 
 
