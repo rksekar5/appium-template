@@ -1,11 +1,4 @@
 Common Tools :
-iOS :
-Android:
-e.x sample bash_profile
-Project Setup:
-
-
-Common Tools :
 
 Install Intellij community edition  - https://www.jetbrains.com/idea/download/#section=mac
 Install JDK 8 - https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
@@ -44,7 +37,6 @@ export PATH=$PATH:$M2_HOME/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
 export ANDROID_HOME=/Users/karupsek/Library/Android/sdk
-# Adding platform-tools to PATH
 export PATH=/usr/local/Caskroom/android-sdk/4333796$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export ANDROID_AVD_HOME=~/.android/avd
