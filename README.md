@@ -33,11 +33,11 @@
 
 
 e.x sample bash_profile
-- export M2_HOME=/Users/karupsek/apache-maven-3.6.3
+- export M2_HOME=/Users/{{userName}}/apache-maven-3.6.3
 - export PATH=$PATH:$M2_HOME/bin
 - export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home
 - export PATH=$JAVA_HOME/bin:$PATH
-- export ANDROID_HOME=/Users/karupsek/Library/Android/sdk
+- export ANDROID_HOME=/Users/{{userName}}/Library/Android/sdk
 - export PATH=/usr/local/Caskroom/android-sdk/4333796$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 - export ANDROID_SDK_ROOT=~/Library/Android/sdk
 - export ANDROID_AVD_HOME=~/.android/avd
