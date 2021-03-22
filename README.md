@@ -1,35 +1,58 @@
 Common Tools :
---------------
+iOS :
+Android:
+e.x sample bash_profile
+Project Setup:
 
-- Install Intellij community edition  - https://www.jetbrains.com/idea/download/#section=mac
-- Install JDK 8 - https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
-- Solve certificate issue - SSL Decryption Problems and Solutions
-- Set JAVA_HOME and PATH
-- Install node and npm - https://nodejs.org/en/download/
-- Install appium - npm install -g appium
-- Install appium desktop - https://appium.io/downloads.html
 
+Common Tools :
+
+Install Intellij community edition  - https://www.jetbrains.com/idea/download/#section=mac
+Install JDK 8 - https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
+Solve certificate issue - SSL Decryption Problems and Solutions
+Set JAVA_HOME and PATH - e.xsamplebash_profile
+Install node and npm - https://nodejs.org/en/download/
+Install appium - Appium Setup
+Install appium desktop - https://appium.io/downloads.html
 
 
 iOS :
-------
 
-- Install HomeBrew for MAC - https://brew.sh/ 
-- Create Apple ID with diconium email
-- Download XCode from AppStore
-- Install XCode command line tools ( Open terminal and run xcode-select --install )
-- Add the created Apple ID in XCode ( XCode - Preferences - Account - Add Apple ID )
-- Install Carthage - https://github.com/Carthage/Carthage#installing-carthage ( brew install Carthage )
-- Open WebDriverAgent.xcodeproj in Xcode
-- For WebDriverAgentLib and WebDriverAgentRunner targets, go to general tab and select "Automatically manage signing", and then select your Development Team
+
+Install HomeBrew for MAC - https://brew.sh/ 
+Create Apple ID with diconium email - https://appleid.apple.com/account
+Download XCode from AppStore
+Install XCode command line tools ( Open terminal and run xcode-select --install )
+Add the created Apple ID in XCode ( XCode - Preferences - Account - Add Apple ID )
+Install Carthage - https://github.com/Carthage/Carthage#installing-carthage ( brew install Carthage )
+Open WebDriverAgent.xcodeproj in Xcode
+For WebDriverAgentLib and WebDriverAgentRunner targets, go to general tab and select "Automatically manage signing", and then select your Development Team
+
 
 
 
 Android:
---------
 
-- Install Android Studio - https://developer.android.com/studio
-- Open SDK Manager and download Android 9 (10 will be default)
-- Open AVD Manager and create a virtual device with the downloaded API
-- Set ANDROID_HOME, PATH, ANDROID_SDK_ROOT, ANDROID_AVD_HOME path on the bash_profile
 
+Setup Android Emulator
+Set ANDROID_HOME, PATH, ANDROID_SDK_ROOT, ANDROID_AVD_HOME path on the bash_profile
+
+
+e.x sample bash_profile
+export M2_HOME=/Users/karupsek/apache-maven-3.6.3
+export PATH=$PATH:$M2_HOME/bin
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+export ANDROID_HOME=/Users/karupsek/Library/Android/sdk
+# Adding platform-tools to PATH
+export PATH=/usr/local/Caskroom/android-sdk/4333796$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
+export ANDROID_SDK_ROOT=~/Library/Android/sdk
+export ANDROID_AVD_HOME=~/.android/avd
+export PATH=~/Documents/flutter/bin:$PATH
+export PATH="$PATH":"$HOME/Documents/flutter/.pub-cache/bin"+
+
+
+Project Setup:
+
+
+Clone the project https://git.diconium.com/diconium/testmgmt/appium-template
