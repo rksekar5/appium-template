@@ -9,40 +9,46 @@ import mobile.utils.Waiters;
 import org.openqa.selenium.support.PageFactory;
 
 import static mobile.driverhandler.AppFactory.getAppiumDriver;
-import static mobile.utils.MobileUtils.clickMobileElement;
 
-public class SL_ProductsPage {
+public class ProductsPage {
 
-    public SL_ProductsPage() {
+    public ProductsPage() {
         PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
     }
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"test-Item title\"])[1]")
-    public MobileElement SL_BACK_PACK_LINK;
+    public MobileElement FIRST_AVAILABLE_ITEM;
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"test-Price\"])[1]")
-    public MobileElement SL_BACK_PACK_PRICE;
+    public MobileElement FIRST_AVAILABLE_ITEM_PRICE;
     @iOSXCUITFindBy(accessibility = "test-ADD TO CART")
-    public MobileElement SL_ADD_TO_CART_BUTTON;
+    public MobileElement ADD_TO_CART_BUTTON;
     @iOSXCUITFindBy(accessibility = "test-REMOVE")
-    public MobileElement SL_REMOVE_BUTTON;
+    public MobileElement REMOVE_BUTTON;
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"1\"])[4]")
-    public MobileElement SL_CART;
+    public MobileElement CART;
 
 
     public void verifyTheElementsOnTheProductsPage() {
-        Waiters.waitUntilMobileElementVisible(SL_BACK_PACK_LINK);
-        Waiters.waitUntilMobileElementVisible(SL_BACK_PACK_PRICE);
-        SL_BACK_PACK_LINK.click();
+        Waiters.waitUntilMobileElementVisible(FIRST_AVAILABLE_ITEM);
+        Waiters.waitUntilMobileElementVisible(FIRST_AVAILABLE_ITEM_PRICE);
+    }
+
+    public void clickOnTheFirstAvailableItem() {
+        FIRST_AVAILABLE_ITEM.click();
+        Logger.logInfo("Clicked on the first available item on the page");
+    }
+
+    public void addTheItemToTheSHoppingCart(){
         MobileUtils.scrollFromBottomToUpWithJavascriptExecutor();
-        Waiters.waitUntilMobileElementVisible(SL_ADD_TO_CART_BUTTON);
-        SL_ADD_TO_CART_BUTTON.click();
-        Logger.logInfo("The backpack has been added to the shopping cart");
-        Waiters.waitUntilMobileElementVisible(SL_REMOVE_BUTTON);
+        Waiters.waitUntilMobileElementVisible(ADD_TO_CART_BUTTON);
+        ADD_TO_CART_BUTTON.click();
+        Logger.logInfo("The item has been added to the shopping cart");
+        Waiters.waitUntilMobileElementVisible(REMOVE_BUTTON);
     }
 
     public void clickOnTheShoppingCartMenu() {
         MobileUtils.scrollFromUpToBottomWithJavascriptExecutor();
-        SL_CART.click();
+        CART.click();
         Logger.logInfo("Clicked on the shopping cart menu and moving to Shopping cart page");
     }
 }

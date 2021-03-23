@@ -3,7 +3,8 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-  <class name="mobile.androidapp.apidemo.ApiDemoTestAndroid"/>
+<!--  <class name="mobile.androidapp.androidnativedemo.ApiDemoTestAndroid"/>-->
+      <class name="mobile.androidapp.androidnativedemo.AndroidDemoTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

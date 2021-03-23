@@ -1,4 +1,4 @@
-package mobile.androidapp.apidemo;
+package mobile.androidapp.androidnativedemo;
 
 import lombok.SneakyThrows;
 import mobile.androidapp.apidemos.pageobjects.*;
@@ -16,6 +16,9 @@ import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
 import static org.testng.Assert.assertEquals;
 
+/**
+ * The API demo tests can only be executed for Android platform version 8 and 9
+ */
 public class ApiDemoTestAndroid extends AndroidBaseTest {
 
   private HomePage homePage;

@@ -1,29 +1,28 @@
-package mobile.iosapp.test_app.page_objects;
+package mobile.androidapp.sauceLabs.pageobjects;
 
 import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import mobile.utils.IosUtils;
-import mobile.utils.MobileUtils;
+import mobile.utils.AndroidUtils;
 import mobile.utils.Waiters;
 import org.openqa.selenium.support.PageFactory;
 
 import static mobile.driverhandler.AppFactory.getAppiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
-import static mobile.utils.MobileUtils.getMobileAttributeValue;
 
-public class SL_LoginPage {
-
-    public SL_LoginPage() {
+public class LoginPage {
+    public LoginPage() {
         PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
     }
 
-    @iOSXCUITFindBy(accessibility = "test-Username")
+    private final AndroidUtils androidUtils = new AndroidUtils();
+
+    @AndroidFindBy(accessibility = "test-Username")
     public MobileElement USERNAME_TEXTBOX;
-    @iOSXCUITFindBy(accessibility = "test-Password")
+    @AndroidFindBy(accessibility = "test-Password")
     public MobileElement PASSWORD_TEXTBOX;
-    @iOSXCUITFindBy(accessibility = "test-LOGIN")
+    @AndroidFindBy(accessibility = "test-LOGIN")
     public MobileElement LOGIN_BUTTON;
 
     public void enterUserName(String userName) {

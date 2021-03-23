@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import mobile.driverhandler.AndroidFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -22,7 +21,7 @@ public class AndroidBaseTest extends AndroidFactory {
   protected void setUpAndroidApp(ITestContext result) {
     service = startServer();
 
-    appiumDriver = androidCapabilities("android_demo_app");
+    appiumDriver = androidCapabilities("SL_android_demo_app");
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
@@ -34,8 +33,8 @@ public class AndroidBaseTest extends AndroidFactory {
   }
 
   private void removeAppFromDevice() {
-    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("android_package_name")))
+    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("SL_android_package_name")))
       log.debug("Uninstalling the app as part of cleanup");
-    appiumDriver.removeApp(readValueFromMobileConfigFile("android_package_name"));
+    appiumDriver.removeApp(readValueFromMobileConfigFile("SL_android_package_name"));
   }
 }

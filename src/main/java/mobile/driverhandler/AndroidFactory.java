@@ -65,6 +65,8 @@ public class AndroidFactory extends AppFactory {
 //            }
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+      capabilities.setCapability("appPackage", "com.swaglabsmobileapp");
+      capabilities.setCapability("appActivity", "com.swaglabsmobileapp.SplashActivity");
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);

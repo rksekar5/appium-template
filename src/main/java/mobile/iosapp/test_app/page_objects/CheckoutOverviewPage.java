@@ -10,28 +10,28 @@ import org.openqa.selenium.support.PageFactory;
 
 import static mobile.driverhandler.AppFactory.getAppiumDriver;
 
-public class SL_CheckoutOverviewPage {
-    public SL_CheckoutOverviewPage() {
+public class CheckoutOverviewPage {
+    public CheckoutOverviewPage() {
         PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
     }
 
     @iOSXCUITFindBy(accessibility = "Payment Information:")
-    public MobileElement SL_PAYMENT_INFO;
+    public MobileElement PAYMENT_INFO;
     @iOSXCUITFindBy(accessibility = "test-FINISH")
-    public MobileElement SL_FINISH_PAYMENT_BUTTON;
+    public MobileElement FINISH_PAYMENT_BUTTON;
     @iOSXCUITFindBy(accessibility = "THANK YOU FOR YOU ORDER")
-    public MobileElement SL_THANK_YOU_ORDER_TEXT;
+    public MobileElement THANK_YOU_ORDER_TEXT;
 
 
     public void clickOnTheFinishPaymentButton() {
-        Waiters.waitUntilMobileElementVisible(SL_PAYMENT_INFO);
+        Waiters.waitUntilMobileElementVisible(PAYMENT_INFO);
         MobileUtils.scrollFromBottomToUpWithJavascriptExecutor();
-        SL_FINISH_PAYMENT_BUTTON.click();
+        FINISH_PAYMENT_BUTTON.click();
         Logger.logInfo("Clicked on the finish payment button");
     }
 
     public void verifyIfTheOrderIsSuccessful() {
-        Waiters.waitUntilMobileElementVisible(SL_THANK_YOU_ORDER_TEXT);
+        Waiters.waitUntilMobileElementVisible(THANK_YOU_ORDER_TEXT);
         Logger.logInfo("Order is placed successfully");
     }
 

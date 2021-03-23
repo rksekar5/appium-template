@@ -5,9 +5,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import mobile.driverhandler.IosFactory;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
