@@ -34,12 +34,6 @@ public class SL_TestAppIos extends IosBaseTest {
         sl_loginPage.enterUserName("standard_user");
         sl_loginPage.enterPassword("secret_sauce");
         sl_loginPage.clickOnLoginButton();
-//        sl_productsPage.verifyTheElementsOnTheProductsPage();
-//        sl_productsPage.clickOnTheShoppingCartMenu();
-//        sl_shoppingCartPage.clickOnTheCheckoutButton();
-//        sl_shoppingCartPage.enterUserDetails("diconium", "QA team", "10178");
-//        sl_checkoutOverviewPage.clickOnTheFinishPaymentButton();
-//        sl_checkoutOverviewPage.verifyIfTheOrderIsSuccessful();
     }
 
     @Test(priority = 2)
