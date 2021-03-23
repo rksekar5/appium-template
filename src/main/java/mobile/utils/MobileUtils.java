@@ -749,7 +749,7 @@ public class MobileUtils {
   }
 
   /** Swipe from top to bottom */
-  public void swipeFromUpToBottomWithJavascriptExecutor() {
+  public static void swipeFromUpToBottomWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
@@ -762,7 +762,7 @@ public class MobileUtils {
   }
 
   /** Swipe from bottom to top */
-  public void swipeFromBottomToUpWithJavascriptExecutor() {
+  public static void swipeFromBottomToUpWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
@@ -775,7 +775,7 @@ public class MobileUtils {
   }
 
   /** Scroll from top to bottom */
-  public void scrollFromUpToBottomWithJavascriptExecutor() {
+  public static void scrollFromUpToBottomWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
@@ -788,7 +788,7 @@ public class MobileUtils {
   }
 
   /** Scroll from bottom to top */
-  public void scrollFromBottomToUpWithJavascriptExecutor() {
+  public static void scrollFromBottomToUpWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();

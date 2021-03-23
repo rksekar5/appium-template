@@ -22,7 +22,7 @@ public class IosBaseTest extends IosFactory {
   protected void setUpIosApp(ITestContext result) {
     service = startServer();
 
-    appiumDriver = iosCapabilities("ios_demo_app");
+    appiumDriver = iosCapabilities("SL_ios_demo_app");
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
@@ -35,8 +35,8 @@ public class IosBaseTest extends IosFactory {
     }
 
   private void removeAppFromDevice() {
-    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("ios_demo_app")))
+    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("SL_ios_demo_app")))
       log.debug("Uninstalling the app as part of cleanup");
-    appiumDriver.removeApp(readValueFromMobileConfigFile("ios_demo_app"));
+    appiumDriver.removeApp(readValueFromMobileConfigFile("SL_ios_demo_app"));
   }
 }

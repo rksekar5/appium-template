@@ -9,12 +9,7 @@
   "flutter_package_name":"com.example.flutter_test_app",
 
   "ios_device":"iPhone 12",
-  "ios_platform_version":"14.2",
+  "ios_platform_version":"14.4",
   "ios_demo_app":"TestApp.app.zip",
-
-  "ios_real_device":"iPhone 11 Pro Max",
-  "ios_real_platform_version":"14.2",
-  "ios_demo_app_ipa":"WeConnect.ipa"
-
-
+  "SL_ios_demo_app":"iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip"
 }
