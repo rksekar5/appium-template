@@ -259,61 +259,6 @@ public class MobileUtils {
     return random.nextInt(max - min + 1) + min;
   }
 
-  /**
-   * Check If the expected text is present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static boolean isTextPresent(MobileElement mobileElement, String text) {
-    try {
-      return getTextFromMobileElement(mobileElement).contains(text);
-    } catch (TimeoutException var3) {
-      Logger.logError(String.format("The Text %s is not present", text));
-      var3.getCause();
-      return false;
-    }
-  }
-
-  /**
-   * Check If the expected text is NOT present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static boolean isTextNotPresent(MobileElement mobileElement, String text) {
-    return !isTextPresent(mobileElement, text);
-  }
-
-  /**
-   * Verify If the text is present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static void verifyTextPresent(MobileElement mobileElement, String text) {
-    boolean textPresent = isTextPresent(mobileElement, text);
-    if (textPresent) {
-      Logger.logInfo(String.format("Text: '%s' is displayed as expected", text));
-    } else {
-      Logger.logError(String.format("Text '%s' is not displayed", text));
-    }
-  }
-
-  /**
-   * Verify If the text is NOT present
-   *
-   * @param mobileElement
-   * @param text
-   */
-  public static void verifyTextNotPresent(MobileElement mobileElement, String text) {
-    boolean textNotPresent = isTextNotPresent(mobileElement, text);
-    if (!textNotPresent) {
-      Logger.logInfo(String.format("Text: '%s' is still displayed", text));
-    } else {
-      Logger.logError(String.format("Text '%s' is not displayed as expected ", text));
-    }
-  }
 
   /**
    * Assert If the text is present
@@ -804,7 +749,7 @@ public class MobileUtils {
   }
 
   /** Swipe from top to bottom */
-  public void swipeFromUpToBottomWithJavascriptExecutor() {
+  public static void swipeFromUpToBottomWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
@@ -817,7 +762,7 @@ public class MobileUtils {
   }
 
   /** Swipe from bottom to top */
-  public void swipeFromBottomToUpWithJavascriptExecutor() {
+  public static void swipeFromBottomToUpWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
@@ -830,7 +775,7 @@ public class MobileUtils {
   }
 
   /** Scroll from top to bottom */
-  public void scrollFromUpToBottomWithJavascriptExecutor() {
+  public static void scrollFromUpToBottomWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();
@@ -843,7 +788,7 @@ public class MobileUtils {
   }
 
   /** Scroll from bottom to top */
-  public void scrollFromBottomToUpWithJavascriptExecutor() {
+  public static void scrollFromBottomToUpWithJavascriptExecutor() {
     try {
       JavascriptExecutor js = getAppiumDriver();
       HashMap<String, String> scrollObject = new HashMap<>();

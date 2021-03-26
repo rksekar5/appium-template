@@ -25,8 +25,8 @@ public class FlutterDemoTest extends FlutterBaseTest {
   @Test
   public void flutterDemoTest() {
 
-    landingPage.clickOnStumilateHostCard();
-    sleep(5000);
+    landingPage.clickOnStimulateHostCard();
+    sleep(2000);
 
     logInfo("Current context of the app is " + appiumDriver.getContext());
   }

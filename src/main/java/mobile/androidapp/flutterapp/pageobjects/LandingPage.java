@@ -1,5 +1,6 @@
 package mobile.androidapp.flutterapp.pageobjects;
 
+import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -29,7 +30,8 @@ public class LandingPage {
 
   private AndroidUtils androidUtils = new AndroidUtils();
 
-  public void clickOnStumilateHostCard() {
+  public void clickOnStimulateHostCard() {
     MobileUtils.clickMobileElement(STIMULATE_HOST_CARD_BUTTON);
+    Logger.logInfo("Clicked on stimulate host card button");
   }
 }

@@ -1,14 +1,17 @@
 {
   "android_device":"emulator-5554",
-  "android_platform_version":"9.0",
+  "android_platform_version":"10.0",
 
   "android_demo_app":"ApiDemos-debug.apk",
   "android_package_name":"io.appium.android.apis",
+  "SL_android_demo_app":"Android.SauceLabs.Mobile.Sample.app.2.7.1.apk",
+  "SL_android_package_name":"com.swaglabsmobileapp",
 
   "flutter_demo_app":"app-release.apk",
   "flutter_package_name":"com.example.flutter_test_app",
 
-  "ios_device":"iPhone 11 Pro Max",
-  "ios_platform_version":"14.2",
-  "ios_demo_app":"TestApp.app.zip"
+  "ios_device":"iPhone 12",
+  "ios_platform_version":"14.4",
+  "ios_demo_app":"TestApp.app.zip",
+  "SL_ios_demo_app":"iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip"
 }

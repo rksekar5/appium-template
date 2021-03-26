@@ -1,5 +1,6 @@
 package mobile.androidapp.apidemos.pageobjects;
 
+import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -19,5 +20,6 @@ public class PreferencesPage {
 
   public void clickOnDependencies() {
     clickMobileElement(DEPENDENCIES);
+    Logger.logInfo("Dependencies has been clicked");
   }
 }

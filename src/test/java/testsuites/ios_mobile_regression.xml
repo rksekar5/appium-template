@@ -3,7 +3,8 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-  <class name="mobile.iosapp.testapp.TestAppTestIos"/>
+<!--  <class name="mobile.iosapp.testapp.TestAppTestIos"/>-->
+      <class name="mobile.iosapp.testapp.SL_TestAppIos"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

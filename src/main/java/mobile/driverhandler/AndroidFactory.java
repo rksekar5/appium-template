@@ -13,7 +13,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -36,7 +35,6 @@ public class AndroidFactory extends AppFactory {
      * @param platformVersion
      * @param automationName
      * @return
-     * @throws MalformedURLException
      */
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
@@ -45,11 +43,14 @@ public class AndroidFactory extends AppFactory {
     String device = readValueFromMobileConfigFile("android_device");
     if (isRemote()) {
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "samsung_galaxy_s6_7.1.1");
-      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.1");
-      capabilities.setCapability("avd", "samsung_galaxy_s6_7.1.1");
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "HUAWEI P30");
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10");
+      capabilities.setCapability("avd", "HUAWEI P30");
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
       capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "chrome");
+      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
+      capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+      appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
       capabilities.setCapability(
           MobileCapabilityType.APP, "/tmp/app/" + readValueFromMobileConfigFile(appName));
       appiumDriver = new AndroidDriver<>(new URL(HUB), capabilities);
@@ -59,12 +60,13 @@ public class AndroidFactory extends AppFactory {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
       }
-
-      //      if(device.contains("emulator")){
-      //        capabilities.setCapability("avd", "Pixel_3a_API_30_x86");
-      //      }
+//            if(device.contains("emulator")){
+//              capabilities.setCapability("avd", "Pixel 4 XL API 28");
+//            }
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+      capabilities.setCapability("appPackage", "com.swaglabsmobileapp");
+      capabilities.setCapability("appActivity", "com.swaglabsmobileapp.SplashActivity");
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
