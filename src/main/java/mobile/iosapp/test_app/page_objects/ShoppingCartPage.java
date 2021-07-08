@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import mobile.common.Logger;
 import mobile.utils.MobileUtils;
 import mobile.utils.Waiters;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
 
 import static mobile.driverhandler.AppFactory.appiumDriver;
@@ -49,8 +50,10 @@ public class ShoppingCartPage {
     Logger.logInfo("User detail has been entered");
   }
 
+  /*getKeyboard().pressKey(Keys.ENTER) method has been used instead of hideKeyboard as this doesn't work now*/
   public void continueToTheCheckoutPage() {
-    appiumDriver.hideKeyboard();
+    appiumDriver.getKeyboard().pressKey(Keys.ENTER);
+    // appiumDriver.hideKeyboard();
     CART_CONTINUE_BUTTON.click();
     Logger.logInfo("Proceeding to the checkout page");
   }

@@ -6,9 +6,11 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.net.ServerSocket;
+
 import static mobile.common.ConfigReader.getValueFromJsonConfigFile;
 // import static
 // com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
