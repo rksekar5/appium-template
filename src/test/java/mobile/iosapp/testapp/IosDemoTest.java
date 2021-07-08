@@ -13,53 +13,51 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 public class IosDemoTest extends IosBaseTest {
 
-    private LoginPage loginPage;
-    private ProductsPage productsPage;
-    private ShoppingCartPage shoppingCartPage;
-    private CheckoutOverviewPage checkoutOverviewPage;
+  private LoginPage loginPage;
+  private ProductsPage productsPage;
+  private ShoppingCartPage shoppingCartPage;
+  private CheckoutOverviewPage checkoutOverviewPage;
 
-    @SneakyThrows
-    @BeforeMethod
-    public void setup() {
+  @SneakyThrows
+  @BeforeMethod
+  public void setup() {
 
-        loginPage = new LoginPage();
-        productsPage = new ProductsPage();
-        shoppingCartPage = new ShoppingCartPage();
-        checkoutOverviewPage = new CheckoutOverviewPage();
-    }
+    loginPage = new LoginPage();
+    productsPage = new ProductsPage();
+    shoppingCartPage = new ShoppingCartPage();
+    checkoutOverviewPage = new CheckoutOverviewPage();
+  }
 
-    @Test(priority = 1)
-    @SneakyThrows
-    @Severity(SeverityLevel.BLOCKER)
-    public void testLoginToTheSwagLabApp() {
+  @Test(priority = 1)
+  @SneakyThrows
+  @Severity(SeverityLevel.BLOCKER)
+  public void testLoginToTheSwagLabApp() {
 
-        loginPage.enterUserName("standard_user");
-        loginPage.enterPassword("secret_sauce");
-        loginPage.clickOnLoginButton();
-    }
+    loginPage.enterUserName("standard_user");
+    loginPage.enterPassword("secret_sauce");
+    loginPage.clickOnLoginButton();
+  }
 
-    @Test(priority = 2)
-    public void testAddingTheProductToCart(){
-        productsPage.verifyTheElementsOnTheProductsPage();
-        productsPage.clickOnTheFirstAvailableItem();
-        productsPage.addTheItemToTheSHoppingCart();
-        productsPage.clickOnTheShoppingCartMenu();
-    }
+  @Test(priority = 2)
+  public void testAddingTheProductToCart() {
+    productsPage.verifyTheElementsOnTheProductsPage();
+    productsPage.clickOnTheFirstAvailableItem();
+    productsPage.addTheItemToTheSHoppingCart();
+    productsPage.clickOnTheShoppingCartMenu();
+  }
 
-    @Test(priority = 3)
-    @Severity(SeverityLevel.NORMAL)
-    public void testEnteringTheUserDataForCheckout(){
-        shoppingCartPage.clickOnTheCheckoutButton();
-        shoppingCartPage.enterUserDetails("diconium", "QA team", "10178");
-        shoppingCartPage.continueToTheCheckoutPage();
-    }
+  @Test(priority = 3)
+  @Severity(SeverityLevel.NORMAL)
+  public void testEnteringTheUserDataForCheckout() {
+    shoppingCartPage.clickOnTheCheckoutButton();
+    shoppingCartPage.enterUserDetails("diconium", "QA team", "10178");
+    shoppingCartPage.continueToTheCheckoutPage();
+  }
 
-    @Test(priority = 4)
-    @Severity(SeverityLevel.MINOR)
-    public void testPaymentOnTheOverviewPage(){
-        checkoutOverviewPage.clickOnTheFinishPaymentButton();
-        checkoutOverviewPage.verifyIfTheOrderIsSuccessful();
-    }
-
-
+  @Test(priority = 4)
+  @Severity(SeverityLevel.MINOR)
+  public void testPaymentOnTheOverviewPage() {
+    checkoutOverviewPage.clickOnTheFinishPaymentButton();
+    checkoutOverviewPage.verifyIfTheOrderIsSuccessful();
+  }
 }

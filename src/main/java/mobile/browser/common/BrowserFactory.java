@@ -1,6 +1,7 @@
 package mobile.browser.common;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.SneakyThrows;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,8 +19,8 @@ import javax.validation.constraints.NotNull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
 import static mobile.browser.common.WebDriverHolder.getDriver;
+import static mobile.common.ConfigReader.getValueFromJsonConfigFile;
 
 public class BrowserFactory {
 
@@ -160,6 +161,7 @@ public class BrowserFactory {
     }
   }
 
+  @SneakyThrows
   private static String readHubDetailsFromConfigFile(@NotNull String propName) {
     return getValueFromJsonConfigFile("selenium_config.json", propName);
   }

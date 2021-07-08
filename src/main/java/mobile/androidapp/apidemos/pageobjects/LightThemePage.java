@@ -1,6 +1,5 @@
 package mobile.androidapp.apidemos.pageobjects;
 
-import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -9,8 +8,8 @@ import mobile.utils.AndroidUtils;
 import mobile.utils.MobileUtils;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
+import static mobile.common.Logger.logInfo;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.*;
 import static org.testng.Assert.assertEquals;
@@ -62,47 +61,47 @@ public class LightThemePage {
 
   public void sendTextToInputField(String text) {
     sendKeysToMobileElement(TEXT_FIELD, text);
-    Logger.logInfo("Text has been entered on the input field");
+    logInfo("Text has been entered on the input field");
   }
 
   public void checkOnCheckbox1() {
     MobileUtils.checkOnCheckbox(CHECKBOX_1);
-    Logger.logInfo("Checkbox 1 has been clicked");
+    logInfo("Checkbox 1 has been clicked");
   }
 
   public void uncheckCheckbox1() {
     MobileUtils.uncheckOnCheckbox(CHECKBOX_1);
-    Logger.logInfo("Checkbox 1 has been unchecked");
+    logInfo("Checkbox 1 has been unchecked");
   }
 
   public void checkOnCheckbox2() {
     MobileUtils.checkOnCheckbox(CHECKBOX_2);
-    Logger.logInfo("Checkbox 2 has been checked");
+    logInfo("Checkbox 2 has been checked");
   }
 
   public void selectRadioButton1() {
     MobileUtils.clickMobileElement(RADIO_BUTTON_1);
-    Logger.logInfo("Radio button 1 has been selected");
+    logInfo("Radio button 1 has been selected");
   }
 
   public void selectRadioButton2() {
     MobileUtils.clickMobileElement(RADIO_BUTTON_2);
-    Logger.logInfo("Radio button 1 has been selected");
+    logInfo("Radio button 1 has been selected");
   }
 
   public void turnOnStar() {
     MobileUtils.checkOnCheckbox(STAR_BUTTON);
-    Logger.logInfo("Star button has been turned on");
+    logInfo("Star button has been turned on");
   }
 
   public void turnOffStar() {
     MobileUtils.uncheckOnCheckbox(STAR_BUTTON);
-    Logger.logInfo("Star button has been turned off");
+    logInfo("Star button has been turned off");
   }
 
   public void turnOnToggle1() {
     MobileUtils.checkOnCheckbox(TOGGLE_1);
-    Logger.logInfo("Toggle 1 has been turned on");
+    logInfo("Toggle 1 has been turned on");
   }
 
   public void verifyToggle2IsTurnedOff() {
@@ -112,7 +111,7 @@ public class LightThemePage {
 
   public void selectSpinnerDropdown() {
     clickMobileElement(SPINNER_DROPDOWN);
-    Logger.logInfo("Spinner dropdown has been selected");
+    logInfo("Spinner dropdown has been selected");
   }
 
   @SneakyThrows

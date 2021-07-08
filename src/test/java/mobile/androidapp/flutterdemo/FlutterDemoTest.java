@@ -1,15 +1,15 @@
 package mobile.androidapp.flutterdemo;
 
-import com.diconium.qa.testautomationframework.common.RetryListener;
 import lombok.SneakyThrows;
 import mobile.androidapp.common.FlutterBaseTest;
 import mobile.androidapp.flutterapp.pageobjects.LandingPage;
+import mobile.common.RetryListener;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
+import static mobile.common.Logger.logInfo;
 
 @Listeners({RetryListener.class})
 public class FlutterDemoTest extends FlutterBaseTest {

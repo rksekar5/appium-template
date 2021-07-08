@@ -7,7 +7,6 @@ import org.testng.util.RetryAnalyzerCount;
 
 import static mobile.common.Constants.MAX_RETRY_COUNT;
 
-
 @Slf4j
 public class Retry extends RetryAnalyzerCount {
 

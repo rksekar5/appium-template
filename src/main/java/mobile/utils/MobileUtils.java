@@ -1,6 +1,5 @@
 package mobile.utils;
 
-import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
@@ -10,6 +9,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import lombok.extern.slf4j.Slf4j;
+import mobile.common.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
@@ -26,12 +26,12 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Random;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logError;
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.time.Duration.ofSeconds;
+import static mobile.common.Logger.logError;
+import static mobile.common.Logger.logInfo;
 import static mobile.driverhandler.AppFactory.getAppiumDriver;
 import static org.testng.Assert.*;
 
@@ -258,7 +258,6 @@ public class MobileUtils {
     Random random = new Random();
     return random.nextInt(max - min + 1) + min;
   }
-
 
   /**
    * Assert If the text is present

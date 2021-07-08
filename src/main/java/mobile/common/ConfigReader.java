@@ -14,7 +14,6 @@ import java.util.Properties;
 import static mobile.common.Constants.getConfigPath;
 import static mobile.common.Logger.logInfo;
 
-
 @Slf4j
 public class ConfigReader {
 
@@ -72,9 +71,7 @@ public class ConfigReader {
 
   private static File configFile(String fileName) throws ConfigurationException {
     final File configFile =
-        new File(
-            getConfigPath() + File.separatorChar,
-            FilenameUtils.getName(fileName));
+        new File(getConfigPath() + File.separatorChar, FilenameUtils.getName(fileName));
     log.debug("Config file: " + configFile);
     if (!configFile.canRead()) {
       throw new ConfigurationException(

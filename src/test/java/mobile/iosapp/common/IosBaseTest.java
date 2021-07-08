@@ -1,8 +1,8 @@
 package mobile.iosapp.common;
 
-import com.diconium.qa.testautomationframework.common.RetryListener;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import mobile.common.RetryListener;
 import mobile.driverhandler.IosFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -24,13 +24,13 @@ public class IosBaseTest extends IosFactory {
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
-    @SneakyThrows
-    @AfterClass(alwaysRun = true)
-    protected void tearDown() {
-        appiumDriver.closeApp();
-        removeAppFromDevice();
-        service.stop();
-    }
+  @SneakyThrows
+  @AfterClass(alwaysRun = true)
+  protected void tearDown() {
+    appiumDriver.closeApp();
+    removeAppFromDevice();
+    service.stop();
+  }
 
   private void removeAppFromDevice() {
     if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("SL_ios_demo_app")))

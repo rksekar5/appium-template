@@ -11,9 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.Objects;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logError;
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
+import static mobile.common.Logger.logError;
+import static mobile.common.Logger.logInfo;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.*;
 import static org.testng.Assert.assertEquals;

@@ -1,21 +1,20 @@
 {
-  "android_device":"emulator-5554",
+  "android_device":"Galaxy S10 Lite",
   "android_platform_version":"10.0",
-  "device_name": "HUAWEI P30",
-  "avd": "HUAWEI P30",
+  "device_name": "RF8NA1KRMMW",
+  "avd": "RF8NA1KRMMW",
 
   "android_demo_app":"ApiDemos-debug.apk",
   "android_package_name":"io.appium.android.apis",
   "SL_android_demo_app":"Android.SauceLabs.Mobile.Sample.app.2.7.1.apk",
   "SL_android_package_name":"com.swaglabsmobileapp",
 
-
   "flutter_demo_app":"app-release.apk",
   "flutter_package_name":"com.example.flutter_test_app",
 
 
   "ios_device":"iPhone 11",
-  "ios_platform_version":"14.4",
+  "ios_platform_version":"14.5",
   "ios_demo_app":"TestApp.app.zip",
   "SL_ios_demo_app":"iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip"
 }

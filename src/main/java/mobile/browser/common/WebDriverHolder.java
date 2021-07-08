@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static mobile.browser.common.BrowserFactory.getBrowser;
+import static mobile.common.Logger.logInfo;
 
 @Slf4j
 public class WebDriverHolder {

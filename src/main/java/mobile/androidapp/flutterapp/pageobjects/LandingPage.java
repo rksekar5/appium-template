@@ -1,9 +1,9 @@
 package mobile.androidapp.flutterapp.pageobjects;
 
-import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import mobile.common.Logger;
 import mobile.utils.AndroidUtils;
 import mobile.utils.MobileUtils;
 import org.openqa.selenium.support.PageFactory;

@@ -1,10 +1,10 @@
 package mobile.utils;
 
-import com.diconium.qa.testautomationframework.web.WebConstants;
 import io.appium.java_client.AppiumFluentWait;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import lombok.extern.slf4j.Slf4j;
+import mobile.common.Constants;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,7 +21,7 @@ import static org.awaitility.Awaitility.await;
 public class Waiters {
 
   static Wait<AndroidDriver> getFluentWait() {
-    return getFluentWait(WebConstants.FLUENT_WAIT_TIMEOUT_SECONDS);
+    return getFluentWait(Constants.FLUENT_WAIT_TIMEOUT_SECONDS);
   }
 
   private static Wait<AndroidDriver> getFluentWait(long timeoutSeconds) {

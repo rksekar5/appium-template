@@ -12,13 +12,11 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Severity;
 import ru.yandex.qatools.allure.model.SeverityLevel;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
 import static java.lang.Thread.sleep;
+import static mobile.common.Logger.logInfo;
 import static org.testng.Assert.assertEquals;
 
-/**
- * The API demo tests can only be executed for Android platform version 8 and 9
- */
+/** The API demo tests can only be executed for Android platform version 8 and 9 */
 public class ApiDemoTestAndroid extends AndroidBaseTest {
 
   private HomePage homePage;
@@ -208,5 +206,4 @@ public class ApiDemoTestAndroid extends AndroidBaseTest {
     logInfo("Now the new time set is" + dialogPage.getCurrentTimeFromTimePicker());
     dialogPage.clickCancelOnTimePicker();
   }
-
 }

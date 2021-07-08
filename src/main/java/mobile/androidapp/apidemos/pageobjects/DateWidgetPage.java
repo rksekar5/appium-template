@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import mobile.utils.AndroidUtils;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static mobile.common.Logger.logInfo;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 

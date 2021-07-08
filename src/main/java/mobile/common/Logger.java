@@ -83,7 +83,6 @@ public class Logger {
     log.trace(trace);
   }
 
-
   /**
    * Print the console message as a attachment to the allure report.
    *

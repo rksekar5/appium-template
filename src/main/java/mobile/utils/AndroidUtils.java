@@ -1,13 +1,13 @@
 package mobile.utils;
 
-import com.diconium.qa.testautomationframework.common.Logger;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import lombok.extern.slf4j.Slf4j;
+import mobile.common.Logger;
 import org.openqa.selenium.TimeoutException;
 
-import static com.diconium.qa.testautomationframework.common.Logger.logInfo;
+import static mobile.common.Logger.logInfo;
 import static mobile.driverhandler.AndroidFactory.appiumDriver;
 import static mobile.driverhandler.AppFactory.getAppiumDriver;
 
@@ -19,13 +19,22 @@ public class AndroidUtils {
    *
    * @param text
    */
-  public void scrollToText(String text) {
-    appiumDriver.findElement(
-        MobileBy.AndroidUIAutomator(
-            "new UiScrollable(new UiSelector())"
-                + ".scrollIntoView(new UiSelector().text(\""
-                + text
-                + "\"));"));
+  public static void scrollToText(String text) {
+    /*appiumDriver.findElement(
+    MobileBy.AndroidUIAutomator(
+        "new UiScrollable(new UiSelector())"
+            + ".scrollIntoView(new UiSelector().text(\""
+            + text
+            + "\"));"));*/
+
+    MobileElement element =
+        (MobileElement)
+            appiumDriver.findElement(
+                MobileBy.AndroidUIAutomator(
+                    "new UiScrollable(new UiSelector()).scrollIntoView("
+                        + "new UiSelector().text(\""
+                        + text
+                        + "\"));"));
   }
 
   /** Scroll to the specified text */
