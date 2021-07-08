@@ -35,3 +35,4 @@ e.x sample bash_profile
 - export PATH=/usr/local/Caskroom/android-sdk/4333796$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 - export ANDROID_SDK_ROOT=~/Library/Android/sdk
 - export ANDROID_AVD_HOME=~/.android/avd
+# charge-appium-template-qa
