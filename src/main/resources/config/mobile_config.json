@@ -1,8 +1,8 @@
 {
-  "android_device":"Galaxy S10 Lite",
-  "android_platform_version":"10.0",
-  "device_name": "RF8NA1KRMMW",
-  "avd": "RF8NA1KRMMW",
+  "android_device":"Huawei P30",
+  "android_platform_version":"10",
+  "device_name": "ELE L29",
+  "avd": "XPH5T19920003497",
 
   "android_demo_app":"ApiDemos-debug.apk",
   "android_package_name":"io.appium.android.apis",
@@ -11,7 +11,6 @@
 
   "flutter_demo_app":"app-release.apk",
   "flutter_package_name":"com.example.flutter_test_app",
-
 
   "ios_device":"iPhone 11",
   "ios_platform_version":"14.5",
