@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 import static mobile.common.ConfigReader.getValueFromJsonConfigFile;
-// import static
-// com.diconium.qa.testautomationframework.common.ConfigReader.getValueFromJsonConfigFile;
+
 @Slf4j
 public class AppFactory {
   public static AppiumDriverLocalService service;

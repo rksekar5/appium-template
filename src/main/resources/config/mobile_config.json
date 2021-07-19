@@ -1,5 +1,5 @@
 {
-  "android_device":"Huawei P30",
+  "android_device":"emulator-5554",
   "android_platform_version":"10",
   "device_name": "ELE L29",
   "avd": "XPH5T19920003497",
