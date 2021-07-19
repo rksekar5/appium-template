@@ -20,7 +20,7 @@ public class AndroidBaseTest extends AndroidFactory {
   protected void setUpIosApp(ITestContext result) {
     service = startServer();
 
-    appiumDriver = androidCapabilities("SL_android_package_name");
+    appiumDriver = androidCapabilities("SL_android_demo_app");
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
