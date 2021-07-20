@@ -2,7 +2,10 @@ package mobile.androidapp.androidnativedemo;
 
 import lombok.SneakyThrows;
 import mobile.androidapp.common.AndroidBaseTest;
-import mobile.androidapp.sauceLabs.pageobjects.*;
+import mobile.androidapp.sauceLabs.pageobjects.ListPage;
+import mobile.androidapp.sauceLabs.pageobjects.LoginPage;
+import mobile.androidapp.sauceLabs.pageobjects.ProductsPage;
+import mobile.androidapp.sauceLabs.pageobjects.WebViewPage;
 import mobile.utils.AndroidUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

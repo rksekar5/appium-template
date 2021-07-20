@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-    <test name="Test">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Complete Suite">
+
+    <test name="iOS Regression Tests">
         <classes>
-            <!--  <class name="mobile.iosapp.testapp.TestAppTestIos"/>-->
             <class name="mobile.iosapp.testapp.IosDemoTest"/>
         </classes>
-    </test> <!-- Test -->
-</suite> <!-- Suite -->
+    </test>
+</suite>

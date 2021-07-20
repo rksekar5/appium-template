@@ -2,7 +2,7 @@ package mobile.androidapp.common;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import mobile.common.RetryListener;
+import mobile.common.AppiumListener;
 import mobile.driverhandler.AndroidFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -13,7 +13,7 @@ import org.testng.annotations.Listeners;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@Listeners({RetryListener.class})
+@Listeners({AppiumListener.class})
 public class FlutterBaseTest extends AndroidFactory {
 
   @SneakyThrows

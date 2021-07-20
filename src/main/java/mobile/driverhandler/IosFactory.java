@@ -34,24 +34,36 @@ public class IosFactory extends AppFactory {
 
     String deviceName = readValueFromMobileConfigFile("ios_device");
     String platformVersion = readValueFromMobileConfigFile("ios_platform_version");
+    String udid = readValueFromMobileConfigFile("ios_udid");
+    String bundleId = readValueFromMobileConfigFile("ios_bundle_id");
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability(
-        MobileCapabilityType.DEVICE_NAME, deviceName == null ? "iPhone 8" : deviceName);
-    capabilities.setCapability(
-        MobileCapabilityType.PLATFORM_VERSION, platformVersion == null ? "14.2" : platformVersion);
-    capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
-    capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
-    capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-    capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
-    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
-    capabilities.setCapability("xcodeSigningId", "iPhone Developer");
-    capabilities.setCapability("useNewWDA", false);
-    // capabilities.setCapability("app","https://github.com/appium/appium/blob/master/sample-code/apps/TestApp.app.zip?raw=true");
-    capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-    //    capabilities.setCapability("UDID","00008030-000C353A0C3A802E");
-    //    capabilities.setCapability("bundleId", "com.volkswagen.oneapp.alpha");
 
+    if (udid.equals("")) {
+      capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+      capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
+      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
+      capabilities.setCapability("xcodeSigningId", "iPhone Developer");
+      capabilities.setCapability("useNewWDA", true);
+      capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+    } else {
+      capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+      capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
+      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
+      capabilities.setCapability("xcodeSigningId", "iPhone Developer");
+      capabilities.setCapability("useNewWDA", true);
+      capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+      capabilities.setCapability(MobileCapabilityType.UDID, udid);
+      capabilities.setCapability("bundleId", bundleId);
+    }
     appiumDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
