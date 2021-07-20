@@ -1,19 +1,23 @@
 {
-  "android_device":"emulator-5554",
-  "android_platform_version":"10",
-  "device_name": "ELE L29",
-  "avd": "XPH5T19920003497",
+  "android_real_device": "Huawei P30",
+  "android_emulator": "emulator-5554",
+  "android_platform_version": "10",
+  "android_model_name": "ELE L29",
+  "android_udid": "XPH5T19920003497",
 
-  "android_demo_app":"ApiDemos-debug.apk",
-  "android_package_name":"io.appium.android.apis",
-  "SL_android_demo_app":"Android.SauceLabs.Mobile.Sample.app.2.7.1.apk",
-  "SL_android_package_name":"com.swaglabsmobileapp",
+  "android_demo_app": "Android.SauceLabs.Mobile.Sample.app.2.7.1.apk",
+  "android_package_name": "com.swaglabsmobileapp",
+  "android_app_activity": "com.swaglabsmobileapp.SplashActivity",
 
-  "flutter_demo_app":"app-release.apk",
-  "flutter_package_name":"com.example.flutter_test_app",
+  "flutter_demo_app": "app-release.apk",
+  "flutter_package_name": "com.example.flutter_test_app",
 
-  "ios_device":"iPhone 11",
-  "ios_platform_version":"14.5",
-  "ios_demo_app":"TestApp.app.zip",
-  "SL_ios_demo_app":"iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip"
+  "ios_device": "iPhone 11",
+  "ios_platform_version": "14.5",
+  "ios_demo_app": "iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip",
+  "ios_demo_ipa": "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa",
+  "ios_package_name": "com.saucelabs.SwagLabsMobileApp",
+
+  "ios_udid": "",
+  "ios_bundle_id": ""
 }

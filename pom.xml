@@ -271,6 +271,19 @@
             <version>2.3.1</version>
         </dependency>
 
+        <!-- API, java.xml.bind module -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <!-- Runtime, com.sun.xml.bind module -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
         <!--    <dependency>-->
         <!--      <groupId>pro.truongsinh</groupId>-->
         <!--      <artifactId>appium-flutter-finder</artifactId>-->
@@ -296,6 +309,22 @@
                 <artifactId>maven-jxr-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
                 <version>3.0.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <configLocation>src/main/resources/checkstyle_config.xml</configLocation>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
 
         </plugins>

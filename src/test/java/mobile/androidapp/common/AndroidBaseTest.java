@@ -2,7 +2,7 @@ package mobile.androidapp.common;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import mobile.common.RetryListener;
+import mobile.common.AppiumListener;
 import mobile.driverhandler.AndroidFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -12,15 +12,15 @@ import org.testng.annotations.Listeners;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@Listeners({RetryListener.class})
+@Listeners({AppiumListener.class})
 public class AndroidBaseTest extends AndroidFactory {
 
   @SneakyThrows
   @BeforeClass(alwaysRun = true)
-  protected void setUpIosApp(ITestContext result) {
+  protected void setUpAndroidApp(ITestContext result) {
     service = startServer();
 
-    appiumDriver = androidCapabilities("SL_android_demo_app");
+    appiumDriver = androidCapabilities("android_demo_app");
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
@@ -34,8 +34,8 @@ public class AndroidBaseTest extends AndroidFactory {
 
   @SneakyThrows
   private void removeAppFromDevice() {
-    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("SL_android_package_name")))
+    if (appiumDriver.isAppInstalled(readValueFromMobileConfigFile("android_package_name")))
       log.debug("Uninstalling the app as part of cleanup");
-    appiumDriver.removeApp(readValueFromMobileConfigFile("SL_android_package_name"));
+    appiumDriver.removeApp(readValueFromMobileConfigFile("android_package_name"));
   }
 }

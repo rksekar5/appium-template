@@ -38,37 +38,43 @@ public class AndroidFactory extends AppFactory {
     File appDirectory = new File("src/app");
     File app = new File(appDirectory, readValueFromMobileConfigFile(appName));
     DesiredCapabilities capabilities = new DesiredCapabilities();
-    String device = readValueFromMobileConfigFile("android_device");
-    if (isRemote()) {
+
+    String realDevice = readValueFromMobileConfigFile("android_real_device");
+    String androidEmulator = readValueFromMobileConfigFile("android_emulator");
+    String udid = readValueFromMobileConfigFile("android_udid");
+    String appPackage = readValueFromMobileConfigFile("android_package_name");
+    String appActivity = readValueFromMobileConfigFile("android_app_activity");
+    String modelName = readValueFromMobileConfigFile("android_model_name");
+    final String platformVersion = readValueFromMobileConfigFile("android_platform_version");
+
+    if (udid.equals("")) {
+      capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, androidEmulator);
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "RF8NA1KRMMW");
-      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10");
-      capabilities.setCapability("avd", "RF8NA1KRMMW");
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-      // capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "chrome");
+      capabilities.setCapability("appPackage", appPackage);
+      capabilities.setCapability("appActivity", appActivity);
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-      capabilities.setCapability(
-          MobileCapabilityType.APP, "/tmp/app/" + readValueFromMobileConfigFile(appName));
-      appiumDriver = new AndroidDriver<>(new URL(HUB), capabilities);
+
     } else {
-      if (!device.contains("emulator")) {
-        final String platformVersion = readValueFromMobileConfigFile("android_platform_version");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
-      }
-      //            if(device.contains("emulator")){
-      //              capabilities.setCapability("avd", "Pixel 4 XL API 28");
-      //            }
-      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, device);
+      capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
+      capabilities.setCapability(MobileCapabilityType.UDID, udid);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, realDevice);
+      // Check If model_name is needed
+      capabilities.setCapability("modelName", modelName);
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-      capabilities.setCapability("appPackage", "com.swaglabsmobileapp");
-      capabilities.setCapability("appActivity", "com.swaglabsmobileapp.SplashActivity");
+      capabilities.setCapability("appPackage", appPackage);
+      capabilities.setCapability("appActivity", appActivity);
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
+
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     return appiumDriver;
   }

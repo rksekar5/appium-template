@@ -3,7 +3,6 @@ package mobile.driverhandler;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,30 +22,30 @@ public class AppFactory {
   }
 
   public AppiumDriverLocalService startServer() {
-    boolean serverRunning = !stopServerOnPort(4723);
-    if (null != service && serverRunning) {
-      service.stop();
-      log.debug("Killing Appium service before starting a new session");
+    boolean flag = checkIfServerIsRunning(4723);
+    if (!flag) {
+      service = AppiumDriverLocalService.buildDefaultService();
+      service.start();
     }
-    AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
-    service = AppiumDriverLocalService.buildService(serviceBuilder);
-    service.start();
     return service;
   }
-  /**
-   * Try to close server on socket with provided port number.
-   *
-   * @param portNumber
-   * @return true if successful
-   */
-  private static boolean stopServerOnPort(int portNumber) {
+
+  public static boolean checkIfServerIsRunning(int port) {
+
+    boolean isServerRunning = false;
+    ServerSocket serverSocket;
     try {
-      ServerSocket serverSocket = new ServerSocket(portNumber);
+      serverSocket = new ServerSocket(port);
+
       serverSocket.close();
-      return true;
     } catch (IOException e) {
-      return false;
+      // If control comes here, then it means that the port is in use
+      isServerRunning = true;
+      service.stop();
+    } finally {
+      serverSocket = null;
     }
+    return isServerRunning;
   }
 
   @SneakyThrows
