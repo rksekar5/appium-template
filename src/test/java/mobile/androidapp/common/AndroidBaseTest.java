@@ -29,7 +29,6 @@ public class AndroidBaseTest extends AndroidFactory {
   protected void tearDown() {
     appiumDriver.closeApp();
     removeAppFromDevice();
-    service.stop();
   }
 
   @SneakyThrows

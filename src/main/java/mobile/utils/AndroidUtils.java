@@ -8,8 +8,7 @@ import mobile.common.Logger;
 import org.openqa.selenium.TimeoutException;
 
 import static mobile.common.Logger.logInfo;
-import static mobile.driverhandler.AndroidFactory.appiumDriver;
-import static mobile.driverhandler.AppFactory.getAppiumDriver;
+import static mobile.driverhandler.AppFactory.appiumDriver;
 
 @Slf4j
 public class AndroidUtils {
@@ -65,7 +64,7 @@ public class AndroidUtils {
   public static void removeApkFromAndroidDevice(String app, String appPackage) {
     try {
       if (checkIfApkInstalled(appPackage)) {
-        getAppiumDriver().removeApp(appPackage);
+        appiumDriver.removeApp(appPackage);
         Logger.logInfo(
             String.format(
                 "App '%s' with AppPackage '%s' is removed from Android device", app, appPackage));
@@ -87,8 +86,8 @@ public class AndroidUtils {
    */
   public static void terminateAppOnAndroidDevice(String appPackage) {
     try {
-      if (getAppiumDriver().isAppInstalled(appPackage)) {
-        getAppiumDriver().terminateApp(appPackage);
+      if (appiumDriver.isAppInstalled(appPackage)) {
+        appiumDriver.terminateApp(appPackage);
         Logger.logInfo(String.format("The App is terminated on the Android device"));
       } else {
         Logger.logInfo(String.format("The App is not terminated on the Android device"));
@@ -105,7 +104,7 @@ public class AndroidUtils {
    */
   public static boolean checkIfApkInstalled(String appPackage) {
     try {
-      if (getAppiumDriver().isAppInstalled(appPackage)) {
+      if (appiumDriver.isAppInstalled(appPackage)) {
         return true;
       } else {
         Logger.logInfo(
@@ -129,7 +128,7 @@ public class AndroidUtils {
       if (checkIfApkInstalled(appPackage)) {
         Logger.logInfo(String.format("App with AppPackage '%s' is already present", appPackage));
       } else {
-        getAppiumDriver().installApp(app);
+        appiumDriver.installApp(app);
         Logger.logInfo(
             String.format("App with AppPackage '%s' is now installed into Device ", appPackage));
       }
@@ -147,12 +146,12 @@ public class AndroidUtils {
   public static void getAndroidAppStatus(String appPackage) {
     // bundleId == "com.example.AppName"
     try {
-      if (getAppiumDriver().isAppInstalled(appPackage)) {
-        getAppiumDriver().queryAppState(appPackage);
+      if (appiumDriver.isAppInstalled(appPackage)) {
+        appiumDriver.queryAppState(appPackage);
         Logger.logInfo(
             String.format(
                 "The given app status on Android device is: %s ",
-                getAppiumDriver().queryAppState(appPackage)));
+                appiumDriver.queryAppState(appPackage)));
       }
     } catch (TimeoutException var2) {
       var2.getMessage();

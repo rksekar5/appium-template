@@ -10,11 +10,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
 
 import static mobile.driverhandler.AppFactory.appiumDriver;
-import static mobile.driverhandler.AppFactory.getAppiumDriver;
 
 public class ShoppingCartPage {
   public ShoppingCartPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @iOSXCUITFindBy(accessibility = "test-CONTINUE SHOPPING")

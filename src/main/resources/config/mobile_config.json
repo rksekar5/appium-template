@@ -3,7 +3,7 @@
   "android_emulator": "emulator-5554",
   "android_platform_version": "10",
   "android_model_name": "ELE L29",
-  "android_udid": "XPH5T19920003497",
+  "android_udid": "",
 
   "android_demo_app": "Android.SauceLabs.Mobile.Sample.app.2.7.1.apk",
   "android_package_name": "com.swaglabsmobileapp",

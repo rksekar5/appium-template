@@ -8,11 +8,11 @@ import mobile.utils.MobileUtils;
 import mobile.utils.Waiters;
 import org.openqa.selenium.support.PageFactory;
 
-import static mobile.driverhandler.AppFactory.getAppiumDriver;
+import static mobile.driverhandler.AppFactory.appiumDriver;
 
 public class CheckoutOverviewPage {
   public CheckoutOverviewPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   @iOSXCUITFindBy(accessibility = "Payment Information:")
