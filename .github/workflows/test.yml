@@ -16,25 +16,18 @@ jobs:
         with:
           java-version: '11'
           distribution: adopt
-      #       - name: Cache Maven packages to speed up
-      #           uses: actions/cache@v2
-      #           with:
-      #             path: ~/.m2
-      #             key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-      #             restore-keys: ${{ runner.os }}-m2
-      - name: Set up Node
-        uses: actions/setup-node@v2
+      - name: Set up node
+      - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Install appium & npm
-        run: |
-          npm install -g appium@v1.21.0
-          appium -v
-          node -v
-          npm -v
-          mvn -v
-          pwd
+          cache: 'npm'
+      - name: Set up appium
+      - run: |
+            npm install -g appium@v1.21.0
+            appium -v
+      - name: Install Carthage
+        run: brew install Carthage
       - name: List the Simulators
         run: xcrun xctrace list devices
-      - name: Run iOS Regression tests on Simulator
+      - name: Build with Maven
         run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true
