@@ -23,12 +23,17 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12'
-          run: |
-            npm install -g appium@v1.21.0
-            appium -v
+      - name: Setup appium
+      - run: |
+          npm install -g appium@v1.21.0
+          appium -v
+      - name: install carthage
+      - run: brew install carthage
       - name: List the Simulators
-        run:
-          xcrun xctrace list devices
+        run: xcrun xctrace list devices
+      - name: Test available tools
+      - run: |
+          node -v
+          npm -v
       - name: Build with Maven
-        run:
-          mvn clean test site -DsuiteFile=ios_mobile_regression.xml
+        run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml
