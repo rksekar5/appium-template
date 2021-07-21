@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Install appium
+      - name: Install appium & npm
         run: |
           npm install -g appium@v1.21.0
           appium -v
@@ -34,5 +34,5 @@ jobs:
           npm -v
       - name: List the Simulators
         run: xcrun xctrace list devices
-      #      - name: Build with Maven
-      #        run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true
+      - name: Run iOS Regression tests on Simulator
+        run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true
