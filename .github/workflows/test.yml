@@ -1,8 +1,8 @@
 name: Mobile CI with maven
 'on':
   push:
-  #     branches:
-  #       - development
+      branches:
+        - main
   workflow_dispatch:
 jobs:
   build:
