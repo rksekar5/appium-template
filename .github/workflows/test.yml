@@ -32,6 +32,8 @@ jobs:
           appium -v
           node -v
           npm -v
+          mvn -v
+          pwd
       - name: List the Simulators
         run: xcrun xctrace list devices
       - name: Run iOS Regression tests on Simulator
