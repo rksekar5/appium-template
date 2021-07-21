@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
       - run: |
           npm -v
           node -v
@@ -31,9 +31,6 @@ jobs:
         run: brew install carthage
       - name: List the Simulators
         run: xcrun xctrace list devices
-      - name: Test available tools
-        run: |
-          node -v
-          npm -v
+          
       - name: Build with Maven
-        run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml
+        run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true
