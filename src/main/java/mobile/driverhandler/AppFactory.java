@@ -14,38 +14,36 @@ import static mobile.common.ConfigReader.getValueFromJsonConfigFile;
 
 @Slf4j
 public class AppFactory {
+
   public static AppiumDriverLocalService service;
+
   public static AppiumDriver<MobileElement> appiumDriver;
 
-  public static AppiumDriver<MobileElement> getAppiumDriver() {
-    return appiumDriver;
-  }
-
   public AppiumDriverLocalService startServer() {
-    boolean flag = checkIfServerIsRunning(4723);
-    if (!flag) {
-      service = AppiumDriverLocalService.buildDefaultService();
-      service.start();
+    boolean serverRunning = !stopServerOnPort(4723);
+    if (null != service && serverRunning) {
+      service.stop();
+      log.debug("Killing Appium service before starting a new session");
     }
     return service;
   }
 
-  public static boolean checkIfServerIsRunning(int port) {
+  /**
+   * Try to close server on socket with provided port number.
+   *
+   * @param portNumber
+   * @return true if successful
+   */
+  private static boolean stopServerOnPort(int portNumber) {
 
-    boolean isServerRunning = false;
-    ServerSocket serverSocket;
     try {
-      serverSocket = new ServerSocket(port);
-
+      ServerSocket serverSocket = new ServerSocket(portNumber);
       serverSocket.close();
+      return true;
+
     } catch (IOException e) {
-      // If control comes here, then it means that the port is in use
-      isServerRunning = true;
-      service.stop();
-    } finally {
-      serverSocket = null;
+      return false;
     }
-    return isServerRunning;
   }
 
   @SneakyThrows

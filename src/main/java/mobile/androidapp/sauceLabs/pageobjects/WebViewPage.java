@@ -8,12 +8,12 @@ import mobile.utils.AndroidUtils;
 import mobile.utils.Waiters;
 import org.openqa.selenium.support.PageFactory;
 
-import static mobile.driverhandler.AppFactory.getAppiumDriver;
+import static mobile.driverhandler.AppFactory.appiumDriver;
 import static mobile.utils.MobileUtils.clickMobileElement;
 
 public class WebViewPage {
   public WebViewPage() {
-    PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()), this);
+    PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
   }
 
   private final AndroidUtils androidUtils = new AndroidUtils();
