@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: '12'
       - run: |
-          npm install
-          npm test
+          npm -v
+          node -v
       - name: Setup appium
         run: |
           npm install -g appium@v1.21.0
