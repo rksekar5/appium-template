@@ -6,7 +6,7 @@ name: Mobile CI with maven
   workflow_dispatch:
 jobs:
   build:
-    name: 'Build, Test & Report'
+    name: 'iOS Regression'
     runs-on: macOS-11
     steps:
       - uses: actions/checkout@v2
