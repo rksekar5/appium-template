@@ -19,12 +19,12 @@ jobs:
         with:
           java-version: '11'
           distribution: adopt
-      - name: Cache Maven packages to speed up
-          uses: actions/cache@v2
-          with:
-            path: ~/.m2
-            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-            restore-keys: ${{ runner.os }}-m2
+#       - name: Cache Maven packages to speed up
+#           uses: actions/cache@v2
+#           with:
+#             path: ~/.m2
+#             key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+#             restore-keys: ${{ runner.os }}-m2
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
