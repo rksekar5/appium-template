@@ -30,8 +30,6 @@ jobs:
           appium -v
       - name: List the Simulators
         run: xcrun xctrace list devices
-      - name: Start appium
-        run: appium
         
       - name: Build with Maven
         run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true
