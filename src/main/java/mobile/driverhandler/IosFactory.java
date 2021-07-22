@@ -40,7 +40,21 @@ public class IosFactory extends AppFactory {
     DesiredCapabilities capabilities = new DesiredCapabilities();
 
     if (udid.equals("")) {
-      //capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
+      // capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
+      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+      capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+      capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
+      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
+      capabilities.setCapability("xcodeSigningId", "iPhone Developer");
+      // capabilities.setCapability("useNewWDA", true);
+      // capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+      capabilities.setCapability(
+          "app",
+          "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip");
+    } else {
+      // capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
       capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
@@ -49,20 +63,6 @@ public class IosFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
       capabilities.setCapability("xcodeSigningId", "iPhone Developer");
       //capabilities.setCapability("useNewWDA", true);
-      // capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-      capabilities.setCapability(
-          "app",
-          "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip");
-    } else {
-      //capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
-      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
-      capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
-      capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
-      capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-      capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
-      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
-      capabilities.setCapability("xcodeSigningId", "iPhone Developer");
-      capabilities.setCapability("useNewWDA", true);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       capabilities.setCapability(MobileCapabilityType.UDID, udid);
       capabilities.setCapability("bundleId", bundleId);
