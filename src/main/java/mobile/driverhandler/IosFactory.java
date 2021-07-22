@@ -48,7 +48,7 @@ public class IosFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
       capabilities.setCapability("xcodeSigningId", "iPhone Developer");
-      // capabilities.setCapability("useNewWDA", true);
+      capabilities.setCapability("useNewWDA", true);
       // capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       capabilities.setCapability(
           "app",
@@ -62,7 +62,7 @@ public class IosFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
       capabilities.setCapability("xcodeSigningId", "iPhone Developer");
-      //capabilities.setCapability("useNewWDA", true);
+      capabilities.setCapability("useNewWDA", true);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
       capabilities.setCapability(MobileCapabilityType.UDID, udid);
       capabilities.setCapability("bundleId", bundleId);
