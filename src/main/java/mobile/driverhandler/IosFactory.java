@@ -49,6 +49,9 @@ public class IosFactory extends AppFactory {
             capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
             capabilities.setCapability("xcodeSigningId", "iPhone Developer");
             capabilities.setCapability("useNewWDA", true);
+            capabilities.setCapability("wdaStartupRetries", "4");
+            capabilities.setCapability("iosInstallPause","8000" );
+            capabilities.setCapability("wdaStartupRetryInterval", "20000");
             // capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
             capabilities.setCapability(
                     "app",
