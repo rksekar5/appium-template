@@ -12,7 +12,7 @@
   "flutter_demo_app": "app-release.apk",
   "flutter_package_name": "com.example.flutter_test_app",
 
-  "ios_device": "iPhone 11",
+  "ios_device": "iPhone 12",
   "ios_platform_version": "14.5",
   "ios_demo_app": "iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip",
   "ios_demo_ipa": "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa",
