@@ -49,7 +49,10 @@ public class IosFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
       capabilities.setCapability("xcodeSigningId", "iPhone Developer");
       capabilities.setCapability("useNewWDA", true);
-      capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+      // capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+      capabilities.setCapability(
+          "app",
+          "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip");
     } else {
       capabilities.setCapability(MobileCapabilityType.FULL_RESET, "TRUE");
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);

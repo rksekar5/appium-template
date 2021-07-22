@@ -3,6 +3,7 @@ package mobile.driverhandler;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,15 +17,18 @@ import static mobile.common.ConfigReader.getValueFromJsonConfigFile;
 public class AppFactory {
 
   public static AppiumDriverLocalService service;
-
   public static AppiumDriver<MobileElement> appiumDriver;
 
   public AppiumDriverLocalService startServer() {
+    AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
+    service = AppiumDriverLocalService.buildService(serviceBuilder);
     boolean serverRunning = !stopServerOnPort(4723);
     if (null != service && serverRunning) {
       service.stop();
       log.debug("Killing Appium service before starting a new session");
     }
+
+    service.start();
     return service;
   }
 
