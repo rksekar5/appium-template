@@ -39,11 +39,34 @@ jobs:
           touch ~/.android/repositories.cfg
           brew install --cask android-sdk
 
+      - name: AVD cache
+          uses: actions/cache@v2
+          id: avd-cache
+          with:
+            path: |
+              ~/.android/avd/*
+              ~/.android/adb*
+            key: avd-${{ matrix.api-level }}
+
+      - name: create AVD and generate snapshot for caching
+          if: steps.avd-cache.outputs.cache-hit != 'true'
+          uses: reactivecircus/android-emulator-runner@v2
+          with:
+            api-level: ${{ matrix.api-level }}
+            force-avd-creation: false
+            emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+            disable-animations: false
+            script: echo "Generated AVD snapshot for caching."
+
+
       - name: Android Regression with Maven
-        uses: reactivecircus/android-emulator-runner@v1 # install and create the Emulator
+        uses: reactivecircus/android-emulator-runner@v2 # install and create the Emulator
         with:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
           arch: x86_64
           profile: Nexus 6
           script: mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
