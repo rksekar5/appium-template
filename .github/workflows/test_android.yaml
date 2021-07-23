@@ -30,6 +30,7 @@ jobs:
         run: |
           npm install -g appium@v1.20.2
           appium -v
+          appium-doctor --android
 
       - name: Android Regression with Maven
         uses: reactivecircus/android-emulator-runner@v1 # install and create the Emulator
@@ -39,6 +40,6 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           script: |
-            mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
             touch ~/.android/repositories.cfg
             brew cask install android-sdk
+            mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
