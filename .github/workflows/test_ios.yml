@@ -33,7 +33,7 @@ jobs:
         run: |
           xcrun simctl erase all
           xcrun xctrace list devices
-          open -a Simulator.app
+#          open -a Simulator.app
 
       - name: Build with Maven
         run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true
