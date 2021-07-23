@@ -56,8 +56,10 @@ public class AndroidFactory extends AppFactory {
       capabilities.setCapability("appPackage", appPackage);
       capabilities.setCapability("appActivity", appActivity);
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
-      capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-      //capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT,"true");
+      // capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+      capabilities.setCapability(
+          "app",
+          "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
       appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
     } else {
