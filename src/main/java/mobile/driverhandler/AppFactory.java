@@ -16,42 +16,42 @@ import static mobile.common.ConfigReader.getValueFromJsonConfigFile;
 @Slf4j
 public class AppFactory {
 
-    public static AppiumDriverLocalService service;
-    public static AppiumDriver<MobileElement> appiumDriver;
+  public static AppiumDriverLocalService service;
+  public static AppiumDriver<MobileElement> appiumDriver;
 
-    public AppiumDriverLocalService startServer() {
-        AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
-        service = AppiumDriverLocalService.buildService(serviceBuilder);
-        boolean serverRunning = !stopServerOnPort(4723);
-        if (null != service && serverRunning) {
-            service.stop();
-            log.debug("Killing Appium service before starting a new session");
-        }
-
-        service.start();
-        return service;
+  public AppiumDriverLocalService startServer() {
+    AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
+    service = AppiumDriverLocalService.buildService(serviceBuilder);
+    boolean serverRunning = !stopServerOnPort(4723);
+    if (null != service && serverRunning) {
+      service.stop();
+      log.debug("Killing Appium service before starting a new session");
     }
 
-    /**
-     * Try to close server on socket with provided port number.
-     *
-     * @param portNumber
-     * @return true if successful
-     */
-    private static boolean stopServerOnPort(int portNumber) {
+    service.start();
+    return service;
+  }
 
-        try {
-            ServerSocket serverSocket = new ServerSocket(portNumber);
-            serverSocket.close();
-            return true;
+  /**
+   * Try to close server on socket with provided port number.
+   *
+   * @param portNumber
+   * @return true if successful
+   */
+  private static boolean stopServerOnPort(int portNumber) {
 
-        } catch (IOException e) {
-            return false;
-        }
+    try {
+      ServerSocket serverSocket = new ServerSocket(portNumber);
+      serverSocket.close();
+      return true;
+
+    } catch (IOException e) {
+      return false;
     }
+  }
 
-    @SneakyThrows
-    public static String readValueFromMobileConfigFile(@NotNull String propName) {
-        return getValueFromJsonConfigFile("mobile_config.json", propName);
-    }
+  @SneakyThrows
+  public static String readValueFromMobileConfigFile(@NotNull String propName) {
+    return getValueFromJsonConfigFile("mobile_config.json", propName);
+  }
 }

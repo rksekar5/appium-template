@@ -29,6 +29,7 @@ public class IosBaseTest extends IosFactory {
   protected void tearDown() {
     appiumDriver.closeApp();
     removeAppFromDevice();
+    service.stop();
   }
 
   private void removeAppFromDevice() {
