@@ -76,8 +76,9 @@ jobs:
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
 
+      # install and create the Emulator
       - name: Android Regression with Maven
-        uses: reactivecircus/android-emulator-runner@v2 # install and create the Emulator
+        uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
