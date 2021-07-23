@@ -36,7 +36,7 @@ jobs:
         run: |
           export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
           touch ~/.android/repositories.cfg
-          brew cask install android-sdk
+          brew install --cask android-sdk
 
       - name: Android Regression with Maven
         uses: reactivecircus/android-emulator-runner@v1 # install and create the Emulator
