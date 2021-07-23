@@ -28,7 +28,7 @@ jobs:
         run: |
           npm install -g appium@v1.20.1
           appium -v
-          appium &>/dev/null &
+#          appium &>/dev/null &
       - name: List the Simulators
         run: |
           xcrun simctl erase all
