@@ -36,7 +36,9 @@ jobs:
       - name: Setup appium
         run: |
           npm install -g appium@v1.20.2
+          npm install appium-doctor -g
           appium -v
+          appium-doctor --ios
 #          appium &>/dev/null &
       - name: List the Simulators
         run: |
