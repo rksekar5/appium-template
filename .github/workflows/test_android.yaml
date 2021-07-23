@@ -67,7 +67,6 @@ jobs:
           adb kill-server
           adb forward --remove-all
           adb start-server
-          adb devices
 
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
