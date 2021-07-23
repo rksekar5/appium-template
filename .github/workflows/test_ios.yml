@@ -1,6 +1,6 @@
 name: Mobile CI for iOS
 'on':
-#  push:
+  #  push:
   #     branches:
   #       - development
   workflow_dispatch:
@@ -39,12 +39,11 @@ jobs:
           npm install appium-doctor -g
           appium -v
           appium-doctor --ios
-#          appium &>/dev/null &
+      #          appium &>/dev/null &
       - name: List the Simulators
         run: |
           xcrun simctl erase all
           xcrun xctrace list devices
-#          open -a Simulator.app
 
       - name: iOS Regression with Maven
         run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true

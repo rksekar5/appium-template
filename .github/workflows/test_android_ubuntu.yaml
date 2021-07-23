@@ -6,7 +6,7 @@ name: Mobile CI for Android
   workflow_dispatch:
 jobs:
   build:
-    name: 'Android regression'
+    name: 'Ubuntu Android regression'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -77,7 +77,7 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
       # install and create the Emulator
-      - name: Android Regression with Maven
+      - name: Android Regression with Maven on Ubuntu machine
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
