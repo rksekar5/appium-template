@@ -1,4 +1,4 @@
-name: Mobile CI with maven
+name: Mobile CI for iOS
 'on':
   push:
   #     branches:
