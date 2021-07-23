@@ -70,7 +70,7 @@ public class IosFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.UDID, udid);
       capabilities.setCapability("bundleId", bundleId);
     }
-    appiumDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    appiumDriver = new IOSDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     return appiumDriver;
