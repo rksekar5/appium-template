@@ -52,7 +52,9 @@ public class AndroidFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, androidEmulator);
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
       capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
-      capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+      /*To fix /opt/hostedtoolcache/node/14.17.3/x64/lib/node_modules/appium/node_modules/appium-uiautomator2-server/apks/appium-uiautomator2-server-v4.17.4.apk' timed out after 20000ms error
+       * Check the ubuntu run - https://github.com/vwdfive/appium-template-qa/runs/3146561456?check_suite_focus=true*/
+      // capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
       capabilities.setCapability("appPackage", appPackage);
       capabilities.setCapability("appActivity", appActivity);
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
