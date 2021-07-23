@@ -65,8 +65,6 @@ jobs:
           brew install --cask android-sdk
           adb kill-server
           adb start-server
-          sudo snap start anbox
-          anbox.appmgr
           adb devices -l
 
       - name: create AVD and generate snapshot for caching
