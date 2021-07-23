@@ -60,7 +60,6 @@ jobs:
 
       - name: Configure machine
         run: |
-#          brew install --cask homebrew/cask-versions/adoptopenjdk8
           export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
           touch ~/.android/repositories.cfg
           brew install --cask android-sdk
