@@ -1,6 +1,6 @@
-name: Mobile CI for iOS
+name: MAC - iOS Mobile CI
 'on':
-  #  push:
+  push:
   #     branches:
   #       - development
   workflow_dispatch:

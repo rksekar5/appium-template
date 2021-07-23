@@ -1,4 +1,4 @@
-name: Mobile CI for Android
+name: Ubuntu - Android Mobile CI
 'on':
   push:
   #     branches:
