@@ -7,7 +7,7 @@ name: Mobile CI for Android
 jobs:
   build:
     name: 'Android regression'
-    runs-on: macOS-11
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         api-level: [ 29 ] #Google api level for example [25,23,28]
