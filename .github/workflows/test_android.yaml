@@ -63,8 +63,12 @@ jobs:
           export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
           touch ~/.android/repositories.cfg
           brew install --cask android-sdk
-#          adb kill-server
-#          adb start-server
+          sudo snap stop anbox
+          adb kill-server
+          adb start-server
+          sudo snap start anbox
+          anbox.appmgr
+          adb devices -l
 
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
@@ -87,11 +91,4 @@ jobs:
           disable-animations: true
           arch: x86_64
           profile: Nexus 6
-          script: |
-            sudo snap stop anbox
-            adb kill-server
-            adb start-server
-            sudo snap start anbox
-            anbox.appmgr
-            adb devices -l
-            mvn clean test site -X -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
+          script: mvn clean test site -X -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
