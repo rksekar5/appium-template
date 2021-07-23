@@ -32,13 +32,14 @@ jobs:
           npm install appium-doctor -g
           appium -v
           appium-doctor --android
-      - name: Configure machine
-        run: |
-          brew install --cask homebrew/cask-versions/adoptopenjdk8
-          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-          touch ~/.android/repositories.cfg
-          brew install --cask android-sdk
-          adb devices
+
+      - name: Gradle cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
 
       - name: AVD cache
         uses: actions/cache@v2
@@ -49,6 +50,22 @@ jobs:
             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
 
+      # Step that does that actual cache save and restore
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Configure machine
+        run: |
+          brew install --cask homebrew/cask-versions/adoptopenjdk8
+          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
+          touch ~/.android/repositories.cfg
+          brew install --cask android-sdk
+          adb devices
+
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -58,7 +75,6 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
-
 
       - name: Android Regression with Maven
         uses: reactivecircus/android-emulator-runner@v2 # install and create the Emulator
