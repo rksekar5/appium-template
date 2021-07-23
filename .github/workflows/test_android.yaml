@@ -88,4 +88,4 @@ jobs:
           profile: Nexus 6
           script: |
             adb devices
-            mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
+            mvn clean test site -X -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
