@@ -1,6 +1,6 @@
 name: Mobile CI for Android
 'on':
-  #  push:
+  push:
   #     branches:
   #       - development
   workflow_dispatch:
