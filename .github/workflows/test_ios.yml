@@ -26,7 +26,7 @@ jobs:
           node -v
       - name: Setup appium
         run: |
-          npm install -g appium@v1.19.0
+          npm install -g appium@v1.20.1
           appium -v
       - name: List the Simulators
         run: |
