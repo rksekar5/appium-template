@@ -38,4 +38,7 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           profile: Nexus 6
-          script: mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
+          script: |
+            mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
+            touch ~/.android/repositories.cfg
+            brew cask install android-sdk
