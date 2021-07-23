@@ -46,7 +46,7 @@ public class IosFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
       capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
-      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
+      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability("xcodeSigningId", "iPhone Developer");
       capabilities.setCapability("useNewWDA", true);
       capabilities.setCapability("wdaStartupRetries", "4");
@@ -63,7 +63,7 @@ public class IosFactory extends AppFactory {
       capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
       capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
       capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
-      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 100);
+      capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability("xcodeSigningId", "iPhone Developer");
       capabilities.setCapability("useNewWDA", true);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
