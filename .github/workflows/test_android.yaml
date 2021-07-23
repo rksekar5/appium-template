@@ -64,6 +64,9 @@ jobs:
           export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
           touch ~/.android/repositories.cfg
           brew install --cask android-sdk
+          adb kill-server
+          adb forward --remove-all
+          adb start-server
           adb devices
 
       - name: create AVD and generate snapshot for caching

@@ -24,6 +24,15 @@ jobs:
       - run: |
           npm -v
           node -v
+
+      # Step that does that actual cache save and restore
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Setup appium
         run: |
           npm install -g appium@v1.20.2
