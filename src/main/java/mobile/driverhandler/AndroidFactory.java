@@ -75,7 +75,7 @@ public class AndroidFactory extends AppFactory {
       capabilities.setCapability("appActivity", appActivity);
       capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
       capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-      appiumDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+      appiumDriver = new AndroidDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
     appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
