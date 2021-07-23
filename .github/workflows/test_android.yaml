@@ -60,12 +60,11 @@ jobs:
 
       - name: Configure machine
         run: |
-          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-          touch ~/.android/repositories.cfg
-          brew install --cask android-sdk
-          adb kill-server
-          adb start-server
-          adb devices -l
+          adb devices
+      #          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
+      #          touch ~/.android/repositories.cfg
+      #          adb kill-server
+      #          adb start-server
 
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
@@ -88,4 +87,6 @@ jobs:
           disable-animations: true
           arch: x86_64
           profile: Nexus 6
-          script: mvn clean test site -X -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
+          script: |
+            adb devices
+            mvn clean test site -X -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
