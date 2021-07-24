@@ -1,6 +1,6 @@
 name: Ubuntu - Android Mobile CI
 'on':
-  push:
+#  push:
   #     branches:
   #      - development
   workflow_dispatch:

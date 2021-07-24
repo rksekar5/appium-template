@@ -62,8 +62,8 @@ jobs:
       - name: Configure machine
         run: |
           adb devices
-          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-          touch ~/.android/repositories.cfg
+#          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
+#          touch ~/.android/repositories.cfg
           adb kill-server
           adb start-server
 
