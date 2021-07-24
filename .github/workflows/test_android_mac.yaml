@@ -28,6 +28,7 @@ jobs:
           node -v
       - name: Setup appium
         run: |
+          npm install npm@latest -g
           npm install appium@v1.20.1
           npm install appium-doctor
           appium -v
