@@ -29,6 +29,7 @@ jobs:
       - name: Setup appium
         run: |
           npm install npm@latest -g
+          npm init -y
           npm i --package-lock-only
           npm audit fix --force
           npm install appium@v1.20.1
