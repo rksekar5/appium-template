@@ -28,7 +28,9 @@ jobs:
           node -v
       - name: Setup appium
         run: |
-          npm install appium@v1.20.1
+          npm audit
+          npm audit fix
+          npm install appium@v1.20.2
           npm install appium-doctor
           appium -v
           appium-doctor --android
