@@ -78,7 +78,7 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
       # install and create the Emulator
-      - name: Android Regression with Maven on Ubuntu machine
+      - name: Android Regression with Maven on MAC machine
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
@@ -90,5 +90,5 @@ jobs:
           profile: Nexus 6
           script: |
             ./gradlew connectedCheck --stacktrace
-            adb devices
+            adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
             mvn clean test site -X -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
