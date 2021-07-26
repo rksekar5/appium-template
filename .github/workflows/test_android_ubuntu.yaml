@@ -28,7 +28,7 @@ jobs:
           node -v
       - name: Setup appium
         run: |
-          npm install -g appium@v1.20.2
+          npm install -g appium@v1.21.0
           npm install appium-doctor -g
           appium -v
           appium-doctor --android
@@ -60,11 +60,11 @@ jobs:
 
       - name: Configure machine
         run: |
+          brew install --cask homebrew/cask-versions/adoptopenjdk8
+          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
+          touch ~/.android/repositories.cfg
+          brew install --cask android-sdk
           adb devices
-      #          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-      #          touch ~/.android/repositories.cfg
-      #          adb kill-server
-      #          adb start-server
 
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
