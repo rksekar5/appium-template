@@ -1,4 +1,4 @@
-name: Mobile CI with maven
+name: MAC - iOS Mobile CI
 'on':
   push:
   #     branches:
@@ -24,14 +24,26 @@ jobs:
       - run: |
           npm -v
           node -v
+
+      # Step that does that actual cache save and restore
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Setup appium
         run: |
-          npm install -g appium@v1.20.1
+          npm install -g appium@v1.21.0
+          npm install appium-doctor -g
           appium -v
+          appium-doctor --ios
+      #          appium &>/dev/null &
       - name: List the Simulators
         run: |
           xcrun simctl erase all
           xcrun xctrace list devices
 
-      - name: Build with Maven
+      - name: iOS Regression with Maven
         run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true

@@ -43,7 +43,7 @@
                     <systemPropertyVariables>
                         <environment>${envConfig}</environment>
                     </systemPropertyVariables>
-                    <testFailureIgnore>false</testFailureIgnore>
+                    <testFailureIgnore>true</testFailureIgnore>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/java/testsuites/${suiteFile}</suiteXmlFile>
                     </suiteXmlFiles>
