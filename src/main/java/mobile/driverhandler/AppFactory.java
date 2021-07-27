@@ -28,7 +28,9 @@ public class AppFactory {
       log.debug("Killing Appium service before starting a new session");
     }
 
-    service.start();
+    if (service != null) {
+      service.start();
+    }
     return service;
   }
 
