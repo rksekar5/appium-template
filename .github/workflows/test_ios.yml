@@ -1,4 +1,4 @@
-name: Mobile CI with maven
+name: MAC - iOS Mobile CI
 'on':
   push:
   #     branches:
@@ -33,5 +33,5 @@ jobs:
           xcrun simctl erase all
           xcrun xctrace list devices
 
-      - name: Build with Maven
+      - name: iOS Regression Tests with Maven
         run: mvn clean test site -DsuiteFile=ios_mobile_regression.xml -DremoteExecution=true
