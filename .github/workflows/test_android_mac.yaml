@@ -67,7 +67,7 @@ jobs:
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         env:
-          ANDROID_SDK_ROOT: ${{ ANDROID_HOME }}
+          ANDROID_SDK_ROOT: $ANDROID_HOME
         with:
           api-level: ${{ matrix.api-level }}
           force-avd-creation: false
