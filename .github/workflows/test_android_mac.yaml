@@ -1,8 +1,8 @@
-name: MAC - Android Mobile CI
+name: Ubuntu - Android Mobile CI
 'on':
   push:
-  #     branches:
-  #      - development
+    #     branches:
+    #      - development
   workflow_dispatch:
 jobs:
   build:
@@ -32,7 +32,6 @@ jobs:
           npm install appium-doctor -g
           appium -v
           appium-doctor --android
-
       - name: Gradle cache
         uses: actions/cache@v2
         with:
@@ -46,18 +45,17 @@ jobs:
         id: avd-cache
         with:
           path: |
-            ~/.android/avd/*
-            ~/.android/adb*
+             ~/.android/avd/*
+             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
 
-      # Step that does that actual cache save and restore
+        # Step that does that actual cache save and restore
       - uses: actions/cache@v1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            ${{ runner.os }}-maven-
-
+              ${{ runner.os }}-maven-
       - name: Configure machine
         run: |
           brew install --cask homebrew/cask-versions/adoptopenjdk8
@@ -65,7 +63,6 @@ jobs:
           touch ~/.android/repositories.cfg
           brew install --cask android-sdk
           adb devices
-
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -76,7 +73,7 @@ jobs:
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
 
-      # install and create the Emulator
+        # install and create the Emulator
       - name: Android Regression with Maven on MAC machine
         uses: reactivecircus/android-emulator-runner@v2
         with:
