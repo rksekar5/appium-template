@@ -58,20 +58,23 @@ jobs:
               ${{ runner.os }}-maven-
       - name: Configure machine
         run: |
-          brew install --cask homebrew/cask-versions/adoptopenjdk8
           export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
           touch ~/.android/repositories.cfg
           brew install --cask android-sdk
-          adb devices
+          appium-doctor --android
+
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
+        env:
+          ANDROID_SDK_ROOT: ${{ ANDROID_HOME }}
         with:
           api-level: ${{ matrix.api-level }}
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -verbose -show-kernel
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
+
 
         # install and create the Emulator
       - name: Android Regression with Maven on MAC machine
