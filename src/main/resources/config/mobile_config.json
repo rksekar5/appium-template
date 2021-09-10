@@ -1,8 +1,8 @@
 {
-  "android_real_device": "Huawei P30",
+  "android_real_device": "",
   "android_emulator": "emulator-5554",
   "android_platform_version": "10",
-  "android_model_name": "ELE L29",
+  "android_model_name": "",
   "android_udid": "",
 
   "android_demo_app": "Android.SauceLabs.Mobile.Sample.app.2.7.1.apk",
@@ -13,7 +13,7 @@
   "flutter_package_name": "com.example.flutter_test_app",
 
   "ios_device": "iPhone 12",
-  "ios_platform_version": "14.5",
+  "ios_platform_version": "14.4",
   "ios_demo_app": "iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip",
   "ios_demo_ipa": "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa",
   "ios_package_name": "com.saucelabs.SwagLabsMobileApp",
