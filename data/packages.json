@@ -1,0 +1,21 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "mobile.androidapp.androidnativedemo.AndroidDemoTest",
+    "children" : [ {
+      "name" : "testAppFeaturesOnTheAndroidApp",
+      "uid" : "1917540f22c0dc4",
+      "parentUid" : "26c4650653c34c4c5f9604305c7cb376",
+      "status" : "passed",
+      "time" : {
+        "start" : 1631274926623,
+        "stop" : 1631274955328,
+        "duration" : 28705
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "mobile.androidapp.androidnativedemo.AndroidDemoTest"
+  } ]
+}

@@ -1,0 +1,29 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "Android Regression Tests",
+    "children" : [ {
+      "name" : "Test",
+      "children" : [ {
+        "name" : "mobile.androidapp.androidnativedemo.AndroidDemoTest",
+        "children" : [ {
+          "name" : "testAppFeaturesOnTheAndroidApp",
+          "uid" : "1917540f22c0dc4",
+          "parentUid" : "733b0d8732599b0567eb120bd80fe714",
+          "status" : "passed",
+          "time" : {
+            "start" : 1631274926623,
+            "stop" : 1631274955328,
+            "duration" : 28705
+          },
+          "flaky" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "733b0d8732599b0567eb120bd80fe714"
+      } ],
+      "uid" : "eca2cce5496c17dd63416a6f6791e328"
+    } ],
+    "uid" : "88280a1dd71f204f0092ee89bbfa990a"
+  } ]
+}

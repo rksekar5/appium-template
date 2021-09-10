@@ -1,0 +1,622 @@
+{
+  "uid" : "1917540f22c0dc4",
+  "name" : "testAppFeaturesOnTheAndroidApp",
+  "fullName" : "mobile.androidapp.androidnativedemo.AndroidDemoTest.testAppFeaturesOnTheAndroidApp",
+  "historyId" : "4bb3d32922e5e6b5952c5f6c42616bbe",
+  "time" : {
+    "start" : 1631274926623,
+    "stop" : 1631274955328,
+    "duration" : 28705
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274879487,
+        "stop" : 1631274879935,
+        "duration" : 448
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Test suite: Test",
+      "time" : {
+        "start" : 1631274882140,
+        "stop" : 1631274882142,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885308,
+        "stop" : 1631274885308,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885318,
+        "stop" : 1631274885319,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885320,
+        "stop" : 1631274885320,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885321,
+        "stop" : 1631274885321,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885322,
+        "stop" : 1631274885322,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885323,
+        "stop" : 1631274885324,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885324,
+        "stop" : 1631274885325,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Get value from JSON config file",
+      "time" : {
+        "start" : 1631274885326,
+        "stop" : 1631274885326,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Starting test: AndroidDemoTest.testAppFeaturesOnTheAndroidApp()[pri:1, instance:mobile.androidapp.androidnativedem...",
+      "time" : {
+        "start" : 1631274926575,
+        "stop" : 1631274926576,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-Username}) clicked successfully",
+      "time" : {
+        "start" : 1631274931177,
+        "stop" : 1631274931177,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Username has been entered",
+      "time" : {
+        "start" : 1631274933156,
+        "stop" : 1631274933156,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-Password}) clicked successfully",
+      "time" : {
+        "start" : 1631274934036,
+        "stop" : 1631274934036,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Password has been entered",
+      "time" : {
+        "start" : 1631274935307,
+        "stop" : 1631274935307,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-LOGIN}) clicked successfully",
+      "time" : {
+        "start" : 1631274937047,
+        "stop" : 1631274937047,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Login button has been clicked",
+      "time" : {
+        "start" : 1631274937047,
+        "stop" : 1631274937047,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.xpath: //android.view.ViewGroup[@content-desc=\"test-Toggle\"]/android.widget.ImageView}) ...",
+      "time" : {
+        "start" : 1631274940292,
+        "stop" : 1631274940292,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Product list view has been clicked",
+      "time" : {
+        "start" : 1631274940292,
+        "stop" : 1631274940292,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-Modal Selector Button}) clicked successfully",
+      "time" : {
+        "start" : 1631274940638,
+        "stop" : 1631274940638,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Product filter has been clicked",
+      "time" : {
+        "start" : 1631274940638,
+        "stop" : 1631274940639,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.xpath: //android.widget.ScrollView[@content-desc=\"Selector container\"]/android.view.View...",
+      "time" : {
+        "start" : 1631274942035,
+        "stop" : 1631274942035,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: The products have been sorted based on the price",
+      "time" : {
+        "start" : 1631274942035,
+        "stop" : 1631274942035,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-Menu}) clicked successfully",
+      "time" : {
+        "start" : 1631274943058,
+        "stop" : 1631274943058,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Clicked on the Left panel list",
+      "time" : {
+        "start" : 1631274943058,
+        "stop" : 1631274943058,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-WEBVIEW}) clicked successfully",
+      "time" : {
+        "start" : 1631274945040,
+        "stop" : 1631274945040,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Web view has been clicked",
+      "time" : {
+        "start" : 1631274945041,
+        "stop" : 1631274945041,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-enter a https url here...}) clicked successfully",
+      "time" : {
+        "start" : 1631274947851,
+        "stop" : 1631274947851,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: The website url has been entered",
+      "time" : {
+        "start" : 1631274949916,
+        "stop" : 1631274949917,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-GO TO SITE}) clicked successfully",
+      "time" : {
+        "start" : 1631274950660,
+        "stop" : 1631274950660,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: The website has been launched from the app",
+      "time" : {
+        "start" : 1631274950660,
+        "stop" : 1631274950660,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-Menu}) clicked successfully",
+      "time" : {
+        "start" : 1631274951472,
+        "stop" : 1631274951472,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Clicked on the Left panel list",
+      "time" : {
+        "start" : 1631274951472,
+        "stop" : 1631274951472,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Located by By.chained({By.AccessibilityId: test-LOGOUT}) clicked successfully",
+      "time" : {
+        "start" : 1631274955320,
+        "stop" : 1631274955320,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: Logout button has been clicked",
+      "time" : {
+        "start" : 1631274955320,
+        "stop" : 1631274955320,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "INFO: testAppFeaturesOnTheAndroidApp \n--- SUCCESS ---\n",
+      "time" : {
+        "start" : 1631274955326,
+        "stop" : 1631274955326,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 36,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "TestNG"
+  }, {
+    "name" : "host",
+    "value" : "Mac-1631272082137.local"
+  }, {
+    "name" : "language",
+    "value" : "JAVA"
+  }, {
+    "name" : "severity",
+    "value" : "blocker"
+  }, {
+    "name" : "testClass",
+    "value" : "mobile.androidapp.androidnativedemo.AndroidDemoTest"
+  }, {
+    "name" : "testGroup",
+    "value" : "Test"
+  }, {
+    "name" : "testMethod",
+    "value" : "testAppFeaturesOnTheAndroidApp"
+  }, {
+    "name" : "testSuite",
+    "value" : "Android Regression Tests"
+  }, {
+    "name" : "thread",
+    "value" : "5409@Mac-1631272082137.local.main(1)"
+  }, {
+    "name" : "parentSuite",
+    "value" : "Android Regression Tests"
+  }, {
+    "name" : "suite",
+    "value" : "Test"
+  }, {
+    "name" : "subSuite",
+    "value" : "mobile.androidapp.androidnativedemo.AndroidDemoTest"
+  }, {
+    "name" : "package",
+    "value" : "mobile.androidapp.androidnativedemo.AndroidDemoTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "blocker",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "1917540f22c0dc4.json",
+  "parameterValues" : [ ]
+}

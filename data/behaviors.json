@@ -1,0 +1,17 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "testAppFeaturesOnTheAndroidApp",
+    "uid" : "1917540f22c0dc4",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1631274926623,
+      "stop" : 1631274955328,
+      "duration" : 28705
+    },
+    "flaky" : false,
+    "parameters" : [ ]
+  } ]
+}
