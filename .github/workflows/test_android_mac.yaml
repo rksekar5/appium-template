@@ -1,8 +1,8 @@
-name: MAC - Android Mobile CI
+name: Android Mobile CI - MAC OS
 'on':
   push:
-    #     branches:
-    #      - development
+  #     branches:
+  #      - development
   workflow_dispatch:
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-11
     strategy:
       matrix:
-        api-level: [ 29 ] #Google api level for example [25,23,28]
+        api-level: [ 28 ] #Google api level for example [25,23,28]
         target: [ default ]
     steps:
       - uses: actions/checkout@v2
@@ -32,65 +32,102 @@ jobs:
           npm install appium-doctor -g
           appium -v
           appium-doctor --android
-      - name: Gradle cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-
-      - name: AVD cache
-        uses: actions/cache@v2
-        id: avd-cache
-        with:
-          path: |
-             ~/.android/avd/*
-             ~/.android/adb*
-          key: avd-${{ matrix.api-level }}
-
-        # Step that does that actual cache save and restore
-      - uses: actions/cache@v1
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-              ${{ runner.os }}-maven-
-      - name: Configure machine
-        run: |
-          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-          touch ~/.android/repositories.cfg
-          brew install --cask android-sdk
-          appium-doctor --android
-
-      - name: create AVD and generate snapshot for caching
-        if: steps.avd-cache.outputs.cache-hit != 'true'
-        uses: reactivecircus/android-emulator-runner@v2
-        env:
-          ANDROID_SDK_ROOT: $ANDROID_HOME
+      - name: Run Android Tests
+        uses: ReactiveCircus/android-emulator-runner@v2.19.1
         with:
           api-level: ${{ matrix.api-level }}
-          force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -verbose -show-kernel
-          disable-animations: false
-          script: echo "Generated AVD snapshot for caching."
-
-
-        # install and create the Emulator
-      - name: Android Regression with Maven on MAC machine
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.api-level }}
-          target: ${{ matrix.target }}
-          force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -verbose -show-kernel
-          disable-animations: true
           arch: x86_64
-          profile: Nexus 6
+          ndk: 21.4.7075529
           script: |
-            adb devices
-            mvn clean test site -X -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
-      - name: Setup tmate session
-        if: always()
-        uses: mxschmitt/action-tmate@v3
+            adb devices -l
+            mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
+      - name: Generate Test Report with Allure
+        run: mvn allure:report
 
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: target/site/allure-maven-plugin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      #      - name: Configure machine
+      #        run: |
+      #          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
+      #          touch ~/.android/repositories.cfg
+      #          export ANDROID_HOME=/Users/$USER/Library/Android/sdk
+      #          export ANDROID_SDK_HOME=/Users/$USER/Library/Android/sdk
+      #          export ANDROID_AVD_HOME=/Users/$USER/.android/avd
+      #          export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_AVD_HOME
+      #          export ANDROID_SDK_ROOT=$ANDROID_HOME
+      #          echo $ANDROID_SDK_ROOT
+      #          echo $ANDROID_SDK_HOME
+      #          echo $ANDROID_AVD_HOME
+
+      #        # Step that does that actual cache save and restore
+      #      - uses: actions/cache@v2
+      #        with:
+      #          path: ~/.m2/repository
+      #          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+      #          restore-keys: |
+      #            ${{ runner.os }}-maven-
+
+      #      - name: AVD cache
+      #        uses: actions/cache@v2
+      #        id: avd-cache
+      #        with:
+      #          path: |
+      #            ~/.android/avd/*
+      #            ~/.android/adb*
+      #          key: avd-${{ matrix.api-level }}
+
+      #      - name: create AVD and generate snapshot for caching
+      #        if: steps.avd-cache.outputs.cache-hit != 'true'
+      #        uses: reactivecircus/android-emulator-runner@v2
+      #        env:
+      #          ANDROID_SDK_ROOT: $ANDROID_HOME
+      #        with:
+      #          api-level: ${{ matrix.api-level }}
+      #          force-avd-creation: false
+      #          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -verbose -show-kernel
+      #          disable-animations: false
+      #          script: |
+      #            echo "Generated AVD snapshot for caching."
+      #            adb devices -l
+
+      # Determine what emulator image to use. We run all API 29+ emulators using
+      # the google_apis image
+      #      - name: Determine emulator target
+      #        id: determine-target
+      #        env:
+      #          API_LEVEL: ${{ matrix.api-level }}
+      #        run: |
+      #          TARGET="default"
+      #          if [ "$API_LEVEL" -ge "29" ]; then
+      #            TARGET="google_apis"
+      #          fi
+      #          echo "::set-output name=TARGET::$TARGET"
+      #
+      #      - name: Run tests
+      #        uses: reactivecircus/android-emulator-runner@v2
+      #        with:
+      #          api-level: ${{ matrix.api-level }}
+      #          target: ${{ steps.determine-target.outputs.TARGET }}
+      #          force-avd-creation: false
+      #          arch: x86_64
+      #          profile: Galaxy Nexus
+      #          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -verbose -show-kernel
+      #          # We run all affected tests of the PR (or commit)
+      #          script: |
+      #            adb devices -l
+      #            mvn clean test site -DsuiteFile=android_mobile_regression.xml -DremoteExecution=true
